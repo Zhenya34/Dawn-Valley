@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638532730885188394
+  platformSettingsDirtyTick: 638548483940143920
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 318
       height: 116
-    spriteID: 61c151528ce2290478d9cb5b61f1981e
+    spriteID: 635c02b379c560340bad611542e0667b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,8 +144,8 @@ ScriptedImporter:
   spriteSheetImportData:
   - name: Dawn valley atlas-Tiles_6
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -153,7 +153,7 @@ ScriptedImporter:
       y: 89
       width: 16
       height: 16
-    spriteID: 5deb36ced5c891c43aa83af9bc69f163
+    spriteID: 417e6c72e3149a84abbbcdf90dd3873e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -164,8 +164,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_7
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -173,7 +173,7 @@ ScriptedImporter:
       y: 72
       width: 16
       height: 16
-    spriteID: fca5875fa3a38284c8df55832e8c4549
+    spriteID: f05ee3e21286dda45a6f159cae230e47
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -184,8 +184,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_8
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -193,7 +193,7 @@ ScriptedImporter:
       y: 55
       width: 16
       height: 16
-    spriteID: d667375617c0b5344ac602f9ab28b985
+    spriteID: 5a6888657bee4e144a6a5cd085a44f28
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -204,8 +204,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_9
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -213,7 +213,7 @@ ScriptedImporter:
       y: 55
       width: 16
       height: 16
-    spriteID: 5e17d3b28868a4949b7dcd9e2e208a67
+    spriteID: 62729b89938bd5145a7b7279261fed87
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -224,8 +224,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_10
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -233,7 +233,7 @@ ScriptedImporter:
       y: 55
       width: 16
       height: 16
-    spriteID: 66080867881c1d344a2f46ec10902ca5
+    spriteID: ce451ba1c8df3934bb3052f585461fda
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -244,8 +244,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_11
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -253,7 +253,7 @@ ScriptedImporter:
       y: 55
       width: 16
       height: 16
-    spriteID: d5ba4e8765c60694cb7aab6270666d34
+    spriteID: 7d56051528ed97a4bab7861016feee52
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -264,8 +264,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_12
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -273,7 +273,7 @@ ScriptedImporter:
       y: 55
       width: 16
       height: 16
-    spriteID: 12b5fb555434eed45b079d92321a2c2a
+    spriteID: 018b73514a9dcfc4c9291606847ee332
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -284,8 +284,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_13
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -293,7 +293,7 @@ ScriptedImporter:
       y: 55
       width: 16
       height: 16
-    spriteID: ca31ebce45cba324285e849654d712a0
+    spriteID: 2f1a29a49aa226e40b2125b288079e86
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -304,8 +304,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_14
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -313,7 +313,7 @@ ScriptedImporter:
       y: 55
       width: 16
       height: 16
-    spriteID: c1f416de2b066f3489a7bf12b2aba8ab
+    spriteID: 57a8336d7b31641429d02e9ad99144c0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -324,8 +324,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_16
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -333,7 +333,7 @@ ScriptedImporter:
       y: 55
       width: 16
       height: 16
-    spriteID: ebcb4f04e91465345ab4916b454bd777
+    spriteID: 6f9ad273dc7a0134f8e5216f39d66518
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -344,8 +344,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_17
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -353,7 +353,7 @@ ScriptedImporter:
       y: 55
       width: 16
       height: 16
-    spriteID: 81ff5f4b58e652f4d9d7d53bf5f9b778
+    spriteID: c702423288c3aac49acbeee04cf17a22
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -364,8 +364,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_18
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -373,7 +373,7 @@ ScriptedImporter:
       y: 55
       width: 16
       height: 16
-    spriteID: 89641ca44ba087e4e843cd110007c6d0
+    spriteID: 98ca3c25c67703d49aaef7a1c14691ab
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -384,8 +384,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_21
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -393,7 +393,7 @@ ScriptedImporter:
       y: 38
       width: 16
       height: 16
-    spriteID: e621e0a54fb698140a94dd4a63ea8936
+    spriteID: c43fc9a20d5ca294d933f640abfc2324
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -404,8 +404,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_22
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -413,7 +413,7 @@ ScriptedImporter:
       y: 38
       width: 16
       height: 16
-    spriteID: 591767184ae97c04b905e1242ec4df3d
+    spriteID: 3681408efde8cbe4c94925bb84cf69f0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -424,8 +424,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_23
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -433,7 +433,7 @@ ScriptedImporter:
       y: 38
       width: 16
       height: 16
-    spriteID: 4f23ff1229f1f4947aed43eed0295e4d
+    spriteID: a62804d43c76e26429a214034b3e09a0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -444,8 +444,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_24
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -453,7 +453,7 @@ ScriptedImporter:
       y: 38
       width: 16
       height: 16
-    spriteID: 821c1af49e2302d4dac8e33fb7ff07ae
+    spriteID: 2c8a37c753a5a9e4ab10ebd9a8d78526
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -464,8 +464,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_25
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -473,7 +473,7 @@ ScriptedImporter:
       y: 38
       width: 16
       height: 16
-    spriteID: 7dba6059ebcbf5a4cab9dffb193e63a0
+    spriteID: 32d9a2c37f58e7742b20a24af00395ab
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -484,8 +484,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_26
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -493,7 +493,7 @@ ScriptedImporter:
       y: 38
       width: 16
       height: 16
-    spriteID: 086b2b061f9ffaf40b87ef7cc61a30a1
+    spriteID: 4dc303cf94a11e04bb6155c80190aa9b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -504,8 +504,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_27
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -513,27 +513,7 @@ ScriptedImporter:
       y: 38
       width: 16
       height: 16
-    spriteID: 930ea1a4869d75448aaec53194c65a88
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Dawn valley atlas-Tiles_28
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 172
-      y: 39
-      width: 16
-      height: 16
-    spriteID: 6e077ac4d8ed49b4aa04badf4da6c060
+    spriteID: 984fdac90b6341d499fc23b12b20cd03
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -544,8 +524,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_32
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -553,7 +533,7 @@ ScriptedImporter:
       y: 38
       width: 16
       height: 16
-    spriteID: 42e6c5f7c218f1c4288c150d133f9a56
+    spriteID: 79ac193105e6a714ab489bd54a5499fe
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -564,8 +544,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_36
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -573,7 +553,7 @@ ScriptedImporter:
       y: 21
       width: 16
       height: 16
-    spriteID: 0a05e696f0782fa47aebed070e912610
+    spriteID: 04aa2d9efa9398a44931855d672c3dee
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -584,8 +564,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_37
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -593,7 +573,7 @@ ScriptedImporter:
       y: 21
       width: 16
       height: 16
-    spriteID: f20b4b17f4d6f43409b2c1174614ccaf
+    spriteID: b675d5dc2bdf17247a8839d04c06d828
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -604,8 +584,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_38
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -613,7 +593,7 @@ ScriptedImporter:
       y: 21
       width: 16
       height: 16
-    spriteID: 1e3e009446011bf4a9799bea563aac54
+    spriteID: 0ca9b626ef167fe49acbd42b4109c7f2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -624,8 +604,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_39
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -633,7 +613,7 @@ ScriptedImporter:
       y: 21
       width: 16
       height: 16
-    spriteID: d34d1f567266b3d46838ac0174880724
+    spriteID: 30e4c03b716c4f140905cf6558c13039
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -644,8 +624,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_40
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -653,7 +633,7 @@ ScriptedImporter:
       y: 21
       width: 16
       height: 16
-    spriteID: 925f00d85345a9c4e87d67a4d7e6f28c
+    spriteID: de41e236d177ea74f8776c4daa0e4dad
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -664,8 +644,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_41
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -673,7 +653,7 @@ ScriptedImporter:
       y: 21
       width: 16
       height: 16
-    spriteID: c4b83e076ba7a6844a9b177f1bf873e0
+    spriteID: ae221f76f6ec7de478fb2817373e629c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -684,8 +664,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_42
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -693,7 +673,7 @@ ScriptedImporter:
       y: 21
       width: 16
       height: 16
-    spriteID: bd28ba09a1bfe1640bcd782cc5274370
+    spriteID: d7a2b86724332494c97ac65eeb389060
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -704,8 +684,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_43
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -713,7 +693,7 @@ ScriptedImporter:
       y: 21
       width: 16
       height: 16
-    spriteID: 4700f27e6bd9a0648894f9e6465d95d5
+    spriteID: b4b08eb793f20954d92695b2c770d649
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -724,8 +704,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_44
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -733,7 +713,7 @@ ScriptedImporter:
       y: 21
       width: 16
       height: 16
-    spriteID: ffdc61f890755484e8f47283b8210913
+    spriteID: 90abd0b63859e4f41b42be650fbc15bd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -744,8 +724,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_45
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -753,7 +733,7 @@ ScriptedImporter:
       y: 21
       width: 16
       height: 16
-    spriteID: 5da939eea93827445b56b108056c7a59
+    spriteID: c09eeca0435c64c46ac7e627f1276733
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -764,8 +744,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_46
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -773,7 +753,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 16
-    spriteID: bc298dc07e0be6449910504ef74cfb0a
+    spriteID: 6e9d2622d621ba8438da3f76539b4329
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -784,8 +764,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_47
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -793,7 +773,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 16
-    spriteID: e5ecd1910515375479e8643f380269bc
+    spriteID: 05a276d875ee2de4689084ecb58bc3cf
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -804,8 +784,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_48
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -813,7 +793,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 16
-    spriteID: ed1f9938563189f4e8805d1b51e0abce
+    spriteID: d40d7070e05327b45b402afcd7ba84bd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -824,8 +804,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_49
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -833,7 +813,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 16
-    spriteID: 39f26818d6f5c80459abe5fa15196583
+    spriteID: 2dbe713c6a166194b800e0731ab1088c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -844,8 +824,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_50
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -853,7 +833,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 16
-    spriteID: 3f39cc94aa3ee194c95180c194c1cafe
+    spriteID: 6817ef5fa0f30444ba765146af374d17
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -864,8 +844,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_51
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -873,7 +853,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 16
-    spriteID: 37a981907dd2e2f48be08e9ace5d22f9
+    spriteID: 651274c6248a86343ad4aac6d6cf12e7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -884,8 +864,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_52
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -893,7 +873,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 16
-    spriteID: 6f0296d21e5af8347a98cfe8e947bfdd
+    spriteID: e8efe10709d45e74db8536c43a767b5b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -904,16 +884,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_0
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 189
-      y: 39
+      x: 4
+      y: 72
       width: 16
       height: 16
-    spriteID: 791e1837af8c32744b0639c3e1194ef4
+    spriteID: cdbe484b88e16d94486bada41c8d24a6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -924,16 +904,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_1
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 223
-      y: 39
+      x: 4
+      y: 88
       width: 16
       height: 16
-    spriteID: 6d079c5d761ef7d459ec6d297d918193
+    spriteID: ab516a89fceeeb74c841cc963e092b3c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -944,16 +924,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_2
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 223
-      y: 23
+      x: 4
+      y: 104
       width: 16
       height: 16
-    spriteID: 3a9d42c8ed4046c4190a387a525c87a6
+    spriteID: 76b5d348de1b80c4eb8319bf7c24d628
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -964,16 +944,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_3
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 239
-      y: 23
+      x: 20
+      y: 104
       width: 16
       height: 16
-    spriteID: 5eac46cca5999054bba62a945ed45da8
+    spriteID: e97920efb4956e04e9384658a4877797
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -984,16 +964,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_4
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 239
-      y: 39
+      x: 36
+      y: 104
       width: 16
       height: 16
-    spriteID: a080bd05aef5a2f4487ed8a5d0c2edc7
+    spriteID: 0b500c963e57223409f6e292da2a9e30
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1004,16 +984,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_5
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 255
-      y: 39
+      x: 36
+      y: 88
       width: 16
       height: 16
-    spriteID: 4f309ffd7222bdd44a80010d6501b012
+    spriteID: 05075f47635a7f34ea47b51c6515d539
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1024,16 +1004,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_15
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 255
-      y: 23
+      x: 36
+      y: 72
       width: 16
       height: 16
-    spriteID: b2584f02a118d3b46ae7babf73bb299a
+    spriteID: 3fa526ec2930d5d4792085a38de15f31
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1044,16 +1024,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_19
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 255
-      y: 55
+      x: 20
+      y: 72
       width: 16
       height: 16
-    spriteID: 738f9fe1c044e3144925d5724b2306a9
+    spriteID: 55c1d4b9d54b9c54487f86019c2fa90f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1064,16 +1044,36 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_20
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 239
-      y: 55
+      x: 54
+      y: 104
       width: 16
       height: 16
-    spriteID: 852abbdfa6dfc924280b8a264a0a242d
+    spriteID: 0519d0d38265ea8469b9d0120ac4c0da
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: Dawn valley atlas-Tiles_28
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 54
+      y: 88
+      width: 16
+      height: 16
+    spriteID: 429d393756caee24cbff1ec764d3efa2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1084,16 +1084,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_29
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 223
-      y: 55
+      x: 54
+      y: 72
       width: 16
       height: 16
-    spriteID: 8c6634ca73101704f99bdce84d17c5fd
+    spriteID: 1b565c8a250d6924588585506c3591c4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1104,16 +1104,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_30
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 274
-      y: 50
+      x: 70
+      y: 72
       width: 16
       height: 16
-    spriteID: 2910ffae03b47b34cb49875befe591fd
+    spriteID: 9baee85a6a3e03c488edb8efeaf1eaa9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1124,16 +1124,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_31
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 274
-      y: 34
+      x: 70
+      y: 88
       width: 16
       height: 16
-    spriteID: 1288e9f4e06275f489521b5c10d3ddd7
+    spriteID: 169744ddbdeb2da4985d9d8d32d70a1e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1144,16 +1144,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_33
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 290
-      y: 50
+      x: 70
+      y: 104
       width: 16
       height: 16
-    spriteID: 65e64ae927e3661458f0627dd95dda1e
+    spriteID: c04d3c1cc0f854e4aab803d7929a7621
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1164,16 +1164,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_34
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 290
-      y: 34
+      x: 86
+      y: 104
       width: 16
       height: 16
-    spriteID: 97c0adfaf01910e4ca4649c8bb38e1b5
+    spriteID: 628dff7889aa9864b9fe1cdd7330e93b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1184,16 +1184,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_35
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 306
-      y: 34
+      x: 86
+      y: 88
       width: 16
       height: 16
-    spriteID: 661389ee13ae5eb44ae89482bccd0081
+    spriteID: 14b5403c6261b8e4a8a1785adf166e12
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1204,16 +1204,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_53
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 306
-      y: 50
+      x: 86
+      y: 72
       width: 16
       height: 16
-    spriteID: 8f10badd990c3ee4bb26cf4c8429bd9d
+    spriteID: 8a89b9ee7ade4b74fbcadb97c960cc97
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1224,16 +1224,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_54
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 285
-      y: 72
+      x: 104
+      y: 104
       width: 16
       height: 16
-    spriteID: 1b8eaf1bcd9259741be72cecb11955e2
+    spriteID: 12127a550ef496f48b3a6c7afd86d51a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1244,16 +1244,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_55
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 269
-      y: 72
+      x: 120
+      y: 104
       width: 16
       height: 16
-    spriteID: 27ff6ed515124a641af11b6762e60ed0
+    spriteID: 7662c0bfec654d8439e7065356533db4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1264,16 +1264,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_56
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 253
-      y: 72
+      x: 136
+      y: 104
       width: 16
       height: 16
-    spriteID: d81638e589889894ab5c22ebd4729e03
+    spriteID: 2f064cd8d102fb74f8befe202808eddc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1284,16 +1284,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_57
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 253
+      x: 136
       y: 88
       width: 16
       height: 16
-    spriteID: 84c194b15d915b04cbb406f8ecad75e7
+    spriteID: 13fc476c4bf581f4fbc3dd9288f68590
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1304,16 +1304,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_58
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 269
+      x: 120
       y: 88
       width: 16
       height: 16
-    spriteID: 422f1757e84eb7e4187b57ffa723b9a8
+    spriteID: 0c363efc67778ac438329d1cd9aa0035
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1324,16 +1324,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_59
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 285
+      x: 104
       y: 88
       width: 16
       height: 16
-    spriteID: d5cc961ef6e809c43922f0087368f049
+    spriteID: aea53f4165bb444489ac3f6f326de7ba
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1344,16 +1344,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_60
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 285
-      y: 104
+      x: 104
+      y: 72
       width: 16
       height: 16
-    spriteID: f13b9bbca02155a49841e5d19ce71898
+    spriteID: 23cba9fb948eb99438c51cde75702fd2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1364,16 +1364,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_61
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 269
-      y: 104
+      x: 120
+      y: 72
       width: 16
       height: 16
-    spriteID: 53377a4fd90afb349b6d9631d0809c92
+    spriteID: f555f575937064342a981c94ce35f85a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1384,16 +1384,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_62
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 253
-      y: 104
+      x: 136
+      y: 72
       width: 16
       height: 16
-    spriteID: b9b2136dc1697b847bdfdaa5e2120c64
+    spriteID: e3d678c1dc7bef74abd5e9225c033456
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1404,16 +1404,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_63
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 234
-      y: 104
+      x: 123
+      y: 55
       width: 16
       height: 16
-    spriteID: 6327a347ebb6404409e5a26879b2d71f
+    spriteID: 7b5afd15d60c0a945bb0d7086a2607e7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1424,16 +1424,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_64
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 234
-      y: 88
+      x: 139
+      y: 55
       width: 16
       height: 16
-    spriteID: 0ba331d1f92ad734aae98ced1d7bcaab
+    spriteID: f4de84db461957d428668c177bb20eca
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1444,16 +1444,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_65
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 234
-      y: 72
+      x: 155
+      y: 55
       width: 16
       height: 16
-    spriteID: 5b822bc0d51d8e248a39043dcd0ea05e
+    spriteID: 5f43eaaeb642b0c4695409d290e4975e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1464,16 +1464,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_66
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 218
-      y: 72
+      x: 123
+      y: 39
       width: 16
       height: 16
-    spriteID: 5d2e812aaa5ad7b449effc6869f4b2d1
+    spriteID: 781a0ce37a61a47489f1e7a6a7ddb0b2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1484,16 +1484,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_67
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 218
-      y: 88
+      x: 139
+      y: 39
       width: 16
       height: 16
-    spriteID: 72cfe7bf551fb384c941685da9e1cc11
+    spriteID: 2a2189391516fba4e9f74357359a519a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1504,16 +1504,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_68
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 218
-      y: 104
+      x: 155
+      y: 39
       width: 16
       height: 16
-    spriteID: a4ae2dfa89adee0468394857f6641c01
+    spriteID: 433fba9b90501ae4a89e8b6fdfb34db9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1524,16 +1524,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_69
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 202
-      y: 104
+      x: 123
+      y: 23
       width: 16
       height: 16
-    spriteID: fd348bc0f4ae0da4d9a6b5b3578102fe
+    spriteID: b2a8d711be9ea524bbbc3128c24ed54e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1544,16 +1544,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_70
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 202
-      y: 88
+      x: 139
+      y: 23
       width: 16
       height: 16
-    spriteID: e9a85e08633c88a4db9bac64640cc21b
+    spriteID: dedf51123660aa84e80330e0bad4998b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1564,16 +1564,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_71
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 202
-      y: 72
+      x: 155
+      y: 23
       width: 16
       height: 16
-    spriteID: e789b166632e90a4a85917deb2957712
+    spriteID: d3c146c96fdda3c469fbd324367c408a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1584,16 +1584,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_72
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 185
-      y: 72
+      x: 172
+      y: 38
       width: 16
       height: 16
-    spriteID: faa360f2ae228894aa875f44b9ce7eb4
+    spriteID: 9820e3eb603d5aa49b95d7cd60e33186
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1604,16 +1604,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_73
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 185
-      y: 88
+      x: 189
+      y: 38
       width: 16
       height: 16
-    spriteID: 702cb64fda1017e4d9f05f1818ccd6bd
+    spriteID: 2d67432430a109642b81c2baff0c1f42
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1624,16 +1624,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_74
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 169
+      x: 153
       y: 72
       width: 16
       height: 16
-    spriteID: 24a4e1dbdd42c0440ae1e508de627b12
+    spriteID: 2894aa49516f8b64cb28d90279f2087d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1644,16 +1644,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_75
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 153
-      y: 72
+      y: 88
       width: 16
       height: 16
-    spriteID: ef9856350211df6458239286423111ea
+    spriteID: 20f377621f75d2e46b6804862a4ca521
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1664,16 +1664,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_76
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 169
-      y: 88
+      x: 153
+      y: 104
       width: 16
       height: 16
-    spriteID: 30a818001b0d56f41a0d3cfd7b73d82b
+    spriteID: 86256fdd47813bf40af9fa235243c111
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1684,16 +1684,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_77
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 185
+      x: 169
       y: 104
       width: 16
       height: 16
-    spriteID: 5d04542be152dec4ca9a66075bc29a8b
+    spriteID: 6c56237f68b771e409afb304c349a0e0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1704,16 +1704,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_78
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 169
-      y: 104
+      y: 88
       width: 16
       height: 16
-    spriteID: d98aab567bbd37a43aa34ef51fcbc9b4
+    spriteID: cd9dba047b198f74294d17d52717a879
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1724,16 +1724,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_79
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 153
-      y: 104
+      x: 169
+      y: 72
       width: 16
       height: 16
-    spriteID: e33647fde146198478ad6310ab4a3bcf
+    spriteID: 373ea4baa9f932f41b763c81475f7caf
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1744,16 +1744,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_80
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 153
-      y: 88
+      x: 185
+      y: 72
       width: 16
       height: 16
-    spriteID: d74a4e62dd1550040808acb9802d0466
+    spriteID: c87d06358416870469cba265d12a556f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1764,16 +1764,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_81
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 136
-      y: 104
+      x: 185
+      y: 88
       width: 16
       height: 16
-    spriteID: 46a717ab31bcd1d4e8f1c8eca3697b8a
+    spriteID: a6b2c870e988a0a4c8a354e04ccd8ffa
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1784,16 +1784,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_82
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 136
-      y: 88
+      x: 185
+      y: 104
       width: 16
       height: 16
-    spriteID: f7a8fb0911357ed41a5c75712096332b
+    spriteID: 4d6b660a7badf2c479f389e8b781569d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1804,16 +1804,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_83
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 120
+      x: 202
       y: 104
       width: 16
       height: 16
-    spriteID: 13eafc7804e36c14f81a5170417be3e8
+    spriteID: e884b45e53beab140982681cc919939c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1824,16 +1824,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_84
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 104
-      y: 104
+      x: 202
+      y: 88
       width: 16
       height: 16
-    spriteID: 2444dd53ec3983f4a9248b986b035aa6
+    spriteID: 11bd58ec389721a4886bcb246e646f97
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1844,16 +1844,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_85
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 104
-      y: 88
+      x: 202
+      y: 72
       width: 16
       height: 16
-    spriteID: c1f327f0737c4094593a8e8edc2942da
+    spriteID: ad02e67d8fd118343b9a5f595a874273
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1864,16 +1864,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_86
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 120
-      y: 88
+      x: 218
+      y: 72
       width: 16
       height: 16
-    spriteID: 4fe8b980bd255234c959268a25de1219
+    spriteID: 22f4361a2f95eff47b83f6b3b2c99886
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1884,16 +1884,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_87
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 136
-      y: 72
+      x: 218
+      y: 88
       width: 16
       height: 16
-    spriteID: 46cde57f604ca3445ab039a01b405513
+    spriteID: 645d1a720a8664547a3c3857ee1375d9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1904,16 +1904,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_88
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 120
-      y: 72
+      x: 218
+      y: 104
       width: 16
       height: 16
-    spriteID: 835df560a85a2bc439894cccd21b3690
+    spriteID: 979f72560cbfb2d48bc34c1e246f1350
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1924,16 +1924,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_89
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 104
-      y: 72
+      x: 234
+      y: 104
       width: 16
       height: 16
-    spriteID: a7c66f0ee8bccc3418881bbc38ceeee3
+    spriteID: 15a3b6e1b390e89408374561c036c571
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1944,16 +1944,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_90
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 86
-      y: 72
+      x: 234
+      y: 88
       width: 16
       height: 16
-    spriteID: 27eec6a31d0502d43a4c7b432d6cbead
+    spriteID: 71e923e6f18681a4c859692a48991ff5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1964,16 +1964,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_91
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 70
+      x: 234
       y: 72
       width: 16
       height: 16
-    spriteID: 64734ab44473b7b4098e133eee907bb0
+    spriteID: 56b82331e8353304fad1e5e9112f3854
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1984,16 +1984,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_92
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 54
-      y: 72
+      x: 223
+      y: 55
       width: 16
       height: 16
-    spriteID: 7eff66ce8f090734ab26feed0445e489
+    spriteID: e06b1d1d674141e46a52a20c0aeae7c7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2004,16 +2004,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_93
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 86
-      y: 88
+      x: 239
+      y: 55
       width: 16
       height: 16
-    spriteID: a5f9ed240c2a0084eb0e13357a1ae5e5
+    spriteID: b8965eb1924854b4a9653e3af6ca9f99
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2024,16 +2024,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_94
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 70
-      y: 88
+      x: 255
+      y: 55
       width: 16
       height: 16
-    spriteID: fed9f9b5d2aa20749be1c3de18cde67a
+    spriteID: 6f3cc28be555be04da00a8fbf49358fb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2044,16 +2044,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_95
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 54
-      y: 88
+      x: 255
+      y: 39
       width: 16
       height: 16
-    spriteID: c551a1e25bf2a5543b4d909f25825288
+    spriteID: 7045bafbcf59b0d489c5748206c218cd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2064,16 +2064,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_96
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 54
-      y: 104
+      x: 239
+      y: 39
       width: 16
       height: 16
-    spriteID: 1421dacf109e0884bbd4e4c1cca791c5
+    spriteID: af83c17efcf60464fbbffa908e7926c8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2084,16 +2084,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_97
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 70
-      y: 104
+      x: 223
+      y: 39
       width: 16
       height: 16
-    spriteID: 028597053e838ec438b4568d4725ab16
+    spriteID: ad57cf01de16a0441b925dc1d9d4c048
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2104,16 +2104,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_98
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 86
-      y: 104
+      x: 223
+      y: 23
       width: 16
       height: 16
-    spriteID: 7a9aef94ddd0502499e9e251c28a6096
+    spriteID: 992815d8cc5426d4698ccf12ededada3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2124,16 +2124,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_99
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 36
-      y: 104
+      x: 239
+      y: 23
       width: 16
       height: 16
-    spriteID: ce53811af1123824f814e7d11f445f2b
+    spriteID: a5041b828a8998a44aaffebddcca20bc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2144,16 +2144,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_100
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 36
-      y: 88
+      x: 255
+      y: 23
       width: 16
       height: 16
-    spriteID: e5b75c73b04353441a13396d02b6f0f4
+    spriteID: 7a4210fb95b02724b94f208c02b64f59
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2164,16 +2164,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_101
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 36
-      y: 72
+      x: 274
+      y: 50
       width: 16
       height: 16
-    spriteID: f2233e92ea1a55449be1b61db21beeb6
+    spriteID: 47c88c83ccc367147ae220b3b27c810e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2184,16 +2184,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_102
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 20
-      y: 72
+      x: 274
+      y: 34
       width: 16
       height: 16
-    spriteID: 98eae7853b4faa44090e94b54434f563
+    spriteID: 9d06cac5e482f6043b8c89449055ff02
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2204,16 +2204,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_103
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 72
+      x: 290
+      y: 50
       width: 16
       height: 16
-    spriteID: c9dabe034bc86744db870c5ccaf8c35c
+    spriteID: 2ef54327996ee3b489dab59f33d841ec
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2224,16 +2224,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_104
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 88
+      x: 290
+      y: 34
       width: 16
       height: 16
-    spriteID: 1bf603bfeb4303c47aab20684e483a96
+    spriteID: 603356f4ac54b15449cf6ffa9fdc6d5f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2244,16 +2244,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_105
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 104
+      x: 306
+      y: 50
       width: 16
       height: 16
-    spriteID: 66cc3223a715b254f9a8b81a22515a5b
+    spriteID: 6e8cfed7e9dc1134ab119055d1d8e4e1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2264,16 +2264,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_106
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 20
-      y: 104
+      x: 306
+      y: 34
       width: 16
       height: 16
-    spriteID: a36adebf4be41344e9d295ec1f828eec
+    spriteID: ab2b0f27aa6b4ae49b6e8e08745ef898
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2284,16 +2284,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_107
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 155
-      y: 23
+      x: 285
+      y: 104
       width: 16
       height: 16
-    spriteID: 5114f72a80facc343b8503a5f9ad74ec
+    spriteID: 13f2f5002ec7a37488833b58fa7615b6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2304,16 +2304,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_108
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 139
-      y: 23
+      x: 269
+      y: 104
       width: 16
       height: 16
-    spriteID: f1c2af864499c05419c126cbb20ad9fb
+    spriteID: a07e7b405d28ec3408fe838882594dc9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2324,16 +2324,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_109
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 155
-      y: 39
+      x: 253
+      y: 104
       width: 16
       height: 16
-    spriteID: d7b33922400fdbc41bc46ad1430cd0c4
+    spriteID: cddcbdd9f2a7e084e87c4dbe308de3d2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2344,16 +2344,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_110
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 139
-      y: 39
+      x: 253
+      y: 88
       width: 16
       height: 16
-    spriteID: b6b693e80639ada48a4399ffa58a649f
+    spriteID: 5ecc39a5e00afad4cb3840bf186a4910
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2364,16 +2364,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_111
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 139
-      y: 55
+      x: 253
+      y: 72
       width: 16
       height: 16
-    spriteID: c35dca82845b2244bb9fd104063c48ea
+    spriteID: ce9ac58dcf3d4aa42858462f073979d2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2384,16 +2384,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_112
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 155
-      y: 55
+      x: 269
+      y: 88
       width: 16
       height: 16
-    spriteID: 96ae132f7cc416f45b8daca7d336e466
+    spriteID: a7ba9c33312982b45834dec461ab1e8c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2404,16 +2404,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_113
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 123
-      y: 55
+      x: 285
+      y: 88
       width: 16
       height: 16
-    spriteID: 4ee8dc9521c40d94b85c2518e4d2cdab
+    spriteID: 80f39e8c703c7594db76515d268ffe03
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2424,16 +2424,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_114
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 123
-      y: 39
+      x: 285
+      y: 72
       width: 16
       height: 16
-    spriteID: 5366c6ad19d229b4d98a7c95f0c4a4ae
+    spriteID: b86982c0963c5ec428b5e94b25cce5e0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2444,16 +2444,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Tiles_115
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 123
-      y: 23
+      x: 269
+      y: 72
       width: 16
       height: 16
-    spriteID: e88f52902d44d734187cdeca4f274fa9
+    spriteID: 21de45819e7e0194aa14bc665b9a983b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -2477,14 +2477,14 @@ ScriptedImporter:
         y: 3
         width: 318
         height: 116
-      spriteId: 61c151528ce2290478d9cb5b61f1981e
+      spriteId: d0292dac57da18645b2db834f3ac4347
     linkedCells: []
     parentIndex: -1
   platformSettings:
   - name: DefaultTexturePlatform
     overridden: 0
     ignorePlatformSupport: 0
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
