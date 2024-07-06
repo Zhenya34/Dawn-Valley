@@ -5,35 +5,91 @@ using UnityEngine.SceneManagement;
 public class SceneTransitionDoor : MonoBehaviour
 {
     [SerializeField] private float _teleportDelay;
-    [SerializeField] private Transform _playerTransform;
-    [SerializeField] private string _externalSceneName;
-    [SerializeField] private string[] _internalSceneNames;
-    [SerializeField] private bool _isInternalDoor;
-    [SerializeField] private string _targetScene;
-
+    [SerializeField] private Vector3 _targetPositionExternal;
+    [SerializeField] private GameObject _player;
+    
+    private bool _isInternalDoor;
     private bool _isTeleporting = false;
+    private Coroutine _teleportCoroutine = null;
+
+    static private bool _isPreviousSceneHome = false;
+
+    private void Start()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        if (currentSceneName == SceneNames.SampleScene.ToString() && _isPreviousSceneHome == true)
+        {
+            _player.transform.position = _targetPositionExternal;
+            _isPreviousSceneHome = false;
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!_isTeleporting)
         {
             _isTeleporting = true;
-            StartCoroutine(DelayBeforeTeleporting());
+            _isInternalDoor = true;
+            _teleportCoroutine = StartCoroutine(DelayBeforeTeleporting());
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (_teleportCoroutine != null)
+        {
+            StopCoroutine(_teleportCoroutine);
+            _isTeleporting = false;
+            _teleportCoroutine = null;
+        }
+    }
+
+    private enum SceneNames
+    {
+        SampleScene,
+        HomeSceneMini,
+        HomeSceneMiddle,
+        HomeSceneMax
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!_isTeleporting)
+        {
+            _isTeleporting = true;
+            _isInternalDoor = false;
+            _teleportCoroutine = StartCoroutine(DelayBeforeTeleporting());
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (_teleportCoroutine != null)
+        {
+            StopCoroutine(_teleportCoroutine);
+            _isTeleporting = false;
+            _teleportCoroutine = null;
         }
     }
 
     private IEnumerator DelayBeforeTeleporting()
     {
         yield return new WaitForSeconds(_teleportDelay);
+
         if (_isInternalDoor)
         {
-            SceneManager.LoadScene(_externalSceneName);
+            _isPreviousSceneHome = true;
+            SceneManager.LoadScene(SceneNames.SampleScene.ToString());
         }
         else
         {
-            _targetScene = _internalSceneNames[Random.Range(0, _internalSceneNames.Length)];
-            SceneManager.LoadScene(_targetScene);
+            _isPreviousSceneHome = false;
+            SceneManager.LoadScene(SceneNames.HomeSceneMax.ToString());
         }
+
         _isTeleporting = false;
+        _teleportCoroutine = null;
     }
 }
+

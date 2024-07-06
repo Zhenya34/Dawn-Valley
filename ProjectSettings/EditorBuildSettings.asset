@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/MainMenuScene.unity
+    guid: 9e13ef0e218812148a4f635bcc41dd7a
+  - enabled: 1
+    path: Assets/Scenes/Houses/HomeSceneMini.unity
+    guid: c506aab11d8431f419434fd6e1b0d5d3
+  - enabled: 1
+    path: Assets/Scenes/Houses/HomeSceneMiddle.unity
+    guid: 123c80b11f9642b4e9366ee2e13dce40
+  - enabled: 1
+    path: Assets/Scenes/Houses/HomeSceneMax.unity
+    guid: 39daf84f25c760444a167ace3fd0c5d5
   m_configObjects: {}

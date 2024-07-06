@@ -614,11 +614,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3946503565849685827, guid: 13413b4732d64104ba08ce27226498d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3338833
+      value: -2.842
       objectReference: {fileID: 0}
     - target: {fileID: 3946503565849685827, guid: 13413b4732d64104ba08ce27226498d6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.307267
+      value: -7.748
       objectReference: {fileID: 0}
     - target: {fileID: 3946503565849685827, guid: 13413b4732d64104ba08ce27226498d6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -685,6 +685,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13413b4732d64104ba08ce27226498d6, type: 3}
+--- !u!1 &499499988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7289750717197545862, guid: 13413b4732d64104ba08ce27226498d6, type: 3}
+  m_PrefabInstance: {fileID: 499499987}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &575285853
 GameObject:
   m_ObjectHideFlags: 0
@@ -3282,6 +3287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2024377458}
   - component: {fileID: 2024377457}
+  - component: {fileID: 2024377459}
   m_Layer: 0
   m_Name: DoorCollider
   m_TagString: Untagged
@@ -3349,6 +3355,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2024377459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024377456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6921871024484d643985096987ea51a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _teleportDelay: 3
+  _targetPositionExternal: {x: 5.36, y: 7.17, z: -10.83763}
+  _player: {fileID: 499499988}
 --- !u!1 &2059564021
 GameObject:
   m_ObjectHideFlags: 0
