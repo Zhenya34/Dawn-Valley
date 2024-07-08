@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 3946503565849685827}
   - component: {fileID: 6771505984925096872}
   - component: {fileID: 7588711494444571899}
+  - component: {fileID: 8382391527557088164}
   - component: {fileID: 6152273032351284133}
   - component: {fileID: 7176944764366030000}
   - component: {fileID: 3098745980859448731}
@@ -360,6 +361,22 @@ MonoBehaviour:
   toolsAllowed: 1
   _animator: {fileID: 365098221235394365}
   _timeBeforeBlinking: 3
+--- !u!114 &8382391527557088164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7289750717197545862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b74b3f7dba44c489e567223a2751ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tilemap: {fileID: 0}
+  _grassTile: {fileID: 0}
+  _dirtTile: {fileID: 0}
+  _playerAnim: {fileID: 0}
 --- !u!114 &6152273032351284133
 MonoBehaviour:
   m_ObjectHideFlags: 0

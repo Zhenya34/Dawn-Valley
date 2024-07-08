@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638532730979668879
+  platformSettingsDirtyTick: 638560570854066876
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -123,16 +123,16 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Dawn valley atlas-Fences
     originalName: 
-    pivot: {x: 0.5096618, y: -0.04444445}
+    pivot: {x: 0.52298856, y: -0.034883723}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 207
-      height: 90
-    spriteID: c6e33f7157059e5419791aeff5ff27b0
+      width: 87
+      height: 86
+    spriteID: 6efa68fbfed142e429eef24516088fe0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,38 +142,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: Dawn valley atlas-Fences_0
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 82
-      width: 6
-      height: 12
-    spriteID: c60fd418dcb9fd047ba20c77e87f03d9
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Fences_1
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 12
-      y: 82
-      width: 22
+      x: 41
+      y: 78
+      width: 26
       height: 12
-    spriteID: 452269ed02cb4fd4aaba050024a6b9ff
+    spriteID: 47f636d4916469a459470d1034fc80d4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -184,16 +164,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Fences_2
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 41
-      y: 82
-      width: 26
-      height: 12
-    spriteID: 264038fba54d5404cbdb1c721c6217ff
+      x: 72
+      y: 62
+      width: 8
+      height: 28
+    spriteID: 69bfb719dccddfc448dbf6e0b6b0ace0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -204,16 +184,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Fences_3
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 72
-      y: 66
-      width: 8
-      height: 28
-    spriteID: 5198a5c07c462d045b8b8e9ab8712d3d
+      x: 4
+      y: 50
+      width: 5
+      height: 26
+    spriteID: 2d57d977f8388be4ab9181d75dc12eae
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -224,16 +204,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Fences_4
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 84
-      y: 67
-      width: 8
-      height: 25
-    spriteID: 180b90d01ac50ce4d80dda544d1fba5a
+      x: 11
+      y: 49
+      width: 5
+      height: 28
+    spriteID: 68dfcfd1a82aa784ca6c2a0d61a9604b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -244,16 +224,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Fences_5
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 96
-      y: 67
-      width: 8
-      height: 27
-    spriteID: f1fe73404b9354a4da2618469cbf469a
+      x: 18
+      y: 50
+      width: 5
+      height: 25
+    spriteID: cbf8d7cc5168fa94ca23ec5cf8fe45b0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -264,16 +244,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Fences_6
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 109
-      y: 66
-      width: 8
-      height: 26
-    spriteID: d8d9cf2a04e2d0e4e90e3c51eec97982
+      x: 25
+      y: 50
+      width: 5
+      height: 27
+    spriteID: afcc9088694637e4aa062f5720062e61
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -284,36 +264,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Fences_7
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 122
-      y: 47
-      width: 38
-      height: 44
-    spriteID: dda92a8df96c9fd4dab9a5b588894fe6
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Dawn valley atlas-Fences_8
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 169
-      y: 63
-      width: 38
-      height: 28
-    spriteID: 27c8329b068901a43ba5843b80607047
+      x: 44
+      y: 64
+      width: 20
+      height: 12
+    spriteID: c9a64b279c7e27546a1615f3fe52b75d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -324,16 +284,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Fences_9
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
+      x: 42
       y: 51
-      width: 6
-      height: 28
-    spriteID: fd7f2d908ba8b274b9de1898851a5ea2
+      width: 23
+      height: 12
+    spriteID: 34a35db9a16ac3a439cd5b056f898a49
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -344,16 +304,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Fences_10
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 13
-      y: 53
-      width: 5
-      height: 26
-    spriteID: 680d98ce452d26747995b305569ac017
+      x: 72
+      y: 34
+      width: 8
+      height: 25
+    spriteID: 0fecca46732a9844f98cdea6f12927a0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -364,36 +324,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Fences_11
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 20
-      y: 52
-      width: 5
-      height: 28
-    spriteID: 50bba8e3bf0312141b9df4a1ef4d5035
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Dawn valley atlas-Fences_12
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 27
-      y: 53
-      width: 5
-      height: 25
-    spriteID: d745437ebb02609478ec408b28101635
+      x: 4
+      y: 33
+      width: 26
+      height: 13
+    spriteID: 49aa29b2893bd7a4b8c1379461151f46
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -404,56 +344,56 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Fences_13
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 34
-      y: 53
-      width: 5
-      height: 27
-    spriteID: aee9c22309f925143b222ce0b12a6195
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Dawn valley atlas-Fences_14
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 44
-      y: 68
-      width: 20
-      height: 12
-    spriteID: 03b3b0569ebfa62428132fd436ee83bc
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Dawn valley atlas-Fences_19
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 42
-      y: 55
+      x: 43
+      y: 38
       width: 23
       height: 12
-    spriteID: 3fdc92093ba034342b376bfce4533f94
+    spriteID: ac769f6d7ed54544b8a07daae876b9ef
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: Dawn valley atlas-Fences_15
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 7
+      y: 19
+      width: 20
+      height: 13
+    spriteID: 9bd270111efd2004e92125e88957d683
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: Dawn valley atlas-Fences_17
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 38
+      y: 22
+      width: 23
+      height: 13
+    spriteID: 0a69c7f76eea94c42a8bdbc9f39e5e31
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -464,36 +404,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Fences_20
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 71
-      y: 34
-      width: 22
-      height: 28
-    spriteID: 4e9650a0d85422f4b8400121263987b0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Dawn valley atlas-Fences_21
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 96
-      y: 34
-      width: 22
-      height: 28
-    spriteID: a73132213956bf04d8329e3e2e5f1ff8
+      x: 83
+      y: 4
+      width: 8
+      height: 26
+    spriteID: 569be532ab32ae6419bd24a91b8f0cce
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -504,16 +424,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Fences_22
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 164
-      y: 16
-      width: 22
-      height: 44
-    spriteID: 89e84ff35159be943880102d9dd77389
+      x: 41
+      y: 8
+      width: 23
+      height: 13
+    spriteID: 291777b825183b54987e15bfa148e5db
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -522,18 +442,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Dawn valley atlas-Fences_23
+  - name: Dawn valley atlas-Fences_0
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 189
-      y: 16
-      width: 22
-      height: 44
-    spriteID: 02b1aa57d18caae499188b37c5c8704d
+      x: 4
+      y: 78
+      width: 6
+      height: 12
+    spriteID: a0bc0cc6f7d7eb545b065106ff6632da
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -544,16 +464,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Fences_25
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 5
-      y: 35
-      width: 26
-      height: 13
-    spriteID: 90343afe20027a442995d96e2e798825
+      x: 12
+      y: 81
+      width: 10
+      height: 6
+    spriteID: b2e965272c52c994296795bc3154854c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -564,16 +484,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dawn valley atlas-Fences_26
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 43
-      y: 42
-      width: 23
-      height: 12
-    spriteID: bc2e39c280744a34e9ac20096610d3a0
+      x: 24
+      y: 80
+      width: 2
+      height: 10
+    spriteID: 529e6dc85b68ca74d9b3d52ceb7fb44a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -582,118 +502,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Dawn valley atlas-Fences_27
+  - name: Dawn valley atlas-Fences_12
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 122
-      y: 16
-      width: 38
-      height: 28
-    spriteID: a2e83f6b583660f4da30015bb746aec2
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Dawn valley atlas-Fences_28
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 8
-      y: 21
-      width: 20
-      height: 13
-    spriteID: f29d743178b8194418dcee23475bbc36
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Dawn valley atlas-Fences_31
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 38
-      y: 26
-      width: 23
-      height: 13
-    spriteID: fa088c4e11766204791bf6f52dbfb85c
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Dawn valley atlas-Fences_32
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 71
-      y: 4
-      width: 22
-      height: 28
-    spriteID: 7da0181a3f9bca04ca3648f302425f86
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Dawn valley atlas-Fences_33
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 96
-      y: 4
-      width: 22
-      height: 28
-    spriteID: 977c5f47f21723d4b959dc2a636b78fe
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Dawn valley atlas-Fences_35
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 41
-      y: 12
-      width: 23
-      height: 13
-    spriteID: 4d28903a16fd94046be588037e6f6ad5
+      x: 70
+      y: 5
+      width: 8
+      height: 27
+    spriteID: 18f206be663930d4ea7c19f14ae8b407
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -714,10 +534,10 @@ ScriptedImporter:
       frameIndex: 0
       cellRect:
         x: 1
-        y: 4
-        width: 207
-        height: 90
-      spriteId: c6e33f7157059e5419791aeff5ff27b0
+        y: 3
+        width: 87
+        height: 86
+      spriteId: 6efa68fbfed142e429eef24516088fe0
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -772,4 +592,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 213, y: 95}
+  canvasSize: {x: 93, y: 90}
