@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5808237270534031787}
   - component: {fileID: 596991918115300723}
   - component: {fileID: 365098221235394365}
-  - component: {fileID: 1683242120370265455}
   m_Layer: 0
   m_Name: Dawn valley atlas-Player_0
   m_TagString: Untagged
@@ -107,19 +106,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1683242120370265455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185901559827872533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 581883aa83b881a4bb31271e3e9c09fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 0
 --- !u!1 &2341758438534216104
 GameObject:
   m_ObjectHideFlags: 0
