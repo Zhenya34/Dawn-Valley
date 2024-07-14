@@ -14,6 +14,7 @@ public class Player_Animation : MonoBehaviour
 
     [SerializeField] private Animator _animator;
     [SerializeField] private float _timeBeforeBlinking;
+    [SerializeField] private ToolIconManager _toolManager;
 
     private void Update()
     {
@@ -43,6 +44,11 @@ public class Player_Animation : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             ActivateToolAnimTrigger();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            ActivateShield();
         }
     }
 
@@ -78,7 +84,8 @@ public class Player_Animation : MonoBehaviour
         IsActive,
         IsMoving,
         IsBlinking,
-        MouseScrollWheel
+        MouseScrollWheel,
+        RightButtonIsActive,
     }
 
     private void SetBlendValue()
@@ -113,6 +120,14 @@ public class Player_Animation : MonoBehaviour
         }
     }
 
+    private void ActivateShield()
+    {
+        if (toolsAllowed == true)
+        {
+            _animator.SetTrigger(AnimationState.RightButtonIsActive.ToString());
+        }
+    }
+
     private void ChangeToolType()
     {
         float scroll = Input.GetAxis(AnimationState.MouseScrollWheel.ToString());
@@ -120,17 +135,18 @@ public class Player_Animation : MonoBehaviour
         {
             toolType += (scroll > 0 ? 1 : -1);
 
-            if (toolType > 5)
+            if (toolType > 6)
             {
                 toolType = 0;
             }
             else if (toolType < 0)
             {
-                toolType = 5;
+                toolType = 6;
             }
 
             _animator.SetInteger(AnimationState.ToolType.ToString(), toolType);
         }
+        _toolManager.UpdateToolIcon(toolType);
     }
 
     private IEnumerator ActivateBlinking()
