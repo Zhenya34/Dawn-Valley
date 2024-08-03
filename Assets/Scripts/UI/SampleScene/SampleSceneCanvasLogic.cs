@@ -2,18 +2,29 @@ using UnityEngine;
 
 public class SampleSceneCanvasLogic : MonoBehaviour
 {
+    [SerializeField] private SellingItemsLogic _sellingItemsLogic;
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private GameObject _settingsPanel;
     [SerializeField] private GameObject _statsPanel;
     [SerializeField] private GameObject _pauseButton;
     [SerializeField] private GameObject _inventoryPanel;
+    [SerializeField] private GameObject _upgradePanel;
+    [SerializeField] private GameObject _shopPanel;
+    [SerializeField] private GameObject _sellingPanel;
     [SerializeField] private string _sceneName;
-
+     
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            OpenInventory();
+            if (_inventoryPanel.activeSelf == false)
+            {
+                OpenInventory();
+            }
+            else
+            {
+                CloseInventory();
+            }
         }
     }
 
@@ -63,6 +74,21 @@ public class SampleSceneCanvasLogic : MonoBehaviour
     {
         _inventoryPanel.SetActive(false);
         _pauseButton.SetActive(true);
+    }
+
+    public void CloseUpgradePanel()
+    {
+        _upgradePanel.SetActive(false);
+    }
+
+    public void CloseShopPanel()
+    {
+        _shopPanel.SetActive(false);
+    }
+
+    public void CloseSellingPanel()
+    {
+        _sellingItemsLogic.CloseShop();
     }
 
     public void OpenMainMenu()

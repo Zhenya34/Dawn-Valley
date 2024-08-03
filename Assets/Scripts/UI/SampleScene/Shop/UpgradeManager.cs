@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,8 +16,25 @@ public class UpgradeManager : MonoBehaviour
 {
     [SerializeField] private Upgrade[] _upgrades;
     [SerializeField] private PlayerCoinsWallet _playerCoinsWallet;
+    [SerializeField] private GameObject _player;
+    [SerializeField] private float _shopRadius;
+    [SerializeField] private GameObject _upgradePanel;
 
     private void Start()
+    {
+        InitializeShop();
+    }
+
+    private void OnMouseDown()
+    {
+        float distance = Vector3.Distance(_player.transform.position, transform.position);
+        if (distance <= _shopRadius)
+        {
+            _upgradePanel.SetActive(true);
+        }  
+    }
+
+    private void InitializeShop()
     {
         foreach (var upgrade in _upgrades)
         {
@@ -44,33 +62,17 @@ public class UpgradeManager : MonoBehaviour
         if (upgrade.currentLevel >= upgrade.maxLevel)
         {
             upgrade.upgradeButton.interactable = false;
-            upgrade.upgradeButton.GetComponentInChildren<Text>().text = "Max Level";
+            upgrade.upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = "Max Level";
         }
         else
         {
             int cost = upgrade.costPerLevel[upgrade.currentLevel];
-            upgrade.upgradeButton.GetComponentInChildren<Text>().text = "Upgrade (" + cost + " coins)";
+            upgrade.upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = cost.ToString();
         }
     }
 
     private void ApplyUpgradeEffects(Upgrade upgrade)
     {
-        switch (upgrade.name)
-        {
-            case "House":
-                UpgradeHouse(upgrade.currentLevel);
-                break;
-                // Добавьте сюда другие типы прокачек и их эффекты
-                // case "OtherUpgrade":
-                //     ApplyOtherUpgradeEffects(upgrade.currentLevel);
-                //     break;
-        }
-    }
-
-    private void UpgradeHouse(int level)
-    {
-        // Пример смены сцены в зависимости от уровня дома
-        string sceneName = "HouseLevel" + level.ToString();
-        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+        Debug.Log("ApplyEffects");
     }
 }

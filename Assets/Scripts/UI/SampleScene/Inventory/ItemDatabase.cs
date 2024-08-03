@@ -3,11 +3,16 @@ using UnityEngine;
 
 public class ItemDatabase : MonoBehaviour
 {
-    public List<Item> items = new();
+    [SerializeField] private List<Item> _items = new();
 
     public Item GetItemByName(string name)
     {
-        return items.Find(item => item.itemName == name);
+        return _items.Find(item => item.itemName == name);
+    }
+
+    public Item GetItemBySprite(Sprite sprite)
+    {
+        return _items.Find(item => item.itemSprite == sprite);
     }
 }
 
@@ -16,4 +21,6 @@ public class Item
 {
     public string itemName;
     public Sprite itemSprite;
+    public int purchasePrice;
+    public int sellingPrice;
 }

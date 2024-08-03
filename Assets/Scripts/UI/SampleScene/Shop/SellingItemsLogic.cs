@@ -1,69 +1,92 @@
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SellingItemsLogic : MonoBehaviour
 {
-    public GameObject sellingUI;
-    public ItemDatabase itemDatabase;
-    public InventoryManager inventoryManager;
-    public PlayerCoinsWallet playerWallet;
+    
+    [SerializeField] private SellingSlot _shopSlot;
+    [SerializeField] private InventoryManager _inventoryManager;
+    [SerializeField] private PlayerCoinsWallet _playerWallet;
+    [SerializeField] private ItemDatabase _itemDatabase;
+    [SerializeField] private RectTransform _inventoryRectTransform;
+    [SerializeField] private float _shopRadius;
+    
+    [SerializeField] private Button _confirmButton;
+    [SerializeField] private Button _cancelButton;
+    [SerializeField] private GameObject _inventoryPanel;
+    [SerializeField] private GameObject _sellingPanel;
+    [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _inventoryExitButton;
 
-    private readonly List<SellingSlot> sellingSlots = new();
-
-    private void Awake()
+    private void Start()
     {
-        if (sellingUI == null || itemDatabase == null || inventoryManager == null || playerWallet == null)
-        {
-            return;
-        }
+        _confirmButton.onClick.AddListener(OnConfirmButtonClicked);
+        _cancelButton.onClick.AddListener(OnCancelButtonClicked);
+    }
 
-        foreach (Transform slotTransform in sellingUI.transform)
+    private void OnMouseDown()
+    {
+        float distance = Vector3.Distance(_player.transform.position, transform.position);
+        if (distance <= _shopRadius)
         {
-            if (slotTransform.TryGetComponent<SellingSlot>(out var slot))
-            {
-                sellingSlots.Add(slot);
-            }
+            OpenShop();
         }
     }
 
-    public void AddItemToSell(string itemName, int quantity)
+    private void OpenShop()
     {
-        Item item = itemDatabase.GetItemByName(itemName);
-        if (item != null)
+
+        Vector3 newPosition = _inventoryRectTransform.transform.localPosition;
+        newPosition.y = -150;
+        _inventoryRectTransform.localPosition = newPosition;
+
+        _inventoryPanel.SetActive(true);
+        _sellingPanel.SetActive(true);
+        _inventoryExitButton.SetActive(false);
+    }
+
+    public void CloseShop()
+    {
+
+        Vector3 newPosition = _inventoryRectTransform.transform.localPosition;
+        newPosition.y = -30;
+        _inventoryRectTransform.localPosition = newPosition;
+
+        _inventoryPanel.SetActive(false);
+        _sellingPanel.SetActive(false);
+        _inventoryExitButton.SetActive(true);
+    }
+
+    public void AddToShopSlot(Sprite sprite, int quantity)
+    {
+        _shopSlot.SetItem(sprite, quantity);
+    }
+
+    private void ConfirmSale()
+    {
+        if (_shopSlot.GetItemSprite() != null)
         {
-            foreach (SellingSlot slot in sellingSlots)
-            {
-                if (slot.IsEmpty())
-                {
-                    slot.SetItem(item.itemSprite, quantity);
-                    inventoryManager.RemoveItem(itemName, quantity);
-                    return;
-                }
-            }
+            int totalPrice = _shopSlot.GetTotalPrice();
+            _playerWallet.AddCoins(totalPrice);
+            _shopSlot.ClearSlot();
         }
     }
 
-    public void SellItems()
+    private void CancelSale()
     {
-        foreach (SellingSlot slot in sellingSlots)
+        if (_shopSlot.GetItemSprite() != null)
         {
-            if (!slot.IsEmpty())
-            {
-                string itemName = itemDatabase.items.Find(i => i.itemSprite == slot.GetItemSprite()).itemName;
-                int itemPrice = GetItemPrice(itemName);
-                int quantity = slot.GetQuantity();
-                int totalPrice = itemPrice * quantity;
-
-                playerWallet.AddCoins(totalPrice);
-                slot.ClearSlot();
-            }
+            _inventoryManager.MoveItemToInventory(_shopSlot);
         }
     }
 
-    private int GetItemPrice(string itemName)
+    private void OnConfirmButtonClicked()
     {
-        // Implement your logic to fetch the item price from the database
-        // Here I'm returning a placeholder value
-        return 10; // Placeholder price
+        ConfirmSale();
+    }
+
+    private void OnCancelButtonClicked()
+    {
+        CancelSale();
     }
 }

@@ -1,25 +1,22 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SellingSlot : MonoBehaviour
 {
-    private Image _itemImage;
-    private Text _quantityText;
+    [SerializeField] private Image _itemImage;
+    [SerializeField] private TextMeshProUGUI _quantityText;
+    [SerializeField] private InventoryManager _inventoryManager;
+    [SerializeField] private ItemDatabase _itemDatabase;
 
     private Sprite _itemSprite;
     private int _quantity;
+    private Color _normalColor = Color.white;
+    private Color _selectedColor = new Color32(200, 200, 200, 255);
 
     private void Awake()
     {
-        _itemImage = transform.Find("ItemImage").GetComponent<Image>();
-        _quantityText = transform.Find("QuantityText").GetComponent<Text>();
-
-        if (_itemImage == null || _quantityText == null)
-        {
-            Debug.LogError("Dependencies are not set on the SellingSlot.");
-            return;
-        }
-
+        _itemImage.preserveAspect = true;
         ClearSlot();
     }
 
@@ -67,5 +64,33 @@ public class SellingSlot : MonoBehaviour
     public int GetQuantity()
     {
         return _quantity;
+    }
+
+    public void Select()
+    {
+        if (_itemSprite != null)
+        {
+            _itemImage.color = _selectedColor;
+        }
+    }
+
+    public void Deselect()
+    {
+        _itemImage.color = _normalColor;
+    }
+
+    public int GetTotalPrice()
+    {
+        Item selectedItem = _itemDatabase.GetItemBySprite(_itemSprite);
+        if (selectedItem != null)
+        {
+            return selectedItem.sellingPrice * _quantity;
+        }
+        return 0;
+    }
+
+    private void OnMouseDown()
+    {
+        _inventoryManager.OnSellingSlotClicked(this);
     }
 }

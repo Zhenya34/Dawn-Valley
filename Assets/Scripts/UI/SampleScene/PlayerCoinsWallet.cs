@@ -1,11 +1,11 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerCoinsWallet : MonoBehaviour
 {
     private int _playerCoins;
 
-    [SerializeField] private Text _coinsText;
+    [SerializeField] private TextMeshProUGUI _coinsText;
 
     private void Start()
     {
@@ -33,10 +33,9 @@ public class PlayerCoinsWallet : MonoBehaviour
     {
         if (_coinsText != null)
         {
-            _coinsText.text = "Coins: " + _playerCoins.ToString();
+            _coinsText.text = _playerCoins.ToString();
         }
     }
-
 
     public void DeductCoins(int amount)
     {

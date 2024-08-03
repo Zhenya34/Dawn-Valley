@@ -3,28 +3,18 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
-    private Image _itemImage;
-    private Text _quantityText;
+    [SerializeField] private Image _itemImage;
+    [SerializeField] private Text _quantityText;
+    [SerializeField] private InventoryManager _inventoryManager;
+
     private Sprite _itemSprite;
     private int _quantity;
-
     private Color _normalColor = Color.white;
     private Color _selectedColor = new Color32(200, 200, 200, 255);
 
-    [SerializeField] private InventoryManager _inventoryManager;
-
     private void Awake()
     {
-        _itemImage = transform.Find("ItemImage").GetComponent<Image>();
-        _quantityText = transform.Find("QuantityText").GetComponent<Text>();
-
-
-        if (_itemImage == null || _quantityText == null)
-        {
-            return;
-        }
-
-        ClearSlot();
+        _itemImage.preserveAspect = true;
     }
 
     public bool IsEmpty()

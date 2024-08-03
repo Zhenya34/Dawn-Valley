@@ -3,62 +3,64 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    [SerializeField] private GameObject inventoryUI;
-    [SerializeField] private ItemDatabase itemDatabase;
+    [SerializeField] private SellingItemsLogic _sellingItemsLogic;
+    [SerializeField] private GameObject _inventoryUI;
+    [SerializeField] private ItemDatabase _itemDatabase;
+    [SerializeField] private SellingSlot _sellingSlot;
 
-    private readonly List<InventorySlot> slots = new();
-    private const int MaxStackSize = 60;
+    private readonly List<InventorySlot> _slots = new();
     private InventorySlot _selectedSlot;
+    private const int _maxStackSize = 60;
     private bool _isItemSelected;
 
     private void Awake()
     {
-        if (inventoryUI == null || itemDatabase == null)
+        if (_inventoryUI == null || _itemDatabase == null)
         {
             return;
         }
 
-        foreach (Transform slotTransform in inventoryUI.transform)
+        foreach (Transform slotTransform in _inventoryUI.transform)
         {
             if (slotTransform.TryGetComponent<InventorySlot>(out var slot))
             {
-                slots.Add(slot);
+                _slots.Add(slot);
             }
         }
     }
 
     public void AddItem(string itemName, int quantity)
     {
-        Item item = itemDatabase.GetItemByName(itemName);
+        Item item = _itemDatabase.GetItemByName(itemName);
         if (item != null)
         {
-            foreach (InventorySlot slot in slots)
+            foreach (InventorySlot slot in _slots)
             {
                 if (slot.GetItemSprite() == item.itemSprite)
                 {
                     int newQuantity = slot.GetQuantity() + quantity;
-                    if (newQuantity <= MaxStackSize)
+                    if (newQuantity <= _maxStackSize)
                     {
                         slot.UpdateQuantity(newQuantity);
                         return;
                     }
                     else
                     {
-                        int remaining = newQuantity - MaxStackSize;
-                        slot.UpdateQuantity(MaxStackSize);
+                        int remaining = newQuantity - _maxStackSize;
+                        slot.UpdateQuantity(_maxStackSize);
                         quantity = remaining;
                     }
                 }
             }
 
-            foreach (InventorySlot slot in slots)
+            foreach (InventorySlot slot in _slots)
             {
                 if (slot.IsEmpty())
                 {
-                    if (quantity > MaxStackSize)
+                    if (quantity > _maxStackSize)
                     {
-                        slot.SetItem(item.itemSprite, MaxStackSize);
-                        quantity -= MaxStackSize;
+                        slot.SetItem(item.itemSprite, _maxStackSize);
+                        quantity -= _maxStackSize;
                     }
                     else
                     {
@@ -72,10 +74,10 @@ public class InventoryManager : MonoBehaviour
 
     public void RemoveItem(string itemName, int quantity)
     {
-        Item item = itemDatabase.GetItemByName(itemName);
+        Item item = _itemDatabase.GetItemByName(itemName);
         if (item != null)
         {
-            foreach (InventorySlot slot in slots)
+            foreach (InventorySlot slot in _slots)
             {
                 if (slot.GetItemSprite() == item.itemSprite)
                 {
@@ -99,7 +101,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void SelectSlot(InventorySlot slot)
+    private void SelectSlot(InventorySlot slot)
     {
         if (slot.IsEmpty())
         {
@@ -124,15 +126,86 @@ public class InventoryManager : MonoBehaviour
 
     public void OnSlotClicked(InventorySlot slot)
     {
-        if (_selectedSlot != null && _isItemSelected && slot.IsEmpty())
+        if (_selectedSlot != null && _isItemSelected)
         {
-            slot.SetItem(_selectedSlot.GetItemSprite(), _selectedSlot.GetQuantity());
+            if (slot.IsEmpty())
+            {
+                slot.SetItem(_selectedSlot.GetItemSprite(), _selectedSlot.GetQuantity());
+                _selectedSlot.ClearSlot();
+                DeselectSlot();
+            }
+            else
+            {
+                SelectSlot(slot);
+            }
+        }
+        else
+        {
+            if (!slot.IsEmpty())
+            {
+                SelectSlot(slot);
+            }
+        }
+    }
+
+    public void OnSellingSlotClicked(SellingSlot slot)
+    {
+        if (_selectedSlot != null && _isItemSelected)
+        {
+            if (slot.IsEmpty())
+            {
+                MoveItemToSellingSlot();
+            }
+        }
+        else
+        {
+            if (!slot.IsEmpty())
+            {
+                SelectSellingSlot(slot);
+            }
+        }
+    }
+
+    private void MoveItemToSellingSlot()
+    {
+        Sprite itemSprite = _selectedSlot.GetItemSprite();
+        int itemQuantity = _selectedSlot.GetQuantity();
+        Item selectedItem = _itemDatabase.GetItemBySprite(itemSprite);
+
+        if (selectedItem != null)
+        {
+            _sellingSlot.SetItem(itemSprite, itemQuantity);
             _selectedSlot.ClearSlot();
             DeselectSlot();
         }
+    }
+
+    public void MoveItemToInventory(SellingSlot slot)
+    {
+        if (_selectedSlot == null && _isItemSelected && slot.GetItemSprite() != null)
+        {
+            Sprite itemSprite = slot.GetItemSprite();
+            int itemQuantity = slot.GetQuantity();
+            Item selectedItem = _itemDatabase.GetItemBySprite(itemSprite);
+            if (selectedItem != null)
+            {
+                AddItem(selectedItem.itemName, itemQuantity);
+                slot.ClearSlot();
+                DeselectSlot();
+            }
+        }
         else if (!slot.IsEmpty())
         {
-            SelectSlot(slot);
+            SelectSellingSlot(slot);
+        }
+    }
+
+    private void SelectSellingSlot(SellingSlot slot)
+    {
+        if (slot.GetItemSprite() != null)
+        {
+            slot.Select();
+            _isItemSelected = true;
         }
     }
 
@@ -141,8 +214,9 @@ public class InventoryManager : MonoBehaviour
         if (_selectedSlot != null)
         {
             _selectedSlot.Deselect();
-            _selectedSlot = null;
         }
+
         _isItemSelected = false;
+        _selectedSlot = null;
     }
 }

@@ -361,6 +361,7 @@ MonoBehaviour:
   toolsAllowed: 1
   _animator: {fileID: 365098221235394365}
   _timeBeforeBlinking: 3
+  _toolManager: {fileID: 0}
 --- !u!114 &8382391527557088164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,9 +375,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tilemap: {fileID: 0}
-  _grassTile: {fileID: 0}
-  _dirtTile: {fileID: 0}
-  _playerAnim: {fileID: 0}
+  _grassTile: {fileID: 11400000, guid: 64711b34377739f4ab7c27177f327ae9, type: 2}
+  _dirtTile: {fileID: 11400000, guid: f03c6afb80f37cd42906ded8c83269e6, type: 2}
+  _playerAnim: {fileID: 7588711494444571899}
+  _gardenBedsUpdater: {fileID: 0}
 --- !u!114 &6152273032351284133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,7 +386,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7289750717197545862}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6d6917be047b094888ea3a44be888a3, type: 3}
   m_Name: 
