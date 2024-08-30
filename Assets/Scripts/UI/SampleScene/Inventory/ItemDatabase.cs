@@ -23,4 +23,11 @@ public class Item
     public Sprite itemSprite;
     public int purchasePrice;
     public int sellingPrice;
+    public ItemType itemType;
+
+    public enum ItemType
+    {
+        General,
+        Pet
+    }
 }

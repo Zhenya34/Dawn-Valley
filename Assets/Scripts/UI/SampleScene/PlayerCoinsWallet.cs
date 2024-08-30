@@ -47,4 +47,12 @@ public class PlayerCoinsWallet : MonoBehaviour
     {
         return _playerCoins >= amount;
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            AddCoins(100);
+        }
+    }
 }

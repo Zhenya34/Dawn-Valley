@@ -47,7 +47,6 @@ public class SellingItemsLogic : MonoBehaviour
 
     public void CloseShop()
     {
-
         Vector3 newPosition = _inventoryRectTransform.transform.localPosition;
         newPosition.y = -30;
         _inventoryRectTransform.localPosition = newPosition;

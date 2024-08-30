@@ -7,6 +7,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GameObject _inventoryUI;
     [SerializeField] private ItemDatabase _itemDatabase;
     [SerializeField] private SellingSlot _sellingSlot;
+    [SerializeField] private PetInventorySlot _petInventorySlot;
+    [SerializeField] private AllPetsActivator _allPetsActivator;
 
     private readonly List<InventorySlot> _slots = new();
     private InventorySlot _selectedSlot;
@@ -166,6 +168,24 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public void OnPetSlotClicked(PetInventorySlot slot)
+    {
+        if (_selectedSlot != null && _isItemSelected)
+        {
+            if (slot.IsEmpty())
+            {
+                MoveItemToPetSlot();
+            }
+        }
+        else
+        {
+            if (!slot.IsEmpty())
+            {
+                SelectPetSlot(slot);
+            }
+        }
+    }
+
     private void MoveItemToSellingSlot()
     {
         Sprite itemSprite = _selectedSlot.GetItemSprite();
@@ -200,7 +220,47 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    private void MoveItemToPetSlot()
+    {
+        Sprite itemSprite = _selectedSlot.GetItemSprite();
+        Item selectedItem = _itemDatabase.GetItemBySprite(itemSprite);
+
+        if (selectedItem != null && selectedItem.itemType == Item.ItemType.Pet)
+        {
+            _petInventorySlot.SetItem(itemSprite);
+            _selectedSlot.ClearSlot();
+            DeselectSlot();
+            _allPetsActivator.ActivatePet(selectedItem.itemName);
+        }
+    }
+
+    public void MovePetItemToInventory(PetInventorySlot petSlot)
+    {
+        if (!petSlot.IsEmpty())
+        {
+            Sprite itemSprite = petSlot.GetItemSprite();
+            Item selectedItem = _itemDatabase.GetItemBySprite(itemSprite);
+
+            if (selectedItem != null && selectedItem.itemType == Item.ItemType.Pet)
+            {
+                AddItem(selectedItem.itemName, 1);
+                petSlot.ClearSlot();
+                DeselectSlot();
+                _allPetsActivator.DeactivatePet(selectedItem.itemName);
+            }
+        }
+    }
+
     private void SelectSellingSlot(SellingSlot slot)
+    {
+        if (slot.GetItemSprite() != null)
+        {
+            slot.Select();
+            _isItemSelected = true;
+        }
+    }
+
+    private void SelectPetSlot(PetInventorySlot slot)
     {
         if (slot.GetItemSprite() != null)
         {
