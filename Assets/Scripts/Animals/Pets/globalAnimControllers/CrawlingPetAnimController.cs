@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using AnimControllerNamespace;
 
-public class CrawlingPetAnimController : MonoBehaviour
+public class CrawlingPetAnimController : MonoBehaviour, INightTimeController
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _sr;

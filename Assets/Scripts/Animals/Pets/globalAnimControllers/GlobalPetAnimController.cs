@@ -1,6 +1,7 @@
 using UnityEngine;
+using AnimControllerNamespace;
 
-public class GlobalPetAnimController : MonoBehaviour
+public class GlobalPetAnimController : MonoBehaviour, INightTimeController
 {
     [SerializeField] private Animator _animator;
 

@@ -7,10 +7,9 @@ public class Boat_Controller : MonoBehaviour
     [SerializeField] private Transform _firstBoatPosition;
     [SerializeField] private float _teleportTime;
     [SerializeField] private Transform _player;
+    [SerializeField] private bool itFirstBoat;
 
-    private bool _isTeleporting = false;
-    private bool _hasTeleported = false;
-    static private bool _isOnFirstBoat = true;
+    static private bool _hasTeleported = false;
 
     private enum Tags
     {
@@ -19,44 +18,29 @@ public class Boat_Controller : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(Tags.Player.ToString()) && !_hasTeleported && !_isTeleporting)
-        {
-            _isTeleporting = true;
-            StartCoroutine(BoatTeleporting());
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
         if (collision.CompareTag(Tags.Player.ToString()))
         {
-            _isTeleporting = false;
-            _hasTeleported = false;
+            if (itFirstBoat && _hasTeleported == false)
+            {
+                StartCoroutine(TeleportToNextBoat(_secondBoatPosition));
+            }
+            else if (!itFirstBoat && _hasTeleported == false)
+            {
+                StartCoroutine(TeleportToNextBoat(_firstBoatPosition));
+            }
         }
     }
 
-    private IEnumerator BoatTeleporting()
+    public void ResetHasTeleported()
+    {
+        _hasTeleported = false;
+        StopAllCoroutines();
+    }
+
+    private IEnumerator TeleportToNextBoat(Transform _boatPosition)
     {
         yield return new WaitForSeconds(_teleportTime);
-
-        if (_isTeleporting)
-        {
-            if (!_hasTeleported)
-            {
-                if (_isOnFirstBoat)
-                {
-                    _player.position = _secondBoatPosition.position;
-                    _isOnFirstBoat = false;
-                }
-                else
-                {
-                    _player.position = _firstBoatPosition.position;
-                    _isOnFirstBoat = true;
-                }
-
-                _hasTeleported = true;
-            }
-            _isTeleporting = false;
-        }
+        _player.position = _boatPosition.position;
+        _hasTeleported = true;
     }
 }

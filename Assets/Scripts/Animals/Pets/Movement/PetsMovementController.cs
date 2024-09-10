@@ -1,5 +1,7 @@
-using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine;
+using System.Collections.Generic;
+using AnimControllerNamespace;
 
 public class PetsMovementController : MonoBehaviour
 {
@@ -27,109 +29,76 @@ public class PetsMovementController : MonoBehaviour
 
         if (distanceToPlayer > _followRadius)
         {
-            _navMeshAgent.SetDestination(_player.position);
-            _navMeshAgent.isStopped = false;
-
-            if (_globalPetAnimController != null)
-            {
-                _globalPetAnimController.SetRunningAnimation();
-            }
-
-            if(_beePetAnimController != null && _isNightTime == true)
-            {
-                _beePetAnimController.DeactivateNightTime();
-            }
-
-            if(_ghostPetAnimController != null && _isNightTime == true)
-            {
-                _ghostPetAnimController.DeactivateNightTime();
-            }
-
-            if(_crawlingPetAnimController != null && _isNightTime == true)
-            {
-                _crawlingPetAnimController.DeactivateNightTime();
-            }
+            MoveTowardsPlayer();
         }
         else if (distanceToPlayer < _avoidRadius)
         {
-            Vector3 directionAwayFromPlayer = (transform.position - _player.position).normalized;
-            Vector3 avoidPosition = transform.position + directionAwayFromPlayer * _followRadius;
-
-            if (NavMesh.SamplePosition(avoidPosition, out NavMeshHit hit, _followRadius, NavMesh.AllAreas))
-            {
-                _navMeshAgent.SetDestination(hit.position);
-                _navMeshAgent.isStopped = false;
-
-                if (_globalPetAnimController != null)
-                {
-                    _globalPetAnimController.SetRunningAnimation();
-                }
-
-                if (_beePetAnimController != null && _isNightTime == true)
-                {
-                    _beePetAnimController.DeactivateNightTime();
-                }
-
-                if (_ghostPetAnimController != null && _isNightTime == true)
-                {
-                    _ghostPetAnimController.DeactivateNightTime();
-                }
-
-                if (_crawlingPetAnimController != null && _isNightTime == true)
-                {
-                    _crawlingPetAnimController.DeactivateNightTime();
-                }
-            }
+            MoveAwayFromPlayer();
         }
         else
         {
-            _navMeshAgent.isStopped = true;
-            if (_globalPetAnimController != null)
+            StopMovement();
+        }
+
+        UpdateSpriteDirection();
+    }
+
+    private void MoveTowardsPlayer()
+    {
+        _navMeshAgent.SetDestination(_player.position);
+        _navMeshAgent.isStopped = false;
+        SetRunningAnimation();
+    }
+
+    private void MoveAwayFromPlayer()
+    {
+        Vector3 directionAwayFromPlayer = (transform.position - _player.position).normalized;
+        Vector3 avoidPosition = transform.position + directionAwayFromPlayer * _followRadius;
+
+        if (NavMesh.SamplePosition(avoidPosition, out NavMeshHit hit, _followRadius, NavMesh.AllAreas))
+        {
+            _navMeshAgent.SetDestination(hit.position);
+            _navMeshAgent.isStopped = false;
+            SetRunningAnimation();
+        }
+    }
+
+    private void StopMovement()
+    {
+        _navMeshAgent.isStopped = true;
+        UpdateNightTimeForControllers();
+    }
+
+    private void SetRunningAnimation()
+    {
+        _globalPetAnimController.SetRunningAnimation();
+        UpdateNightTimeForControllers();
+    }
+
+    private void UpdateNightTimeForControllers()
+    {
+        List<INightTimeController> nightTimeControllers = new()
+        {
+            _beePetAnimController,
+            _ghostPetAnimController,
+            _crawlingPetAnimController,
+            _globalPetAnimController
+        };
+
+        foreach (var controller in nightTimeControllers)
+        {
+            if (controller != null)
             {
                 if (_isNightTime)
                 {
-                    _globalPetAnimController.ActivateNightTime();
+                    controller.ActivateNightTime();
                 }
                 else
                 {
-                    _globalPetAnimController.DeactivateNightTime();
-                }
-            }
-            if (_beePetAnimController != null)
-            {
-                if (_isNightTime)
-                {
-                    _beePetAnimController.ActivateNightTime();
-                }
-                else
-                {
-                    _beePetAnimController.DeactivateNightTime();
-                }
-            }
-            if (_ghostPetAnimController != null)
-            {
-                if (_isNightTime)
-                {
-                    _ghostPetAnimController.ActivateNightTime();
-                }
-                else
-                {
-                    _ghostPetAnimController.DeactivateNightTime();
-                }
-            }
-            if (_crawlingPetAnimController != null)
-            {
-                if (_isNightTime)
-                {
-                    _crawlingPetAnimController.ActivateNightTime();
-                }
-                else
-                {
-                    _crawlingPetAnimController.DeactivateNightTime();
+                    controller.DeactivateNightTime();
                 }
             }
         }
-        UpdateSpriteDirection();
     }
 
     public void ActivateNightTime()

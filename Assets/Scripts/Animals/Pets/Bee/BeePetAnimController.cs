@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using AnimControllerNamespace;
 
-public class BeePetAnimController : MonoBehaviour
+public class BeePetAnimController : MonoBehaviour, INightTimeController
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _sr;
@@ -44,6 +45,7 @@ public class BeePetAnimController : MonoBehaviour
         {
             _animator.SetTrigger(Triggers.coupFliped.ToString());
         }
+
         GenerateRandomDelay();
         StartCoroutine(TriggerFlipAfterTime(_middleSecondValue));
     }

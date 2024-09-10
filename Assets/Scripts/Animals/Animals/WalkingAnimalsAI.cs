@@ -36,11 +36,7 @@ public class WalkingAnimalsAI : MonoBehaviour
 
     private void Update()
     {
-        if (_currentState == State.Idle)
-        {
-            // Ничего не делаем в состоянии Idle
-        }
-        else if (_currentState == State.Walking)
+        if (_currentState == State.Walking)
         {
             _walkingTime -= Time.deltaTime;
             if (_walkingTime < 0)
