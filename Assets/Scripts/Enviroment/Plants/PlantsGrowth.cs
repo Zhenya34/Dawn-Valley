@@ -17,7 +17,7 @@ public class PlantsGrowth : MonoBehaviour
 
     static public bool isWithinHarvestingReach = false;
 
-    private void Start()
+    private void Awake()
     {
         if (_plantsStages.Length > 0)
         {
@@ -42,7 +42,7 @@ public class PlantsGrowth : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && _playerAnim.toolType == 3)
+        if (Input.GetMouseButtonDown(0) && _playerAnim.GetToolTypeValue() == 3)
         {
             Vector2 plantPosition = transform.position;
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

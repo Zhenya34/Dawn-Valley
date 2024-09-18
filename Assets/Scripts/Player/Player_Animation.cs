@@ -3,18 +3,17 @@ using UnityEngine;
 
 public class Player_Animation : MonoBehaviour
 {
-    public int toolType = 0;
-    public bool toolsAllowed = true;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private float _timeBeforeBlinking;
+    [SerializeField] private ToolIconManager _toolManager;
 
     private float _horizontalInput;
     private float _verticalInput;
     private bool _isIdle;
+    private int _toolType = 0;
     private Vector2 _lastMovementDirection;
     private bool _activateBlinkingRunning = false;
-
-    [SerializeField] private Animator _animator;
-    [SerializeField] private float _timeBeforeBlinking;
-    [SerializeField] private ToolIconManager _toolManager;
+    private bool _toolsAllowed = true;
 
     private void Update()
     {
@@ -114,7 +113,7 @@ public class Player_Animation : MonoBehaviour
 
     private void ActivateToolAnimTrigger()
     {
-        if(toolsAllowed == true)
+        if(_toolsAllowed == true)
         {
             _animator.SetTrigger(AnimationState.IsActive.ToString());
         }
@@ -122,10 +121,20 @@ public class Player_Animation : MonoBehaviour
 
     private void ActivateShield()
     {
-        if (toolsAllowed == true)
+        if (_toolsAllowed == true)
         {
             _animator.SetTrigger(AnimationState.RightButtonIsActive.ToString());
         }
+    }
+
+    public int GetToolTypeValue()
+    {
+        return _toolType;
+    }
+
+    public bool GetToolsUsingValue()
+    {
+        return _toolsAllowed;
     }
 
     private void ChangeToolType()
@@ -133,20 +142,20 @@ public class Player_Animation : MonoBehaviour
         float scroll = Input.GetAxis(AnimationState.MouseScrollWheel.ToString());
         if (scroll != 0)
         {
-            toolType += (scroll > 0 ? 1 : -1);
+            _toolType += (scroll > 0 ? 1 : -1);
 
-            if (toolType > 6)
+            if (_toolType > 6)
             {
-                toolType = 0;
+                _toolType = 0;
             }
-            else if (toolType < 0)
+            else if (_toolType < 0)
             {
-                toolType = 6;
+                _toolType = 6;
             }
 
-            _animator.SetInteger(AnimationState.ToolType.ToString(), toolType);
+            _animator.SetInteger(AnimationState.ToolType.ToString(), _toolType);
         }
-        _toolManager.UpdateToolIcon(toolType);
+        _toolManager.UpdateToolIcon(_toolType);
     }
 
     private IEnumerator ActivateBlinking()
@@ -154,5 +163,15 @@ public class Player_Animation : MonoBehaviour
         yield return new WaitForSeconds(_timeBeforeBlinking);
         _animator.SetBool(AnimationState.IsBlinking.ToString(), true);
         _activateBlinkingRunning = false;
+    }
+
+    public void AllowToolsUsing()
+    {
+        _toolsAllowed = true;
+    }
+
+    public void ProhibitToolsUsing()
+    {
+        _toolsAllowed = false;
     }
 }

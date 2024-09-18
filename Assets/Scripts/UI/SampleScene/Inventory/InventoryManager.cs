@@ -4,6 +4,7 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private SellingItemsLogic _sellingItemsLogic;
+    [SerializeField] private ItemUsageManager _itemUsageLogic;
     [SerializeField] private GameObject _inventoryUI;
     [SerializeField] private ItemDatabase _itemDatabase;
     [SerializeField] private SellingSlot _sellingSlot;
@@ -126,7 +127,7 @@ public class InventoryManager : MonoBehaviour
         _isItemSelected = false;
     }
 
-    public void OnSlotClicked(InventorySlot slot)
+    public void OnSlotLeftClicked(InventorySlot slot)
     {
         if (_selectedSlot != null && _isItemSelected)
         {
@@ -147,6 +148,14 @@ public class InventoryManager : MonoBehaviour
             {
                 SelectSlot(slot);
             }
+        }
+    }
+
+    public void OnSlotRightClicked(InventorySlot slot)
+    {
+        if (_selectedSlot == slot && _isItemSelected)
+        {
+            _itemUsageLogic.UseSelectedItem(slot);
         }
     }
 

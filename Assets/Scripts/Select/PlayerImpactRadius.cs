@@ -18,21 +18,21 @@ public class PlayerImpactRadius : MonoBehaviour
 
         if (distance <= _triggerFrameRadius)
         {
-            _tileSelector.canPlaceFrame = true;
+            _tileSelector.AllowFramePlacement();
         }
         else
         {
-            _tileSelector.canPlaceFrame = false;
+            _tileSelector.ProhibitFramePlacement();
         }
 
         if (distanceToTools <= _toolsRadius)
         {
-            _playerAnim.toolsAllowed = true;
+            _playerAnim.AllowToolsUsing();
             PlantsGrowth.isWithinHarvestingReach = true;
         }
         else
         {
-            _playerAnim.toolsAllowed = false;
+            _playerAnim.ProhibitToolsUsing();
             PlantsGrowth.isWithinHarvestingReach = false;
         }
     }

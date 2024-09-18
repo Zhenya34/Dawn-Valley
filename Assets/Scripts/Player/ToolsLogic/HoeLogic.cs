@@ -11,7 +11,7 @@ public class HoeLogic : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1) && _playerAnim.toolType == 3)
+        if (Input.GetMouseButtonDown(1) && _playerAnim.GetToolTypeValue() == 3)
         {
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int gridPosition = _tilemap.WorldToCell(mouseWorldPos);

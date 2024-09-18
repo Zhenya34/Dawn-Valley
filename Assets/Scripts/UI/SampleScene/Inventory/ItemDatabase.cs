@@ -4,6 +4,20 @@ using UnityEngine;
 public class ItemDatabase : MonoBehaviour
 {
     [SerializeField] private List<Item> _items = new();
+    [SerializeField] private Seed[] _seeds;
+
+    public Seed GetSeedByItem(Item item)
+    {
+        foreach (Seed seed in _seeds)
+        {
+            if (seed.seedName == item.itemName)
+            {
+                return seed;
+            }
+        }
+
+        return null;
+    }
 
     public Item GetItemByName(string name)
     {
@@ -24,6 +38,14 @@ public class Item
     public int purchasePrice;
     public int sellingPrice;
     public ItemType itemType;
+    public GlobalItemType globalItemType;
+
+    public enum GlobalItemType
+    {
+        None,
+        Seed,
+        Structure
+    }
 
     public enum ItemType
     {

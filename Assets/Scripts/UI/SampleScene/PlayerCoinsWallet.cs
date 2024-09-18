@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class PlayerCoinsWallet : MonoBehaviour
 {
-    private int _playerCoins;
-
     [SerializeField] private TextMeshProUGUI _coinsText;
+
+    private int _playerCoins;  
 
     private void Start()
     {
@@ -50,7 +50,7 @@ public class PlayerCoinsWallet : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C))//удали потом 
         {
             AddCoins(100);
         }

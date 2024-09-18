@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour
+public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image _itemImage;
     [SerializeField] private Text _quantityText;
@@ -76,8 +77,15 @@ public class InventorySlot : MonoBehaviour
         _itemImage.color = _normalColor;
     }
 
-    private void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        _inventoryManager.OnSlotClicked(this);
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            _inventoryManager.OnSlotLeftClicked(this);
+        }
+        else if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            _inventoryManager.OnSlotRightClicked(this);
+        }
     }
 }

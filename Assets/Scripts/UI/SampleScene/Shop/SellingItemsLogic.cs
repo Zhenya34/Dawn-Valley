@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class SellingItemsLogic : MonoBehaviour
 {
-    
     [SerializeField] private SellingSlot _shopSlot;
     [SerializeField] private InventoryManager _inventoryManager;
     [SerializeField] private PlayerCoinsWallet _playerWallet;

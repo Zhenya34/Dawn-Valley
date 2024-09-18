@@ -7,7 +7,7 @@ public class TileSelector : MonoBehaviour
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private Tilemap _tilemap;
 
-    public bool canPlaceFrame = true;
+    private bool canPlaceFrame = true;
 
     private void Update()
     {
@@ -25,7 +25,16 @@ public class TileSelector : MonoBehaviour
                 float offsetY = cellSize.y / 2f;
                 _framePrefab.transform.position = new Vector3(tileCenter.x, tileCenter.y - offsetY, tileCenter.z);
             }
-
         }
+    }
+
+    public void AllowFramePlacement()
+    {
+        canPlaceFrame = true;
+    }
+
+    public void ProhibitFramePlacement()
+    {
+        canPlaceFrame = false;
     }
 }

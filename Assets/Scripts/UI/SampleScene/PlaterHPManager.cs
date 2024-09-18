@@ -4,15 +4,16 @@ using UnityEngine.UI;
 
 public class PlayerHPManager : MonoBehaviour
 {
+    [SerializeField] private Image _image;
+    [SerializeField] private Sprite[] _sprites = new Sprite[7];
+    [SerializeField] private float _triggerRadius;
+    [SerializeField] private GameObject _textObject;
+
     private int _currentPlayerHealth;
     private const int _maxPlayerHealth = 100;
     private const int _minPlayerHealth = 0;
     private TextMeshProUGUI _textComponent;
 
-    [SerializeField] private Image _image;
-    [SerializeField] private Sprite[] _sprites = new Sprite[7];
-    [SerializeField] private float _triggerRadius;
-    [SerializeField] private GameObject _textObject;
 
     private void Start()
     {
