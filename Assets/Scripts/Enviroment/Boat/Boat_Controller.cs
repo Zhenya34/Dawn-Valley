@@ -7,7 +7,7 @@ public class Boat_Controller : MonoBehaviour
     [SerializeField] private Transform _firstBoatPosition;
     [SerializeField] private float _teleportTime;
     [SerializeField] private Transform _player;
-    [SerializeField] private bool itFirstBoat;
+    [SerializeField] private bool _itFirstBoat;
 
     static private bool _hasTeleported = false;
 
@@ -20,11 +20,11 @@ public class Boat_Controller : MonoBehaviour
     {
         if (collision.CompareTag(Tags.Player.ToString()))
         {
-            if (itFirstBoat && _hasTeleported == false)
+            if (_itFirstBoat && _hasTeleported == false)
             {
                 StartCoroutine(TeleportToNextBoat(_secondBoatPosition));
             }
-            else if (!itFirstBoat && _hasTeleported == false)
+            else if (!_itFirstBoat && _hasTeleported == false)
             {
                 StartCoroutine(TeleportToNextBoat(_firstBoatPosition));
             }

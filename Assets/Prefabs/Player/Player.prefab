@@ -304,6 +304,8 @@ GameObject:
   - component: {fileID: 7588711494444571899}
   - component: {fileID: 8382391527557088164}
   - component: {fileID: 6152273032351284133}
+  - component: {fileID: 5602291912188726837}
+  - component: {fileID: 7406810469871532983}
   - component: {fileID: 7176944764366030000}
   - component: {fileID: 3098745980859448731}
   m_Layer: 0
@@ -357,11 +359,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9614f8c0889dd2445ae105add9011c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolType: 0
-  toolsAllowed: 1
   _animator: {fileID: 365098221235394365}
   _timeBeforeBlinking: 3
-  _toolManager: {fileID: 0}
+  _toolSwitcher: {fileID: 0}
 --- !u!114 &8382391527557088164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,8 +377,7 @@ MonoBehaviour:
   _tilemap: {fileID: 0}
   _grassTile: {fileID: 11400000, guid: 64711b34377739f4ab7c27177f327ae9, type: 2}
   _dirtTile: {fileID: 11400000, guid: f03c6afb80f37cd42906ded8c83269e6, type: 2}
-  _playerAnim: {fileID: 7588711494444571899}
-  _gardenBedsUpdater: {fileID: 0}
+  _toolswitcher: {fileID: 0}
 --- !u!114 &6152273032351284133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,27 +385,46 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7289750717197545862}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6d6917be047b094888ea3a44be888a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sprouts:
-  - {fileID: 1308025601020544356, guid: 8419325f6eae0bd4aba4709d2db82454, type: 3}
-  - {fileID: 2532380576407569908, guid: 8bdce90cd79cf8c4c8d525d90b3694a7, type: 3}
-  - {fileID: 4111253961128570, guid: 78686f1250f99fa499f7e0773023ad83, type: 3}
-  - {fileID: 159069742840082264, guid: 7282e4229dbb8714aa6bb7ac4e5c2a6f, type: 3}
-  - {fileID: 205031267528927582, guid: 74ccc6b9011e96c43821845cf4b62c40, type: 3}
-  - {fileID: 8844368936763054324, guid: 99a2b6cfea089fe43aeb5b8aa420c812, type: 3}
-  - {fileID: 8430211360625643972, guid: df2991780263f4443a46e61ccd9ebaa1, type: 3}
-  - {fileID: 3022144915101635939, guid: 88a23e34c0b80fc44882c3edad475c27, type: 3}
-  - {fileID: 1235827455281057343, guid: bf5513459aa68c847a767af78b9ac74d, type: 3}
-  - {fileID: 8740110795239381486, guid: 802c18e93c350394785209956b5ce992, type: 3}
-  - {fileID: 8068543664095244497, guid: 405a0c6417b48904f9fcb23c039ee8d9, type: 3}
-  - {fileID: 3231766381595408675, guid: 2305e58e404dfe64e9551f98144b8f06, type: 3}
   _playerAnim: {fileID: 7588711494444571899}
   _mainCamera: {fileID: 6490556927211532068}
   _tilemap: {fileID: 0}
+  _tilledTile: {fileID: 11400000, guid: f03c6afb80f37cd42906ded8c83269e6, type: 2}
+  _itemUsageManager: {fileID: 5602291912188726837}
+--- !u!114 &5602291912188726837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7289750717197545862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22bf0502f1d9a3e4cb9178fbd76775d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemDatabase: {fileID: 0}
+  _plantingSystem: {fileID: 6152273032351284133}
+  _fencesManager: {fileID: 0}
+  _inventoryManager: {fileID: 0}
+--- !u!114 &7406810469871532983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7289750717197545862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f1e6c3050b92b4ebe8cd722c3110f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemDatabase: {fileID: 0}
+  _inventoryManager: {fileID: 0}
 --- !u!50 &7176944764366030000
 Rigidbody2D:
   serializedVersion: 4
@@ -466,8 +484,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.8}
-  m_Size: {x: 0.88, y: 1.6}
+  m_Offset: {x: 0, y: 0.44}
+  m_Size: {x: 0.88, y: 0.88}
   m_Direction: 0
 --- !u!1 &7608230785617686848
 GameObject:
@@ -516,4 +534,3 @@ MonoBehaviour:
   _framePrefab: {fileID: 0}
   _mainCamera: {fileID: 6490556927211532068}
   _tilemap: {fileID: 0}
-  canPlaceFrame: 1

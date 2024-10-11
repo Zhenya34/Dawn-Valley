@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
+using System.Net;
 
 public class FencesManager : MonoBehaviour
 {
@@ -8,27 +9,35 @@ public class FencesManager : MonoBehaviour
     [SerializeField] private GameObject _horizontalConnectionPrefab;
     [SerializeField] private GameObject _verticalConnectionPrefab;
     [SerializeField] private GameObject _fencePrefab;
+    [SerializeField] private ItemUsageManager _itemUsageManager;
 
     private readonly List<GameObject> _allFences = new();
+    private bool _canPlace = false;
+    private InventorySlot _currentSlot;
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (_canPlace)
         {
-            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int tilePos = _tilemap.WorldToCell(mouseWorldPos);
-
-            if (!IsFenceAtPosition(tilePos))
+            if (Input.GetMouseButtonDown(1) && _itemUsageManager.HasItemInInventory(Item.GlobalItemType.Fence))
             {
-                GameObject newFence = Instantiate(_fencePrefab, _tilemap.GetCellCenterWorld(tilePos), Quaternion.identity);
-                _allFences.Add(newFence);
+                Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector3Int tilePos = _tilemap.WorldToCell(mouseWorldPos);
 
-                foreach (var fence in _allFences)
+                if (!IsFenceAtPosition(tilePos))
                 {
-                    Vector3Int diff = tilePos - _tilemap.WorldToCell(fence.transform.position);
-                    if (IsNeighbor(diff))
+                    GameObject newFence = Instantiate(_fencePrefab, _tilemap.GetCellCenterWorld(tilePos), Quaternion.identity);
+                    _allFences.Add(newFence);
+
+                    _itemUsageManager.UpdateCountOfItem(_currentSlot);
+
+                    foreach (var fence in _allFences)
                     {
-                        CreateConnections(fence, newFence);
+                        Vector3Int diff = tilePos - _tilemap.WorldToCell(fence.transform.position);
+                        if (IsNeighbor(diff))
+                        {
+                            CreateConnections(fence, newFence);
+                        }
                     }
                 }
             }
@@ -60,13 +69,36 @@ public class FencesManager : MonoBehaviour
 
         if (Mathf.Approximately(direction.x, 0f))
         {
-            GameObject connection = Instantiate(_verticalConnectionPrefab, midPoint, Quaternion.identity);
-            connection.transform.up = direction;
+            InstantiateFencePrefab(_verticalConnectionPrefab, midPoint, direction, true);
         }
         else if (Mathf.Approximately(direction.y, 0f))
         {
-            GameObject connection = Instantiate(_horizontalConnectionPrefab, midPoint, Quaternion.identity);
-            connection.transform.right = direction;
+            InstantiateFencePrefab(_horizontalConnectionPrefab, midPoint, direction, false);
         }
+    }
+
+    private void InstantiateFencePrefab(GameObject _connectionPrefab, Vector3 midPoint, Vector3 direction, bool isVertical)
+    {
+        GameObject connection = Instantiate(_connectionPrefab, midPoint, Quaternion.identity);
+
+        if (isVertical)
+            connection.transform.up = direction;
+        else
+            connection.transform.right = direction;
+    }
+
+    public void SetFence(InventorySlot slot)
+    {
+        _currentSlot = slot;
+    }
+
+    public void AllowFencesPlacement()
+    {
+        _canPlace = true;
+    }
+
+    public void ForbidFencesPlacement()
+    {
+        _canPlace = false;
     }
 }

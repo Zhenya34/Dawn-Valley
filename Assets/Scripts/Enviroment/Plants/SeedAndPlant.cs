@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Seed", menuName = "Seed")]
+[CreateAssetMenu(fileName = "SeedData", menuName = "ScriptableObjects/Seed")]
 public class Seed : ScriptableObject
 {
     public string seedName;
@@ -8,10 +8,9 @@ public class Seed : ScriptableObject
     public Plant plant;
 }
 
-[CreateAssetMenu(fileName = "New Plant", menuName = "Plant")]
+[CreateAssetMenu(fileName = "PlantData", menuName = "ScriptableObjects/Plant")]
 public class Plant : ScriptableObject
 {
     public string plantName;
-    public Sprite plantSprite;
     public GameObject plantPrefab;
 }

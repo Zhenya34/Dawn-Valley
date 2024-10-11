@@ -98,12 +98,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sr: {fileID: 876393281027582409}
-  _daysToNextStage: 10
+  _daysToNextStage: 1
   _harvestedObject: {fileID: 6816493395835856947, guid: 5c7414b06e325764dbbcd63951cb1150, type: 3}
   _plantsStages:
   - {fileID: -473638956655774182, guid: e25c34042b19125438281c5a1f20f11d, type: 3}
   - {fileID: 6150962926396518835, guid: e25c34042b19125438281c5a1f20f11d, type: 3}
   - {fileID: 2977188353090930564, guid: e25c34042b19125438281c5a1f20f11d, type: 3}
   - {fileID: 7890679380566631230, guid: e25c34042b19125438281c5a1f20f11d, type: 3}
-  _playerAnim: {fileID: 0}
   _clickRadius: 0.5

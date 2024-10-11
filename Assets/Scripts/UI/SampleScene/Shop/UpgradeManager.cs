@@ -16,9 +16,11 @@ public class UpgradeManager : MonoBehaviour
 {
     [SerializeField] private Upgrade[] _upgrades;
     [SerializeField] private PlayerCoinsWallet _playerCoinsWallet;
+    [SerializeField] private SampleSceneCanvasLogic _sampleSceneCanvasLogic;
     [SerializeField] private GameObject _player;
     [SerializeField] private float _shopRadius;
     [SerializeField] private GameObject _upgradePanel;
+    [SerializeField] private UIManager _uiManager;
 
     private void Start()
     {
@@ -27,11 +29,16 @@ public class UpgradeManager : MonoBehaviour
 
     private void OnMouseDown()
     {
-        float distance = Vector3.Distance(_player.transform.position, transform.position);
-        if (distance <= _shopRadius)
+        if (!_uiManager.IsUIActive())
         {
-            _upgradePanel.SetActive(true);
-        }  
+            float distance = Vector3.Distance(_player.transform.position, transform.position);
+            if (distance <= _shopRadius)
+            {
+                _upgradePanel.SetActive(true);
+                _uiManager.ActivateUI();
+                _sampleSceneCanvasLogic.SwitchOffPauseButton();
+            }
+        }
     }
 
     private void InitializeShop()

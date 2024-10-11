@@ -44,6 +44,8 @@ public class Item
     {
         None,
         Seed,
+        Fence,
+        Wicket,
         Structure
     }
 

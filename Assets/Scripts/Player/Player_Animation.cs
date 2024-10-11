@@ -1,16 +1,16 @@
 using System.Collections;
 using UnityEngine;
+using static ToolSwitcher;
 
 public class Player_Animation : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private float _timeBeforeBlinking;
-    [SerializeField] private ToolIconManager _toolManager;
+    [SerializeField] private ToolSwitcher _toolSwitcher;
 
     private float _horizontalInput;
     private float _verticalInput;
     private bool _isIdle;
-    private int _toolType = 0;
     private Vector2 _lastMovementDirection;
     private bool _activateBlinkingRunning = false;
     private bool _toolsAllowed = true;
@@ -23,7 +23,6 @@ public class Player_Animation : MonoBehaviour
         _isIdle = (_horizontalInput == 0 && _verticalInput == 0 && !Input.anyKey);
 
         UpdateLastMovementDirection();
-        ChangeToolType();
         SetBlendValue();
 
         if (_isIdle)
@@ -42,12 +41,12 @@ public class Player_Animation : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            ActivateToolAnimTrigger();
+            ActivateLeftToolTrigger();
         }
 
         if (Input.GetMouseButtonDown(1))
         {
-            ActivateShield();
+            ActivateRightToolTrigger();
         }
     }
 
@@ -80,10 +79,9 @@ public class Player_Animation : MonoBehaviour
     {
         Blend,
         ToolType,
-        IsActive,
         IsMoving,
         IsBlinking,
-        MouseScrollWheel,
+        LeftButtonIsActive,
         RightButtonIsActive,
     }
 
@@ -111,15 +109,15 @@ public class Player_Animation : MonoBehaviour
         _animator.SetFloat(AnimationState.Blend.ToString(), blendValue);
     }
 
-    private void ActivateToolAnimTrigger()
+    private void ActivateLeftToolTrigger()
     {
         if(_toolsAllowed == true)
         {
-            _animator.SetTrigger(AnimationState.IsActive.ToString());
+            _animator.SetTrigger(AnimationState.LeftButtonIsActive.ToString());
         }
     }
 
-    private void ActivateShield()
+    private void ActivateRightToolTrigger()
     {
         if (_toolsAllowed == true)
         {
@@ -127,35 +125,15 @@ public class Player_Animation : MonoBehaviour
         }
     }
 
-    public int GetToolTypeValue()
+    public void UpdateToolType(ToolType _toolType)
     {
-        return _toolType;
-    }
+        int toolIndex = (int)_toolType;
+        _animator.SetInteger(AnimationState.ToolType.ToString(), toolIndex);
+    } 
 
     public bool GetToolsUsingValue()
     {
         return _toolsAllowed;
-    }
-
-    private void ChangeToolType()
-    {
-        float scroll = Input.GetAxis(AnimationState.MouseScrollWheel.ToString());
-        if (scroll != 0)
-        {
-            _toolType += (scroll > 0 ? 1 : -1);
-
-            if (_toolType > 6)
-            {
-                _toolType = 0;
-            }
-            else if (_toolType < 0)
-            {
-                _toolType = 6;
-            }
-
-            _animator.SetInteger(AnimationState.ToolType.ToString(), _toolType);
-        }
-        _toolManager.UpdateToolIcon(_toolType);
     }
 
     private IEnumerator ActivateBlinking()

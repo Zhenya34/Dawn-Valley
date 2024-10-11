@@ -16,18 +16,16 @@ public class InventoryManager : MonoBehaviour
     private const int _maxStackSize = 60;
     private bool _isItemSelected;
 
-    private void Awake()
+    public void InitializeInventory()
     {
-        if (_inventoryUI == null || _itemDatabase == null)
+        if (_inventoryUI != null)
         {
-            return;
-        }
-
-        foreach (Transform slotTransform in _inventoryUI.transform)
-        {
-            if (slotTransform.TryGetComponent<InventorySlot>(out var slot))
+            foreach (Transform slotTransform in _inventoryUI.transform)
             {
-                _slots.Add(slot);
+                if (slotTransform.TryGetComponent<InventorySlot>(out var slot))
+                {
+                    _slots.Add(slot);
+                }
             }
         }
     }
@@ -258,6 +256,11 @@ public class InventoryManager : MonoBehaviour
                 _allPetsActivator.DeactivatePet(selectedItem.itemName);
             }
         }
+    }
+
+    public List<InventorySlot> GetAllSlots()
+    {
+        return _slots;
     }
 
     private void SelectSellingSlot(SellingSlot slot)

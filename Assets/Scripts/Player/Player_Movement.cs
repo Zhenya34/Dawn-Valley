@@ -6,6 +6,7 @@ public class Player_Movement : MonoBehaviour
     
     private float _horizontalInput;
     private float _verticalInput;
+    private bool _isMovementAnable = true;
 
     private void Update()
     {
@@ -15,7 +16,10 @@ public class Player_Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Movement();
+        if (_isMovementAnable)
+        {
+            Movement();
+        }
     }
 
     private enum Directions
@@ -28,5 +32,15 @@ public class Player_Movement : MonoBehaviour
     {
         Vector3 movement = new(_horizontalInput, _verticalInput, 0);
         transform.position += _moveSpeed * Time.deltaTime * movement.normalized;
+    }
+
+    public void AllowMovement()
+    {
+        _isMovementAnable = true;
+    }
+
+    public void ProhibitMovement()
+    {
+        _isMovementAnable = false;
     }
 }

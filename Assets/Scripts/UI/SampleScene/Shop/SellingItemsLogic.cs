@@ -8,6 +8,8 @@ public class SellingItemsLogic : MonoBehaviour
     [SerializeField] private PlayerCoinsWallet _playerWallet;
     [SerializeField] private ItemDatabase _itemDatabase;
     [SerializeField] private RectTransform _inventoryRectTransform;
+    [SerializeField] private SampleSceneCanvasLogic _sampleSceneCanvasLogic;
+    [SerializeField] private UIManager _uiManager;
     [SerializeField] private float _shopRadius;
     
     [SerializeField] private Button _confirmButton;
@@ -25,16 +27,25 @@ public class SellingItemsLogic : MonoBehaviour
 
     private void OnMouseDown()
     {
-        float distance = Vector3.Distance(_player.transform.position, transform.position);
-        if (distance <= _shopRadius)
+        if (!_uiManager.IsUIActive())
         {
-            OpenShop();
+            float distance = Vector3.Distance(_player.transform.position, transform.position);
+            if (distance <= _shopRadius)
+            {
+                _uiManager.ActivateUI();
+                OpenShop();
+            }
         }
+    }
+
+    public bool PanelIsActive()
+    {
+        return _sellingPanel.activeSelf;
     }
 
     private void OpenShop()
     {
-
+        _sampleSceneCanvasLogic.SwitchOffPauseButton();
         Vector3 newPosition = _inventoryRectTransform.transform.localPosition;
         newPosition.y = -150;
         _inventoryRectTransform.localPosition = newPosition;

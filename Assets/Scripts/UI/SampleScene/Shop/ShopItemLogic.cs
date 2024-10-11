@@ -15,6 +15,7 @@ public class ShopItemLogic : MonoBehaviour
 {
     [SerializeField] private ShopItem[] _shopItems;
     [SerializeField] private PlayerCoinsWallet _playerCoinsWallet;
+    [SerializeField] private SampleSceneCanvasLogic _sampleSceneCanvasLogic;
     [SerializeField] private InventoryManager _inventoryManager;
     [SerializeField] private ItemDatabase _itemDatabase;
     [SerializeField] private float _shopRadius;
@@ -22,6 +23,7 @@ public class ShopItemLogic : MonoBehaviour
     [SerializeField] private GameObject _shopPanel;
     [SerializeField] private Button _confirmButton;
     [SerializeField] private Button _cancelButton;
+    [SerializeField] private UIManager _uiManager;
 
     private readonly Dictionary<string, int> _cart = new();
 
@@ -32,10 +34,15 @@ public class ShopItemLogic : MonoBehaviour
 
     private void OnMouseDown()
     {
-        float distance = Vector3.Distance(_player.transform.position, transform.position);
-        if (distance <= _shopRadius)
+        if (!_uiManager.IsUIActive())
         {
-            _shopPanel.SetActive(true);
+            float distance = Vector3.Distance(_player.transform.position, transform.position);
+            if (distance <= _shopRadius)
+            {
+                _shopPanel.SetActive(true);
+                _uiManager.ActivateUI();
+                _sampleSceneCanvasLogic.SwitchOffPauseButton();
+            }
         }
     }
 
