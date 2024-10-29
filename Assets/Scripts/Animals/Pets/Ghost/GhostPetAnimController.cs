@@ -44,7 +44,6 @@ public class GhostPetAnimController : MonoBehaviour, INightTimeController
     private IEnumerator ChangeEmotionAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
-
         GenerateRandomState();
         _animator.SetTrigger(_selectedState.ToString());
         GenerateRandomDelay();

@@ -13,6 +13,12 @@ public class SampleSceneCanvasLogic : MonoBehaviour
     [SerializeField] private GameObject _shopPanel;
     [SerializeField] private GameObject _sellingPanel;
     [SerializeField] private string _sceneName;
+    [SerializeField] private DayNightCycle _dayNightCycle;
+
+    private void Awake()
+    {
+        _dayNightCycle.ResumeGame();
+    }
 
     private void Update()
     {
@@ -36,6 +42,7 @@ public class SampleSceneCanvasLogic : MonoBehaviour
             _pausePanel.SetActive(true);
             _pauseButton.SetActive(false);
             _uiManager.ActivateUI();
+            _dayNightCycle.PauseGame();
         }
     }
 
@@ -44,6 +51,7 @@ public class SampleSceneCanvasLogic : MonoBehaviour
         _pausePanel.SetActive(false);
         _pauseButton.SetActive(true);
         _uiManager.DeactivateUI();
+        _dayNightCycle.ResumeGame();
     }
 
     public void OpenSettingsPanel()

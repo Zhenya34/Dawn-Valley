@@ -7,6 +7,8 @@ public class Player_Animation : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private float _timeBeforeBlinking;
     [SerializeField] private ToolSwitcher _toolSwitcher;
+    [SerializeField] private float _holdThresholdForLeftButton;
+    [SerializeField] private float _holdThresholdForRightButton;
 
     private float _horizontalInput;
     private float _verticalInput;
@@ -14,6 +16,9 @@ public class Player_Animation : MonoBehaviour
     private Vector2 _lastMovementDirection;
     private bool _activateBlinkingRunning = false;
     private bool _toolsAllowed = true;
+    private float _holdTimer = 0.0f;
+    private bool _isLeftButtonHolding = false;
+    private bool _isRightButtonHolding = false;
 
     private void Update()
     {
@@ -47,6 +52,32 @@ public class Player_Animation : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             ActivateRightToolTrigger();
+        }
+
+        HandleButtonHold(0, ref _isLeftButtonHolding, _holdThresholdForLeftButton, AnimationState.LeftButtonIsHolding.ToString());
+        HandleButtonHold(1, ref _isRightButtonHolding, _holdThresholdForRightButton, AnimationState.RightButtonIsHolding.ToString());
+    }
+
+    private void HandleButtonHold(int mouseButton, ref bool isButtonHolding, float holdThreshold, string animationState)
+    {
+        if (Input.GetMouseButton(mouseButton))
+        {
+            _holdTimer += Time.deltaTime;
+
+            if (_holdTimer >= holdThreshold && !isButtonHolding)
+            {
+                isButtonHolding = true;
+                _animator.SetBool(animationState, true);
+            }
+        }
+        else
+        {
+            if (isButtonHolding)
+            {
+                isButtonHolding = false;
+                _holdTimer = 0.0f;
+                _animator.SetBool(animationState, false);
+            }
         }
     }
 
@@ -83,6 +114,8 @@ public class Player_Animation : MonoBehaviour
         IsBlinking,
         LeftButtonIsActive,
         RightButtonIsActive,
+        LeftButtonIsHolding,
+        RightButtonIsHolding
     }
 
     private void SetBlendValue()
@@ -111,7 +144,7 @@ public class Player_Animation : MonoBehaviour
 
     private void ActivateLeftToolTrigger()
     {
-        if(_toolsAllowed == true)
+        if (_toolsAllowed == true)
         {
             _animator.SetTrigger(AnimationState.LeftButtonIsActive.ToString());
         }

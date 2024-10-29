@@ -16,14 +16,9 @@ public class WateringCanLogic : MonoBehaviour
 
     private readonly Dictionary<Vector3Int, int> _wateredPlots = new();
 
-    private void Update()
+    public void HandleWatering()
     {
-        HandleWatering();
-    }
-
-    private void HandleWatering()
-    {
-        if (Input.GetMouseButtonDown(1) && _toolSwitcher.GetCurrentTool() == ToolSwitcher.ToolType.WateringCan)
+        if (_toolSwitcher.GetCurrentTool() == ToolSwitcher.ToolType.WateringCan)
         {
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPos.z = 0;
@@ -44,6 +39,12 @@ public class WateringCanLogic : MonoBehaviour
                 }
             }
         }
+    }
+
+    public bool IsGrowingOnWetTile(Vector3Int cellPosition)
+    {
+        TileBase currentTile = _tilemap.GetTile(cellPosition);
+        return currentTile == _wetDirtTile || currentTile == _wetGardenBedTile;
     }
 
     private void UpdateWateringCan(Vector3Int gridPosition)

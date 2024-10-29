@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlantsGrowth : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlantsGrowth : MonoBehaviour
     private Vector3Int _cellPosition;
     private ToolSwitcher _toolswitcher;
     private Planting _plantingSystem;
+    private WateringCanLogic _wateringCanLogic;
 
     static public bool isWithinHarvestingReach = false;
 
@@ -44,7 +46,20 @@ public class PlantsGrowth : MonoBehaviour
             Debug.LogError(ex.Message);
         }
 
-        _cellPosition = _plantingSystem.GetCellPosition(transform.position);
+        try
+        {
+            _wateringCanLogic = GameObject.FindGameObjectWithTag(Tags.Player.ToString()).GetComponent<WateringCanLogic>();
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError(ex.Message);
+        }
+
+        if (_plantingSystem != null)
+        {
+            _cellPosition = _plantingSystem.GetCellPosition(transform.position);
+            _plantingSystem.RegisterPlant(_cellPosition, this);
+        }
     }
 
     private enum Tags
@@ -87,19 +102,30 @@ public class PlantsGrowth : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        if (_plantingSystem != null)
+        {
+            _plantingSystem.UnregisterPlant(_cellPosition);
+        }
+    }
+
     public void CheckGrowthProgress()
     {
-        _daysSincePlanted++;
-
-        if (_daysSincePlanted >= _daysToNextStage && _currentStage < _maxStage)
+        if (_wateringCanLogic.IsGrowingOnWetTile(_cellPosition))
         {
-            _currentStage++;
-            _sr.sprite = _plantsStages[_currentStage];
-            _daysSincePlanted = 0;
+            _daysSincePlanted++;
 
-            if (_currentStage == _maxStage)
+            if (_daysSincePlanted >= _daysToNextStage && _currentStage < _maxStage)
             {
-                _canBeCollected = true;
+                _currentStage++;
+                _sr.sprite = _plantsStages[_currentStage];
+                _daysSincePlanted = 0;
+
+                if (_currentStage == _maxStage)
+                {
+                    _canBeCollected = true;
+                }
             }
         }
     }

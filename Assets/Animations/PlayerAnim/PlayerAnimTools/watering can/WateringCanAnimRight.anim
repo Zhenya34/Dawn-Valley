@@ -352,4 +352,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.9166667
+    functionName: DispatchWateringEvent
+    data: 
+    objectReferenceParameter: {fileID: 7289750717197545862, guid: 13413b4732d64104ba08ce27226498d6, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

@@ -10,11 +10,10 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField] private WateringCanLogic _wateringCanLogic;
 
     private int _days = 1;
-    private bool _isPaused = false;
     private float _currentTimeOfDay = 0.5f;
     private float _timeMultiplier;
     private bool _wasNightTime = false;
-    private List<PlantsGrowth> _plantsGrowth = new();
+    private readonly List<PlantsGrowth> _plantsGrowth = new();
 
     private void Start()
     {
@@ -23,37 +22,34 @@ public class DayNightCycle : MonoBehaviour
 
     private void Update()
     {
-        if (!_isPaused)
+        _currentTimeOfDay += Time.deltaTime * _timeMultiplier;
+        _currentTimeOfDay %= 1;
+
+        UpdateLighting();
+
+        bool isNightTime = _currentTimeOfDay < 0.5f;
+
+        if (isNightTime != _wasNightTime)
         {
-            _currentTimeOfDay += Time.deltaTime * _timeMultiplier;
-            _currentTimeOfDay %= 1;
-
-            UpdateLighting();
-
-            bool isNightTime = _currentTimeOfDay < 0.5f;
-
-            if (isNightTime != _wasNightTime)
+            if (isNightTime)
             {
-                if (isNightTime)
+                foreach (var petController in _petsMovementControllers)
                 {
-                    foreach (var petController in _petsMovementControllers)
-                    {
-                        petController.ActivateNightTime();
-                    }
+                    petController.ActivateNightTime();
                 }
-                else
-                {
-                    foreach (var petController in _petsMovementControllers)
-                    {
-                        petController.DeactivateNightTime();
-                    }
-                    IncrementDay();
-                    _wateringCanLogic.CheckForDryingPlots();
-                    UpdatePlantGrowth();
-                }
-
-                _wasNightTime = isNightTime;
             }
+            else
+            {
+                foreach (var petController in _petsMovementControllers)
+                {
+                    petController.DeactivateNightTime();
+                }
+                IncrementDay();
+                _wateringCanLogic.CheckForDryingPlots();
+                UpdatePlantGrowth();
+            }
+
+            _wasNightTime = isNightTime;
         }
     }
 
@@ -68,9 +64,16 @@ public class DayNightCycle : MonoBehaviour
 
     private void UpdatePlantGrowth()
     {
-        foreach (var plant in _plantsGrowth)
+        for (int i = _plantsGrowth.Count - 1; i >= 0; i--)
         {
-            plant.CheckGrowthProgress();
+            if (_plantsGrowth[i] != null)
+            {
+                _plantsGrowth[i].CheckGrowthProgress();
+            }
+            else
+            {
+                _plantsGrowth.RemoveAt(i);
+            }
         }
     }
 
@@ -91,11 +94,11 @@ public class DayNightCycle : MonoBehaviour
 
     public void PauseGame()
     {
-        _isPaused = true;
+        Time.timeScale = 0;
     }
 
     public void ResumeGame()
     {
-        _isPaused = false;
+        Time.timeScale = 1;
     }
 }

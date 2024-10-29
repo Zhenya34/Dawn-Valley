@@ -36,4 +36,9 @@ public class PlayerImpactRadius : MonoBehaviour
             PlantsGrowth.isWithinHarvestingReach = false;
         }
     }
+
+    public float GetToolDistanceValue()
+    {
+        return _toolsRadius;
+    }
 }
