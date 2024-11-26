@@ -1,17 +1,21 @@
+using UI.SampleScene.Inventory;
 using UnityEngine;
 
-public class ItemHandler : MonoBehaviour
+namespace Enviroment.ItemCollecting
 {
-    [SerializeField] private ItemDatabase _itemDatabase;
-    [SerializeField] private InventoryManager _inventoryManager;
-
-    public void CollectItem(Sprite itemSprite)
+    public class ItemHandler : MonoBehaviour
     {
-        Item item = _itemDatabase.GetItemBySprite(itemSprite);
+        [SerializeField] private ItemDatabase itemDatabase;
+        [SerializeField] private InventoryManager inventoryManager;
 
-        if (item != null)
+        public void CollectItem(Sprite itemSprite)
         {
-            _inventoryManager.AddItem(item.itemName, 1);
+            Item item = itemDatabase.GetItemBySprite(itemSprite);
+
+            if (item != null)
+            {
+                inventoryManager.AddItem(item.itemName, 1);
+            }
         }
     }
 }

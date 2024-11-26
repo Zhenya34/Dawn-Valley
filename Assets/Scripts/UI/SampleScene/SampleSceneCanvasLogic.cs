@@ -1,133 +1,138 @@
+using Enviroment.Time;
+using UI.SampleScene.Shop;
 using UnityEngine;
 
-public class SampleSceneCanvasLogic : MonoBehaviour
+namespace UI.SampleScene
 {
-    [SerializeField] private UIManager _uiManager;
-    [SerializeField] private SellingItemsLogic _sellingItemsLogic;
-    [SerializeField] private GameObject _pausePanel;
-    [SerializeField] private GameObject _settingsPanel;
-    [SerializeField] private GameObject _statsPanel;
-    [SerializeField] private GameObject _pauseButton;
-    [SerializeField] private GameObject _inventoryPanel;
-    [SerializeField] private GameObject _upgradePanel;
-    [SerializeField] private GameObject _shopPanel;
-    [SerializeField] private GameObject _sellingPanel;
-    [SerializeField] private string _sceneName;
-    [SerializeField] private DayNightCycle _dayNightCycle;
-
-    private void Awake()
+    public class SampleSceneCanvasLogic : MonoBehaviour
     {
-        _dayNightCycle.ResumeGame();
-    }
+        [SerializeField] private UIManager.UIManager uiManager;
+        [SerializeField] private SellingItemsLogic sellingItemsLogic;
+        [SerializeField] private GameObject pausePanel;
+        [SerializeField] private GameObject settingsPanel;
+        [SerializeField] private GameObject statsPanel;
+        [SerializeField] private GameObject pauseButton;
+        [SerializeField] private GameObject inventoryPanel;
+        [SerializeField] private GameObject upgradePanel;
+        [SerializeField] private GameObject shopPanel;
+        [SerializeField] private GameObject sellingPanel;
+        [SerializeField] private string sceneName;
+        [SerializeField] private DayNightCycle dayNightCycle;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
+        private void Awake()
         {
-            if (!_inventoryPanel.activeSelf)
+            dayNightCycle.ResumeGame();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.I))
             {
-                OpenInventory();
+                if (!inventoryPanel.activeSelf)
+                {
+                    OpenInventory();
+                }
+                else
+                {
+                    CloseInventory();
+                }
             }
-            else
+        }
+
+        public void OpenPausePanel()
+        {
+            if (!uiManager.IsUIActive())
             {
-                CloseInventory();
+                pausePanel.SetActive(true);
+                pauseButton.SetActive(false);
+                uiManager.ActivateUI();
+                dayNightCycle.PauseGame();
             }
         }
-    }
 
-    public void OpenPausePanel()
-    {
-        if (!_uiManager.IsUIActive())
+        public void ClosePausePanel()
         {
-            _pausePanel.SetActive(true);
-            _pauseButton.SetActive(false);
-            _uiManager.ActivateUI();
-            _dayNightCycle.PauseGame();
+            pausePanel.SetActive(false);
+            pauseButton.SetActive(true);
+            uiManager.DeactivateUI();
+            dayNightCycle.ResumeGame();
         }
-    }
 
-    public void ClosePausePanel()
-    {
-        _pausePanel.SetActive(false);
-        _pauseButton.SetActive(true);
-        _uiManager.DeactivateUI();
-        _dayNightCycle.ResumeGame();
-    }
-
-    public void OpenSettingsPanel()
-    {
-        _pausePanel.SetActive(false);
-        _settingsPanel.SetActive(true);
-    }
-
-    public void CloseSettingsPanel()
-    {
-        _settingsPanel.SetActive(false);
-        _pausePanel.SetActive(true);
-    }
-
-    public void OpenStatsPanel()
-    {
-        _statsPanel.SetActive(true);
-        _pausePanel.SetActive(false);
-    }
-
-    public void CloseStatsPanel()
-    {
-        _statsPanel.SetActive(false);
-        _pausePanel.SetActive(true);
-    }
-
-    public void OpenInventory()
-    {
-        if (!_uiManager.IsUIActive())
+        public void OpenSettingsPanel()
         {
-            _inventoryPanel.SetActive(true);
-            _pauseButton.SetActive(false);
-            _uiManager.ActivateUI();
+            pausePanel.SetActive(false);
+            settingsPanel.SetActive(true);
         }
-    }
 
-    public void CloseInventory()
-    {
-        _inventoryPanel.SetActive(false);
-        _pauseButton.SetActive(true);
-        _uiManager.DeactivateUI();
-
-        if (_sellingItemsLogic.PanelIsActive())
+        public void CloseSettingsPanel()
         {
-            _sellingItemsLogic.CloseShop();
+            settingsPanel.SetActive(false);
+            pausePanel.SetActive(true);
         }
-    }
 
-    public void CloseUpgradePanel()
-    {
-        _upgradePanel.SetActive(false);
-        _pauseButton.SetActive(true);
-        _uiManager.DeactivateUI();
-    }
+        public void OpenStatsPanel()
+        {
+            statsPanel.SetActive(true);
+            pausePanel.SetActive(false);
+        }
 
-    public void CloseShopPanel()
-    {
-        _shopPanel.SetActive(false);
-        _pauseButton.SetActive(true);
-        _uiManager.DeactivateUI();
-    }
+        public void CloseStatsPanel()
+        {
+            statsPanel.SetActive(false);
+            pausePanel.SetActive(true);
+        }
 
-    public void CloseSellingPanel()
-    {
-        _sellingItemsLogic.CloseShop();
-        _pauseButton.SetActive(true);
-        _uiManager.DeactivateUI();
-    }
+        private void OpenInventory()
+        {
+            if (!uiManager.IsUIActive())
+            {
+                inventoryPanel.SetActive(true);
+                pauseButton.SetActive(false);
+                uiManager.ActivateUI();
+            }
+        }
 
-    public void SwitchOffPauseButton()
-    {
-        _pauseButton.SetActive(false);
-    }
+        public void CloseInventory()
+        {
+            inventoryPanel.SetActive(false);
+            pauseButton.SetActive(true);
+            uiManager.DeactivateUI();
 
-    public void OpenMainMenu()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneName);
+            if (sellingItemsLogic.PanelIsActive())
+            {
+                sellingItemsLogic.CloseShop();
+            }
+        }
+
+        public void CloseUpgradePanel()
+        {
+            upgradePanel.SetActive(false);
+            pauseButton.SetActive(true);
+            uiManager.DeactivateUI();
+        }
+
+        public void CloseShopPanel()
+        {
+            shopPanel.SetActive(false);
+            pauseButton.SetActive(true);
+            uiManager.DeactivateUI();
+        }
+
+        public void CloseSellingPanel()
+        {
+            sellingItemsLogic.CloseShop();
+            pauseButton.SetActive(true);
+            uiManager.DeactivateUI();
+        }
+
+        public void SwitchOffPauseButton()
+        {
+            pauseButton.SetActive(false);
+        }
+
+        public void OpenMainMenu()
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+        }
     }
 }

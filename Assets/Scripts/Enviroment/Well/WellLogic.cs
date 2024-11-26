@@ -1,15 +1,20 @@
+using Player.ToolsLogic;
+using UI.SampleScene;
 using UnityEngine;
 
-public class WellLogic : MonoBehaviour
+namespace Enviroment.Well
 {
-    [SerializeField] private ToolSwitcher _toolSwitcher;
-    [SerializeField] private WateringCanLogic _wateringCanLogic;
-
-    private void OnMouseDown()
+    public class WellLogic : MonoBehaviour
     {
-        if (_toolSwitcher.GetCurrentTool() == ToolSwitcher.ToolType.WateringCan)
+        [SerializeField] private ToolSwitcher toolSwitcher;
+        [SerializeField] private WateringCanLogic wateringCanLogic;
+
+        private void OnMouseDown()
         {
-            _wateringCanLogic.RefillWateringCan();
+            if (toolSwitcher.GetCurrentTool() == ToolSwitcher.ToolType.WateringCan)
+            {
+                wateringCanLogic.RefillWateringCan();
+            }
         }
     }
 }

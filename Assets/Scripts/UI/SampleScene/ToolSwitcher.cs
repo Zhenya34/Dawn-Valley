@@ -1,68 +1,87 @@
+using Player;
+using Player.Placement;
 using UnityEngine;
 
-public class ToolSwitcher : MonoBehaviour
+namespace UI.SampleScene
 {
-    [SerializeField] private UnityEngine.UI.Image _toolIcon;
-    [SerializeField] private Player_Animation _playerAnim;
-    [SerializeField] private Sprite[] _toolSprites;
-
-    private ToolType _currentTool = ToolType.Hand;
-
-    private void Awake()
+    public class ToolSwitcher : MonoBehaviour
     {
-        _playerAnim.UpdateToolType(ToolType.Hand);
-    }
+        [SerializeField] private UnityEngine.UI.Image toolIcon;
+        [SerializeField] private PlayerAnimation playerAnim;
+        [SerializeField] private Sprite[] toolSprites;
+        [SerializeField] private PlacementSystem placementSystem;
 
-    public enum ToolType
-    {
-        Pickaxe = 0,
-        Axe = 1,
-        WateringCan = 2,
-        Hoe = 3,
-        Sword = 4,
-        Hand = 5
-    }
+        private ToolType _currentTool = ToolType.Hand;
 
-    private void Update()
-    {
-        ChangeToolType();
-    }
-
-    private void ChangeToolType()
-    {
-        float scroll = Input.GetAxis("MouseScrollWheel");
-        if (scroll != 0)
+        private void Awake()
         {
-            int newToolIndex = (int)_currentTool + (scroll > 0 ? 1 : -1);
-
-            if (newToolIndex >= System.Enum.GetValues(typeof(ToolType)).Length)
-            {
-                newToolIndex = 0;
-            }
-            else if (newToolIndex < 0)
-            {
-                newToolIndex = System.Enum.GetValues(typeof(ToolType)).Length - 1;
-            }
-
-            _currentTool = (ToolType)newToolIndex;
-
-            _playerAnim.UpdateToolType(_currentTool);
-            UpdateToolIcon();
+            playerAnim.UpdateToolType(ToolType.Hand);
         }
-    }
 
-    private void UpdateToolIcon()
-    {
-        int toolIndex = (int)_currentTool;
-        if (toolIndex >= 0 && toolIndex < _toolSprites.Length)
+        public enum ToolType
         {
-            _toolIcon.sprite = _toolSprites[toolIndex];
+            Pickaxe = 0,
+            Axe = 1,
+            WateringCan = 2,
+            Hoe = 3,
+            Sword = 4,
+            Hand = 5
         }
-    }
 
-    public ToolType GetCurrentTool()
-    {
-        return _currentTool;
+        private void Update()
+        {
+            ChangeToolType();
+        }
+
+        private void ChangeToolType()
+        {
+            float scroll = Input.GetAxis("MouseScrollWheel");
+            if (scroll != 0)
+            {
+                int newToolIndex = (int)_currentTool + (scroll > 0 ? 1 : -1);
+
+                if (newToolIndex >= System.Enum.GetValues(typeof(ToolType)).Length)
+                {
+                    newToolIndex = 0;
+                }
+                else if (newToolIndex < 0)
+                {
+                    newToolIndex = System.Enum.GetValues(typeof(ToolType)).Length - 1;
+                }
+
+                _currentTool = (ToolType)newToolIndex;
+
+                playerAnim.UpdateToolType(_currentTool);
+                UpdateToolIcon();
+                UpdatePlacementMode();
+            }
+        }
+
+        private void UpdatePlacementMode()
+        {
+            if (ToolType.Pickaxe == _currentTool || ToolType.Axe == _currentTool)
+            {
+                placementSystem.StartRemoving();
+            }
+            else
+            {
+                placementSystem.StopRemoving();
+            }
+        }
+
+        private void UpdateToolIcon()
+        {
+            int toolIndex = (int)_currentTool;
+            if (toolIndex >= 0 && toolIndex < toolSprites.Length)
+            {
+                toolIcon.sprite = toolSprites[toolIndex];
+            }
+        }
+
+        public ToolType GetCurrentTool()
+        {
+            return _currentTool;
+        }
     }
 }
 

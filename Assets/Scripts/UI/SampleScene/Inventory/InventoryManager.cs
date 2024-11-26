@@ -1,294 +1,299 @@
 using System.Collections.Generic;
+using Animals.Pets.PetsActivator;
+using UI.SampleScene.Shop;
 using UnityEngine;
 
-public class InventoryManager : MonoBehaviour
+namespace UI.SampleScene.Inventory
 {
-    [SerializeField] private SellingItemsLogic _sellingItemsLogic;
-    [SerializeField] private ItemUsageManager _itemUsageLogic;
-    [SerializeField] private GameObject _inventoryUI;
-    [SerializeField] private ItemDatabase _itemDatabase;
-    [SerializeField] private SellingSlot _sellingSlot;
-    [SerializeField] private PetInventorySlot _petInventorySlot;
-    [SerializeField] private AllPetsActivator _allPetsActivator;
-
-    private readonly List<InventorySlot> _slots = new();
-    private InventorySlot _selectedSlot;
-    private const int _maxStackSize = 60;
-    private bool _isItemSelected;
-
-    public void InitializeInventory()
+    public class InventoryManager : MonoBehaviour
     {
-        if (_inventoryUI != null)
+        [SerializeField] private SellingItemsLogic sellingItemsLogic;
+        [SerializeField] private ItemUsageManager itemUsageLogic;
+        [SerializeField] private GameObject inventoryUI;
+        [SerializeField] private ItemDatabase itemDatabase;
+        [SerializeField] private SellingSlot sellingSlot;
+        [SerializeField] private PetInventorySlot petInventorySlot;
+        [SerializeField] private AllPetsActivator allPetsActivator;
+
+        private readonly List<InventorySlot> _slots = new();
+        private InventorySlot _selectedSlot;
+        private const int MaxStackSize = 60;
+        private bool _isItemSelected;
+
+        public void InitializeInventory()
         {
-            foreach (Transform slotTransform in _inventoryUI.transform)
+            if (inventoryUI != null)
             {
-                if (slotTransform.TryGetComponent<InventorySlot>(out var slot))
+                foreach (Transform slotTransform in inventoryUI.transform)
                 {
-                    _slots.Add(slot);
+                    if (slotTransform.TryGetComponent<InventorySlot>(out var slot))
+                    {
+                        _slots.Add(slot);
+                    }
                 }
             }
         }
-    }
 
-    public void AddItem(string itemName, int quantity)
-    {
-        Item item = _itemDatabase.GetItemByName(itemName);
-        if (item != null)
+        public void AddItem(string itemName, int quantity)
         {
-            foreach (InventorySlot slot in _slots)
+            Item item = itemDatabase.GetItemByName(itemName);
+            if (item != null)
             {
-                if (slot.GetItemSprite() == item.itemSprite)
+                foreach (InventorySlot slot in _slots)
                 {
-                    int newQuantity = slot.GetQuantity() + quantity;
-                    if (newQuantity <= _maxStackSize)
+                    if (slot.GetItemSprite() == item.itemSprite)
                     {
-                        slot.UpdateQuantity(newQuantity);
-                        return;
+                        int newQuantity = slot.GetQuantity() + quantity;
+                        if (newQuantity <= MaxStackSize)
+                        {
+                            slot.UpdateQuantity(newQuantity);
+                            return;
+                        }
+                        else
+                        {
+                            int remaining = newQuantity - MaxStackSize;
+                            slot.UpdateQuantity(MaxStackSize);
+                            quantity = remaining;
+                        }
                     }
-                    else
+                }
+
+                foreach (InventorySlot slot in _slots)
+                {
+                    if (slot.IsEmpty())
                     {
-                        int remaining = newQuantity - _maxStackSize;
-                        slot.UpdateQuantity(_maxStackSize);
-                        quantity = remaining;
+                        if (quantity > MaxStackSize)
+                        {
+                            slot.SetItem(item.itemSprite, MaxStackSize);
+                            quantity -= MaxStackSize;
+                        }
+                        else
+                        {
+                            slot.SetItem(item.itemSprite, quantity);
+                            return;
+                        }
                     }
                 }
             }
+        }
 
-            foreach (InventorySlot slot in _slots)
+        public void RemoveItem(string itemName, int quantity)
+        {
+            Item item = itemDatabase.GetItemByName(itemName);
+            if (item != null)
+            {
+                foreach (InventorySlot slot in _slots)
+                {
+                    if (slot.GetItemSprite() == item.itemSprite)
+                    {
+                        int currentQuantity = slot.GetQuantity();
+                        if (currentQuantity >= quantity)
+                        {
+                            slot.UpdateQuantity(currentQuantity - quantity);
+                            if (slot.GetQuantity() == 0)
+                            {
+                                slot.ClearSlot();
+                            }
+                            return;
+                        }
+                        else
+                        {
+                            slot.ClearSlot();
+                            quantity -= currentQuantity;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void SelectSlot(InventorySlot slot)
+        {
+            if (slot.IsEmpty())
+            {
+                return;
+            }
+
+            if (_selectedSlot == slot)
+            {
+                _isItemSelected = true;
+                return;
+            }
+
+            if (_selectedSlot != null)
+            {
+                _selectedSlot.Deselect();
+            }
+
+            _selectedSlot = slot;
+            _selectedSlot.Select();
+            _isItemSelected = false;
+        }
+
+        public void OnSlotLeftClicked(InventorySlot slot)
+        {
+            if (_selectedSlot != null && _isItemSelected)
             {
                 if (slot.IsEmpty())
                 {
-                    if (quantity > _maxStackSize)
-                    {
-                        slot.SetItem(item.itemSprite, _maxStackSize);
-                        quantity -= _maxStackSize;
-                    }
-                    else
-                    {
-                        slot.SetItem(item.itemSprite, quantity);
-                        return;
-                    }
+                    slot.SetItem(_selectedSlot.GetItemSprite(), _selectedSlot.GetQuantity());
+                    _selectedSlot.ClearSlot();
+                    DeselectSlot();
                 }
-            }
-        }
-    }
-
-    public void RemoveItem(string itemName, int quantity)
-    {
-        Item item = _itemDatabase.GetItemByName(itemName);
-        if (item != null)
-        {
-            foreach (InventorySlot slot in _slots)
-            {
-                if (slot.GetItemSprite() == item.itemSprite)
+                else
                 {
-                    int currentQuantity = slot.GetQuantity();
-                    if (currentQuantity >= quantity)
-                    {
-                        slot.UpdateQuantity(currentQuantity - quantity);
-                        if (slot.GetQuantity() == 0)
-                        {
-                            slot.ClearSlot();
-                        }
-                        return;
-                    }
-                    else
-                    {
-                        slot.ClearSlot();
-                        quantity -= currentQuantity;
-                    }
+                    SelectSlot(slot);
                 }
-            }
-        }
-    }
-
-    private void SelectSlot(InventorySlot slot)
-    {
-        if (slot.IsEmpty())
-        {
-            return;
-        }
-
-        if (_selectedSlot == slot)
-        {
-            _isItemSelected = true;
-            return;
-        }
-
-        if (_selectedSlot != null)
-        {
-            _selectedSlot.Deselect();
-        }
-
-        _selectedSlot = slot;
-        _selectedSlot.Select();
-        _isItemSelected = false;
-    }
-
-    public void OnSlotLeftClicked(InventorySlot slot)
-    {
-        if (_selectedSlot != null && _isItemSelected)
-        {
-            if (slot.IsEmpty())
-            {
-                slot.SetItem(_selectedSlot.GetItemSprite(), _selectedSlot.GetQuantity());
-                _selectedSlot.ClearSlot();
-                DeselectSlot();
             }
             else
             {
-                SelectSlot(slot);
+                if (!slot.IsEmpty())
+                {
+                    SelectSlot(slot);
+                }
             }
         }
-        else
-        {
-            if (!slot.IsEmpty())
-            {
-                SelectSlot(slot);
-            }
-        }
-    }
 
-    public void OnSlotRightClicked(InventorySlot slot)
-    {
-        if (_selectedSlot == slot && _isItemSelected)
+        public void OnSlotRightClicked(InventorySlot slot)
         {
-            _itemUsageLogic.UseSelectedItem(slot);
-        }
-    }
-
-    public void OnSellingSlotClicked(SellingSlot slot)
-    {
-        if (_selectedSlot != null && _isItemSelected)
-        {
-            if (slot.IsEmpty())
+            if (_selectedSlot == slot && _isItemSelected)
             {
-                MoveItemToSellingSlot();
+                itemUsageLogic.UseSelectedItem(slot);
             }
         }
-        else
+
+        public void OnSellingSlotClicked(SellingSlot slot)
         {
-            if (!slot.IsEmpty())
+            if (_selectedSlot != null && _isItemSelected)
+            {
+                if (slot.IsEmpty())
+                {
+                    MoveItemToSellingSlot();
+                }
+            }
+            else
+            {
+                if (!slot.IsEmpty())
+                {
+                    SelectSellingSlot(slot);
+                }
+            }
+        }
+
+        public void OnPetSlotClicked(PetInventorySlot slot)
+        {
+            if (_selectedSlot != null && _isItemSelected)
+            {
+                if (slot.IsEmpty())
+                {
+                    MoveItemToPetSlot();
+                }
+            }
+            else
+            {
+                if (!slot.IsEmpty())
+                {
+                    SelectPetSlot(slot);
+                }
+            }
+        }
+
+        private void MoveItemToSellingSlot()
+        {
+            Sprite itemSprite = _selectedSlot.GetItemSprite();
+            int itemQuantity = _selectedSlot.GetQuantity();
+            Item selectedItem = itemDatabase.GetItemBySprite(itemSprite);
+
+            if (selectedItem != null)
+            {
+                sellingSlot.SetItem(itemSprite, itemQuantity);
+                _selectedSlot.ClearSlot();
+                DeselectSlot();
+            }
+        }
+
+        public void MoveItemToInventory(SellingSlot slot)
+        {
+            if (_selectedSlot == null && _isItemSelected && slot.GetItemSprite() != null)
+            {
+                Sprite itemSprite = slot.GetItemSprite();
+                int itemQuantity = slot.GetQuantity();
+                Item selectedItem = itemDatabase.GetItemBySprite(itemSprite);
+                if (selectedItem != null)
+                {
+                    AddItem(selectedItem.itemName, itemQuantity);
+                    slot.ClearSlot();
+                    DeselectSlot();
+                }
+            }
+            else if (!slot.IsEmpty())
             {
                 SelectSellingSlot(slot);
             }
         }
-    }
 
-    public void OnPetSlotClicked(PetInventorySlot slot)
-    {
-        if (_selectedSlot != null && _isItemSelected)
+        private void MoveItemToPetSlot()
         {
-            if (slot.IsEmpty())
-            {
-                MoveItemToPetSlot();
-            }
-        }
-        else
-        {
-            if (!slot.IsEmpty())
-            {
-                SelectPetSlot(slot);
-            }
-        }
-    }
-
-    private void MoveItemToSellingSlot()
-    {
-        Sprite itemSprite = _selectedSlot.GetItemSprite();
-        int itemQuantity = _selectedSlot.GetQuantity();
-        Item selectedItem = _itemDatabase.GetItemBySprite(itemSprite);
-
-        if (selectedItem != null)
-        {
-            _sellingSlot.SetItem(itemSprite, itemQuantity);
-            _selectedSlot.ClearSlot();
-            DeselectSlot();
-        }
-    }
-
-    public void MoveItemToInventory(SellingSlot slot)
-    {
-        if (_selectedSlot == null && _isItemSelected && slot.GetItemSprite() != null)
-        {
-            Sprite itemSprite = slot.GetItemSprite();
-            int itemQuantity = slot.GetQuantity();
-            Item selectedItem = _itemDatabase.GetItemBySprite(itemSprite);
-            if (selectedItem != null)
-            {
-                AddItem(selectedItem.itemName, itemQuantity);
-                slot.ClearSlot();
-                DeselectSlot();
-            }
-        }
-        else if (!slot.IsEmpty())
-        {
-            SelectSellingSlot(slot);
-        }
-    }
-
-    private void MoveItemToPetSlot()
-    {
-        Sprite itemSprite = _selectedSlot.GetItemSprite();
-        Item selectedItem = _itemDatabase.GetItemBySprite(itemSprite);
-
-        if (selectedItem != null && selectedItem.itemType == Item.ItemType.Pet)
-        {
-            _petInventorySlot.SetItem(itemSprite);
-            _selectedSlot.ClearSlot();
-            DeselectSlot();
-            _allPetsActivator.ActivatePet(selectedItem.itemName);
-        }
-    }
-
-    public void MovePetItemToInventory(PetInventorySlot petSlot)
-    {
-        if (!petSlot.IsEmpty())
-        {
-            Sprite itemSprite = petSlot.GetItemSprite();
-            Item selectedItem = _itemDatabase.GetItemBySprite(itemSprite);
+            Sprite itemSprite = _selectedSlot.GetItemSprite();
+            Item selectedItem = itemDatabase.GetItemBySprite(itemSprite);
 
             if (selectedItem != null && selectedItem.itemType == Item.ItemType.Pet)
             {
-                AddItem(selectedItem.itemName, 1);
-                petSlot.ClearSlot();
+                petInventorySlot.SetItem(itemSprite);
+                _selectedSlot.ClearSlot();
                 DeselectSlot();
-                _allPetsActivator.DeactivatePet(selectedItem.itemName);
+                allPetsActivator.ActivatePet(selectedItem.itemName);
             }
         }
-    }
 
-    public List<InventorySlot> GetAllSlots()
-    {
-        return _slots;
-    }
-
-    private void SelectSellingSlot(SellingSlot slot)
-    {
-        if (slot.GetItemSprite() != null)
+        public void MovePetItemToInventory(PetInventorySlot petSlot)
         {
-            slot.Select();
-            _isItemSelected = true;
-        }
-    }
+            if (!petSlot.IsEmpty())
+            {
+                Sprite itemSprite = petSlot.GetItemSprite();
+                Item selectedItem = itemDatabase.GetItemBySprite(itemSprite);
 
-    private void SelectPetSlot(PetInventorySlot slot)
-    {
-        if (slot.GetItemSprite() != null)
-        {
-            slot.Select();
-            _isItemSelected = true;
-        }
-    }
-
-    private void DeselectSlot()
-    {
-        if (_selectedSlot != null)
-        {
-            _selectedSlot.Deselect();
+                if (selectedItem != null && selectedItem.itemType == Item.ItemType.Pet)
+                {
+                    AddItem(selectedItem.itemName, 1);
+                    petSlot.ClearSlot();
+                    DeselectSlot();
+                    allPetsActivator.DeactivatePet(selectedItem.itemName);
+                }
+            }
         }
 
-        _isItemSelected = false;
-        _selectedSlot = null;
+        public List<InventorySlot> GetAllSlots()
+        {
+            return _slots;
+        }
+
+        private void SelectSellingSlot(SellingSlot slot)
+        {
+            if (slot.GetItemSprite() != null)
+            {
+                slot.Select();
+                _isItemSelected = true;
+            }
+        }
+
+        private void SelectPetSlot(PetInventorySlot slot)
+        {
+            if (slot.GetItemSprite() != null)
+            {
+                slot.Select();
+                _isItemSelected = true;
+            }
+        }
+
+        private void DeselectSlot()
+        {
+            if (_selectedSlot != null)
+            {
+                _selectedSlot.Deselect();
+            }
+
+            _isItemSelected = false;
+            _selectedSlot = null;
+        }
     }
 }

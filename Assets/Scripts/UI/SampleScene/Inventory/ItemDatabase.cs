@@ -1,57 +1,61 @@
 using System.Collections.Generic;
+using Enviroment.Plants;
 using UnityEngine;
 
-public class ItemDatabase : MonoBehaviour
+namespace UI.SampleScene.Inventory
 {
-    [SerializeField] private List<Item> _items = new();
-    [SerializeField] private Seed[] _seeds;
-
-    public Seed GetSeedByItem(Item item)
+    public class ItemDatabase : MonoBehaviour
     {
-        foreach (Seed seed in _seeds)
+        [SerializeField] private List<Item> items = new();
+        [SerializeField] private Seed[] seeds;
+
+        public Seed GetSeedByItem(Item item)
         {
-            if (seed.seedName == item.itemName)
+            foreach (Seed seed in seeds)
             {
-                return seed;
+                if (seed.seedName == item.itemName)
+                {
+                    return seed;
+                }
             }
+
+            return null;
         }
 
-        return null;
+        public Item GetItemByName(string name)
+        {
+            return items.Find(item => item.itemName == name);
+        }
+
+        public Item GetItemBySprite(Sprite sprite)
+        {
+            return items.Find(item => item.itemSprite == sprite);
+        }
     }
 
-    public Item GetItemByName(string name)
+    [System.Serializable]
+    public class Item
     {
-        return _items.Find(item => item.itemName == name);
-    }
+        public string itemName;
+        public Sprite itemSprite;
+        public int purchasePrice;
+        public int sellingPrice;
+        public ItemType itemType;
+        public GlobalItemType globalItemType;
 
-    public Item GetItemBySprite(Sprite sprite)
-    {
-        return _items.Find(item => item.itemSprite == sprite);
-    }
-}
+        public enum GlobalItemType
+        {
+            None,
+            Seed,
+            Fence,
+            Wicket,
+            Structure
+        }
 
-[System.Serializable]
-public class Item
-{
-    public string itemName;
-    public Sprite itemSprite;
-    public int purchasePrice;
-    public int sellingPrice;
-    public ItemType itemType;
-    public GlobalItemType globalItemType;
-
-    public enum GlobalItemType
-    {
-        None,
-        Seed,
-        Fence,
-        Wicket,
-        Structure
-    }
-
-    public enum ItemType
-    {
-        General,
-        Pet
+        public enum ItemType
+        {
+            General,
+            Pet
+        }
     }
 }

@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class ItemCollector : MonoBehaviour
+namespace Enviroment.ItemCollecting
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class ItemCollector : MonoBehaviour
     {
-        if (collision.CompareTag("Player"))
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.TryGetComponent<ItemHandler>(out var itemHandler))
+            if (collision.CompareTag("Player"))
             {
-                itemHandler.CollectItem(GetComponent<SpriteRenderer>().sprite);
+                if (collision.TryGetComponent<ItemHandler>(out var itemHandler))
+                {
+                    itemHandler.CollectItem(GetComponent<SpriteRenderer>().sprite);
+                }
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
         }
     }
 }

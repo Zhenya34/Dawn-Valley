@@ -1,129 +1,133 @@
 using System.Collections.Generic;
 using TMPro;
+using UI.SampleScene.Inventory;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public class ShopItem
+namespace UI.SampleScene.Shop
 {
-    public string itemName;
-    public Button itemButton;
-    public TextMeshProUGUI itemQuantityText;
-}
-
-public class ShopItemLogic : MonoBehaviour
-{
-    [SerializeField] private ShopItem[] _shopItems;
-    [SerializeField] private PlayerCoinsWallet _playerCoinsWallet;
-    [SerializeField] private SampleSceneCanvasLogic _sampleSceneCanvasLogic;
-    [SerializeField] private InventoryManager _inventoryManager;
-    [SerializeField] private ItemDatabase _itemDatabase;
-    [SerializeField] private float _shopRadius;
-    [SerializeField] private GameObject _player;
-    [SerializeField] private GameObject _shopPanel;
-    [SerializeField] private Button _confirmButton;
-    [SerializeField] private Button _cancelButton;
-    [SerializeField] private UIManager _uiManager;
-
-    private readonly Dictionary<string, int> _cart = new();
-
-    private void Start()
+    [System.Serializable]
+    public class ShopItem
     {
-        InitializeShop();
+        public string itemName;
+        public Button itemButton;
+        public TextMeshProUGUI itemQuantityText;
     }
 
-    private void OnMouseDown()
+    public class ShopItemLogic : MonoBehaviour
     {
-        if (!_uiManager.IsUIActive())
+        [SerializeField] private ShopItem[] shopItems;
+        [SerializeField] private PlayerCoinsWallet playerCoinsWallet;
+        [SerializeField] private SampleSceneCanvasLogic sampleSceneCanvasLogic;
+        [SerializeField] private InventoryManager inventoryManager;
+        [SerializeField] private ItemDatabase itemDatabase;
+        [SerializeField] private float shopRadius;
+        [SerializeField] private GameObject player;
+        [SerializeField] private GameObject shopPanel;
+        [SerializeField] private Button confirmButton;
+        [SerializeField] private Button cancelButton;
+        [SerializeField] private UIManager.UIManager uiManager;
+
+        private readonly Dictionary<string, int> _cart = new();
+
+        private void Start()
         {
-            float distance = Vector3.Distance(_player.transform.position, transform.position);
-            if (distance <= _shopRadius)
+            InitializeShop();
+        }
+
+        private void OnMouseDown()
+        {
+            if (!uiManager.IsUIActive())
             {
-                _shopPanel.SetActive(true);
-                _uiManager.ActivateUI();
-                _sampleSceneCanvasLogic.SwitchOffPauseButton();
-            }
-        }
-    }
-
-    private void InitializeShop()
-    {
-        foreach (var shopItem in _shopItems)
-        {
-            shopItem.itemButton.onClick.AddListener(() => AddToCart(shopItem));
-            shopItem.itemQuantityText.text = "0";
-
-            _confirmButton.onClick.AddListener(ConfirmPurchase);
-            _cancelButton.onClick.AddListener(CancelPurchase);
-        }
-    }
-
-    private void AddToCart(ShopItem shopItem)
-    {
-        if (_cart.ContainsKey(shopItem.itemName))
-        {
-            _cart[shopItem.itemName]++;
-        }
-        else
-        {
-            _cart[shopItem.itemName] = 1;
-        }
-        UpdateQuantityText(shopItem.itemName);
-    }
-
-    private void UpdateQuantityText(string itemName)
-    {
-        foreach (var shopItem in _shopItems)
-        {
-            if (shopItem.itemName == itemName)
-            {
-                shopItem.itemQuantityText.text = _cart[itemName].ToString();
-                break;
-            }
-        }
-    }
-
-    private void ConfirmPurchase()
-    {
-        int totalCost = 0;
-        foreach (var entry in _cart)
-        {
-            Item item = _itemDatabase.GetItemByName(entry.Key);
-            if (item != null)
-            {
-                totalCost += item.purchasePrice * entry.Value;
-            }
-        }
-
-        if (_playerCoinsWallet.SpendCoins(totalCost))
-        {
-            foreach (var entry in _cart)
-            {
-                Item purchasedItem = _itemDatabase.GetItemByName(entry.Key);
-                if (purchasedItem != null)
+                float distance = Vector3.Distance(player.transform.position, transform.position);
+                if (distance <= shopRadius)
                 {
-                    _inventoryManager.AddItem(entry.Key, entry.Value);
+                    shopPanel.SetActive(true);
+                    uiManager.ActivateUI();
+                    sampleSceneCanvasLogic.SwitchOffPauseButton();
                 }
             }
+        }
+
+        private void InitializeShop()
+        {
+            foreach (var shopItem in shopItems)
+            {
+                shopItem.itemButton.onClick.AddListener(() => AddToCart(shopItem));
+                shopItem.itemQuantityText.text = "0";
+
+                confirmButton.onClick.AddListener(ConfirmPurchase);
+                cancelButton.onClick.AddListener(CancelPurchase);
+            }
+        }
+
+        private void AddToCart(ShopItem shopItem)
+        {
+            if (_cart.ContainsKey(shopItem.itemName))
+            {
+                _cart[shopItem.itemName]++;
+            }
+            else
+            {
+                _cart[shopItem.itemName] = 1;
+            }
+            UpdateQuantityText(shopItem.itemName);
+        }
+
+        private void UpdateQuantityText(string itemName)
+        {
+            foreach (var shopItem in shopItems)
+            {
+                if (shopItem.itemName == itemName)
+                {
+                    shopItem.itemQuantityText.text = _cart[itemName].ToString();
+                    break;
+                }
+            }
+        }
+
+        private void ConfirmPurchase()
+        {
+            int totalCost = 0;
+            foreach (var entry in _cart)
+            {
+                Item item = itemDatabase.GetItemByName(entry.Key);
+                if (item != null)
+                {
+                    totalCost += item.purchasePrice * entry.Value;
+                }
+            }
+
+            if (playerCoinsWallet.SpendCoins(totalCost))
+            {
+                foreach (var entry in _cart)
+                {
+                    Item purchasedItem = itemDatabase.GetItemByName(entry.Key);
+                    if (purchasedItem != null)
+                    {
+                        inventoryManager.AddItem(entry.Key, entry.Value);
+                    }
+                }
+                ClearCart();
+            }
+            else
+            {
+                Debug.Log("Not enough coins!");
+            }
+        }
+
+        private void CancelPurchase()
+        {
             ClearCart();
         }
-        else
-        {
-            Debug.Log("Not enough coins!");
-        }
-    }
 
-    private void CancelPurchase()
-    {
-        ClearCart();
-    }
-
-    private void ClearCart()
-    {
-        _cart.Clear();
-        foreach (var shopItem in _shopItems)
+        private void ClearCart()
         {
-            shopItem.itemQuantityText.text = "0";
+            _cart.Clear();
+            foreach (var shopItem in shopItems)
+            {
+                shopItem.itemQuantityText.text = "0";
+            }
         }
     }
 }

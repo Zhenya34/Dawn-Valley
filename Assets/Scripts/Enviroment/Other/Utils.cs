@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DawnValley.Utils
+namespace Enviroment.Other
 {
     public static class Utils
     {

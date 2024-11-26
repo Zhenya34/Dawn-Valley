@@ -2,84 +2,87 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public class Upgrade
+namespace UI.SampleScene.Shop
 {
-    public string name;
-    public Button upgradeButton;
-    public int maxLevel;
-    public int currentLevel;
-    public int[] costPerLevel;
-}
-
-public class UpgradeManager : MonoBehaviour
-{
-    [SerializeField] private Upgrade[] _upgrades;
-    [SerializeField] private PlayerCoinsWallet _playerCoinsWallet;
-    [SerializeField] private SampleSceneCanvasLogic _sampleSceneCanvasLogic;
-    [SerializeField] private GameObject _player;
-    [SerializeField] private float _shopRadius;
-    [SerializeField] private GameObject _upgradePanel;
-    [SerializeField] private UIManager _uiManager;
-
-    private void Start()
+    [System.Serializable]
+    public class Upgrade
     {
-        InitializeShop();
+        public string name;
+        public Button upgradeButton;
+        public int maxLevel;
+        public int currentLevel;
+        public int[] costPerLevel;
     }
 
-    private void OnMouseDown()
+    public class UpgradeManager : MonoBehaviour
     {
-        if (!_uiManager.IsUIActive())
+        [SerializeField] private Upgrade[] upgrades;
+        [SerializeField] private PlayerCoinsWallet playerCoinsWallet;
+        [SerializeField] private SampleSceneCanvasLogic sampleSceneCanvasLogic;
+        [SerializeField] private GameObject player;
+        [SerializeField] private float shopRadius;
+        [SerializeField] private GameObject upgradePanel;
+        [SerializeField] private UIManager.UIManager uiManager;
+
+        private void Start()
         {
-            float distance = Vector3.Distance(_player.transform.position, transform.position);
-            if (distance <= _shopRadius)
+            InitializeShop();
+        }
+
+        private void OnMouseDown()
+        {
+            if (!uiManager.IsUIActive())
             {
-                _upgradePanel.SetActive(true);
-                _uiManager.ActivateUI();
-                _sampleSceneCanvasLogic.SwitchOffPauseButton();
+                float distance = Vector3.Distance(player.transform.position, transform.position);
+                if (distance <= shopRadius)
+                {
+                    upgradePanel.SetActive(true);
+                    uiManager.ActivateUI();
+                    sampleSceneCanvasLogic.SwitchOffPauseButton();
+                }
             }
         }
-    }
 
-    private void InitializeShop()
-    {
-        foreach (var upgrade in _upgrades)
+        private void InitializeShop()
         {
-            UpdateUpgradeButton(upgrade);
-            upgrade.upgradeButton.onClick.AddListener(() => OnUpgradeButtonClicked(upgrade));
-        }
-    }
-
-    private void OnUpgradeButtonClicked(Upgrade upgrade)
-    {
-        if (upgrade.currentLevel < upgrade.maxLevel)
-        {
-            int cost = upgrade.costPerLevel[upgrade.currentLevel];
-            if (_playerCoinsWallet.SpendCoins(cost))
+            foreach (var upgrade in upgrades)
             {
-                upgrade.currentLevel++;
-                ApplyUpgradeEffects(upgrade);
                 UpdateUpgradeButton(upgrade);
+                upgrade.upgradeButton.onClick.AddListener(() => OnUpgradeButtonClicked(upgrade));
             }
         }
-    }
 
-    private void UpdateUpgradeButton(Upgrade upgrade)
-    {
-        if (upgrade.currentLevel >= upgrade.maxLevel)
+        private void OnUpgradeButtonClicked(Upgrade upgrade)
         {
-            upgrade.upgradeButton.interactable = false;
-            upgrade.upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = "Max Level";
+            if (upgrade.currentLevel < upgrade.maxLevel)
+            {
+                int cost = upgrade.costPerLevel[upgrade.currentLevel];
+                if (playerCoinsWallet.SpendCoins(cost))
+                {
+                    upgrade.currentLevel++;
+                    ApplyUpgradeEffects(upgrade);
+                    UpdateUpgradeButton(upgrade);
+                }
+            }
         }
-        else
-        {
-            int cost = upgrade.costPerLevel[upgrade.currentLevel];
-            upgrade.upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = cost.ToString();
-        }
-    }
 
-    private void ApplyUpgradeEffects(Upgrade upgrade)
-    {
-        Debug.Log("ApplyEffects");
+        private void UpdateUpgradeButton(Upgrade upgrade)
+        {
+            if (upgrade.currentLevel >= upgrade.maxLevel)
+            {
+                upgrade.upgradeButton.interactable = false;
+                upgrade.upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = "Max Level";
+            }
+            else
+            {
+                int cost = upgrade.costPerLevel[upgrade.currentLevel];
+                upgrade.upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = cost.ToString();
+            }
+        }
+
+        private void ApplyUpgradeEffects(Upgrade upgrade)
+        {
+            Debug.Log("ApplyEffects");
+        }
     }
 }

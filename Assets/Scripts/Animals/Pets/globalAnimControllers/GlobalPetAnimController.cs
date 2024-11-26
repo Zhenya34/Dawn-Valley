@@ -1,31 +1,34 @@
 using UnityEngine;
-using AnimControllerNamespace;
+using Animals.Pets.Namespace;
 
-public class GlobalPetAnimController : MonoBehaviour, INightTimeController
+namespace Animals.Pets.globalAnimControllers
 {
-    [SerializeField] private Animator _animator;
-
-    private enum Variables
+    public class GlobalPetAnimController : MonoBehaviour, INightTimeController
     {
-        running,
-        sleeping
-    }
+        [SerializeField] private Animator animator;
 
-    public void SetRunningAnimation()
-    {
-        _animator.SetBool(Variables.sleeping.ToString(), false);
-        _animator.SetBool(Variables.running.ToString(), true);
-    }
+        private enum Variables
+        {
+            Running,
+            Sleeping
+        }
 
-    public void ActivateNightTime()
-    {
-        _animator.SetBool(Variables.sleeping.ToString(), true);
-        _animator.SetBool(Variables.running.ToString(), false);
-    }
+        public void SetRunningAnimation()
+        {
+            animator.SetBool(Variables.Sleeping.ToString(), false);
+            animator.SetBool(Variables.Running.ToString(), true);
+        }
 
-    public void DeactivateNightTime()
-    {
-        _animator.SetBool(Variables.sleeping.ToString(), false);
-        _animator.SetBool(Variables.running.ToString(), false);
+        public void ActivateNightTime()
+        {
+            animator.SetBool(Variables.Sleeping.ToString(), true);
+            animator.SetBool(Variables.Running.ToString(), false);
+        }
+
+        public void DeactivateNightTime()
+        {
+            animator.SetBool(Variables.Sleeping.ToString(), false);
+            animator.SetBool(Variables.Running.ToString(), false);
+        }
     }
 }

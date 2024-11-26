@@ -1,47 +1,50 @@
 using UnityEngine;
 
-public class AllPetsActivator : MonoBehaviour
+namespace Animals.Pets.PetsActivator
 {
-    [SerializeField] private Transform _player;
-
-    public void ActivatePet(string petName)
+    public class AllPetsActivator : MonoBehaviour
     {
-        GameObject petObject = FindPetByName(petName);
+        [SerializeField] private Transform player;
 
-        if (petObject != null)
+        public void ActivatePet(string petName)
         {
-            petObject.SetActive(true);
-            TeleportPetToPlayer(petObject);
-        }
-    }
+            GameObject petObject = FindPetByName(petName);
 
-    public void DeactivatePet(string petName)
-    {
-        GameObject petObject = FindPetByName(petName);
-
-        if (petObject != null)
-        {
-            petObject.SetActive(false);
-        }
-    }
-
-    private GameObject FindPetByName(string petName)
-    {
-        foreach (Transform child in transform)
-        {
-            if (child.gameObject.name == petName)
+            if (petObject != null)
             {
-                return child.gameObject;
+                petObject.SetActive(true);
+                TeleportPetToPlayer(petObject);
             }
         }
-        return null;
-    }
 
-    private void TeleportPetToPlayer(GameObject petObject)
-    {
-        if (_player != null)
+        public void DeactivatePet(string petName)
         {
-            petObject.transform.position = _player.position;
+            GameObject petObject = FindPetByName(petName);
+
+            if (petObject != null)
+            {
+                petObject.SetActive(false);
+            }
+        }
+
+        private GameObject FindPetByName(string petName)
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.gameObject.name == petName)
+                {
+                    return child.gameObject;
+                }
+            }
+            return null;
+        }
+
+        private void TeleportPetToPlayer(GameObject petObject)
+        {
+            if (player != null)
+            {
+                petObject.transform.position = player.position;
+            }
         }
     }
 }

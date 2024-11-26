@@ -1,60 +1,63 @@
+using Enviroment.Other;
 using UnityEngine;
 using UnityEngine.AI;
-using DawnValley.Utils;
 
-public class WalkingAnimalsAI : MonoBehaviour
+namespace Animals.Animals
 {
-    [SerializeField] private State _startingState;
-    [SerializeField] private float _walkingDistanceMax;
-    [SerializeField] private float _walkingDistanceMin;
-    [SerializeField] private float _walkingTimerMax;
-
-    private NavMeshAgent _navMeshAgent;
-    private State _currentState;
-    private float _walkingTime;
-    private Vector3 _walkPosition;
-    private Vector3 _startingPosition;
-
-    private enum State
+    public class WalkingAnimalsAI : MonoBehaviour
     {
-        Idle,
-        Walking
-    }
+        [SerializeField] private State startingState;
+        [SerializeField] private float walkingDistanceMax;
+        [SerializeField] private float walkingDistanceMin;
+        [SerializeField] private float walkingTimerMax;
 
-    private void Start()
-    {
-        _startingPosition = transform.position;
-    }
+        private NavMeshAgent _navMeshAgent;
+        private State _currentState;
+        private float _walkingTime;
+        private Vector3 _walkPosition;
+        private Vector3 _startingPosition;
 
-    private void Awake()
-    {
-        _navMeshAgent = GetComponent<NavMeshAgent>();
-        _navMeshAgent.updateRotation = false;
-        _navMeshAgent.updateUpAxis = false;
-        _currentState = _startingState;
-    }
-
-    private void Update()
-    {
-        if (_currentState == State.Walking)
+        private enum State
         {
-            _walkingTime -= Time.deltaTime;
-            if (_walkingTime < 0)
+            Idle,
+            Walking
+        }
+
+        private void Start()
+        {
+            _startingPosition = transform.position;
+        }
+
+        private void Awake()
+        {
+            _navMeshAgent = GetComponent<NavMeshAgent>();
+            _navMeshAgent.updateRotation = false;
+            _navMeshAgent.updateUpAxis = false;
+            _currentState = startingState;
+        }
+
+        private void Update()
+        {
+            if (_currentState == State.Walking)
             {
-                Walking();
-                _walkingTime = _walkingTimerMax;
+                _walkingTime -= Time.deltaTime;
+                if (_walkingTime < 0)
+                {
+                    Walking();
+                    _walkingTime = walkingTimerMax;
+                }
             }
         }
-    }
 
-    private void Walking()
-    {
-        _walkPosition = GetWalkingPosition();
-        _navMeshAgent.SetDestination(_walkPosition);
-    }
+        private void Walking()
+        {
+            _walkPosition = GetWalkingPosition();
+            _navMeshAgent.SetDestination(_walkPosition);
+        }
 
-    private Vector3 GetWalkingPosition()
-    {
-        return _startingPosition + Utils.GetRandomDir() * Random.Range(_walkingDistanceMin, _walkingDistanceMax);
+        private Vector3 GetWalkingPosition()
+        {
+            return _startingPosition + Utils.GetRandomDir() * Random.Range(walkingDistanceMin, walkingDistanceMax);
+        }
     }
 }

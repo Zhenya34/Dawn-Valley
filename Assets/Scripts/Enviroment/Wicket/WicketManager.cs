@@ -1,89 +1,93 @@
+using UI.SampleScene.Inventory;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class WicketManager : MonoBehaviour
+namespace Enviroment.Wicket
 {
-    [SerializeField] private Tilemap _tilemap;
-    [SerializeField] private GameObject _horizontalGatePrefab;
-    [SerializeField] private GameObject _verticalGatePrefab;
-    [SerializeField] private ItemUsageManager _itemUsageManager;
-
-    private bool _canPlace = false;
-    private InventorySlot _currentSlot;
-
-    private void Update()
+    public class WicketManager : MonoBehaviour
     {
-        if (_canPlace)
+        [SerializeField] private Tilemap tilemap;
+        [SerializeField] private GameObject horizontalGatePrefab;
+        [SerializeField] private GameObject verticalGatePrefab;
+        [SerializeField] private ItemUsageManager itemUsageManager;
+
+        private bool _canPlace = false;
+        private InventorySlot _currentSlot;
+
+        private void Update()
         {
-            if (Input.GetMouseButtonDown(1) && _itemUsageManager.HasItemInInventory(Item.GlobalItemType.Wicket))
+            if (_canPlace)
             {
-                Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector3Int tilePos = _tilemap.WorldToCell(mouseWorldPos);
-                
-                if (IsTileEmpty(tilePos))
+                if (Input.GetMouseButtonDown(1) && itemUsageManager.HasItemInInventory(Item.GlobalItemType.Wicket))
                 {
-                    CreateGate(tilePos);
+                    Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Vector3Int tilePos = tilemap.WorldToCell(mouseWorldPos);
+                
+                    if (IsTileEmpty(tilePos))
+                    {
+                        CreateGate(tilePos);
+                    }
                 }
             }
         }
-    }
 
-    private bool IsTileEmpty(Vector3Int position)
-    {
-        return _tilemap.GetTile(position) == null;
-    }
-
-    private void CreateGate(Vector3Int tilePos)
-    {
-        GameObject newGate;
-        bool hasTopNeighbor = IsNeighbor(tilePos, Vector3Int.up);
-        bool hasBottomNeighbor = IsNeighbor(tilePos, Vector3Int.down);
-        bool hasLeftNeighbor = IsNeighbor(tilePos, Vector3Int.left);
-        bool hasRightNeighbor = IsNeighbor(tilePos, Vector3Int.right);
-
-        if (hasTopNeighbor && hasBottomNeighbor)
+        private bool IsTileEmpty(Vector3Int position)
         {
-            newGate = Instantiate(_verticalGatePrefab, _tilemap.GetCellCenterWorld(tilePos), Quaternion.identity);
-            InitializeGateController(false, newGate);
-        }
-        else if (hasLeftNeighbor && hasRightNeighbor)
-        {
-            newGate = Instantiate(_horizontalGatePrefab, _tilemap.GetCellCenterWorld(tilePos), Quaternion.identity);
-            InitializeGateController(true, newGate);
-        }
-        else
-        {
-            newGate = Instantiate(_horizontalGatePrefab, _tilemap.GetCellCenterWorld(tilePos), Quaternion.identity);
-            InitializeGateController(true, newGate);
+            return tilemap.GetTile(position) == null;
         }
 
-        _itemUsageManager.UpdateCountOfItem(_currentSlot);
-    }
+        private void CreateGate(Vector3Int tilePos)
+        {
+            GameObject newGate;
+            bool hasTopNeighbor = IsNeighbor(tilePos, Vector3Int.up);
+            bool hasBottomNeighbor = IsNeighbor(tilePos, Vector3Int.down);
+            bool hasLeftNeighbor = IsNeighbor(tilePos, Vector3Int.left);
+            bool hasRightNeighbor = IsNeighbor(tilePos, Vector3Int.right);
 
-    private void InitializeGateController(bool isHorizontal, GameObject newGate)
-    {
-        WicketController gateController = newGate.AddComponent<WicketController>();
-        gateController.Initialize(isHorizontal);
-    }
+            if (hasTopNeighbor && hasBottomNeighbor)
+            {
+                newGate = Instantiate(verticalGatePrefab, tilemap.GetCellCenterWorld(tilePos), Quaternion.identity);
+                InitializeGateController(false, newGate);
+            }
+            else if (hasLeftNeighbor && hasRightNeighbor)
+            {
+                newGate = Instantiate(horizontalGatePrefab, tilemap.GetCellCenterWorld(tilePos), Quaternion.identity);
+                InitializeGateController(true, newGate);
+            }
+            else
+            {
+                newGate = Instantiate(horizontalGatePrefab, tilemap.GetCellCenterWorld(tilePos), Quaternion.identity);
+                InitializeGateController(true, newGate);
+            }
 
-    private bool IsNeighbor(Vector3Int position, Vector3Int direction)
-    {
-        Vector3Int neighborPos = position + direction;
-        return _tilemap.GetTile(neighborPos) != null;
-    }
+            itemUsageManager.UpdateCountOfItem(_currentSlot);
+        }
 
-    public void SetWicket(InventorySlot slot)
-    {
-        _currentSlot = slot;
-    }
+        private void InitializeGateController(bool isHorizontal, GameObject newGate)
+        {
+            WicketController gateController = newGate.AddComponent<WicketController>();
+            gateController.Initialize(isHorizontal);
+        }
 
-    public void AllowWicketsPlacement()
-    {
-        _canPlace = true;
-    }
+        private bool IsNeighbor(Vector3Int position, Vector3Int direction)
+        {
+            Vector3Int neighborPos = position + direction;
+            return tilemap.GetTile(neighborPos) != null;
+        }
 
-    public void ForbidWicketsPlacement()
-    {
-        _canPlace = false;
+        public void SetWicket(InventorySlot slot)
+        {
+            _currentSlot = slot;
+        }
+
+        public void AllowWicketsPlacement()
+        {
+            _canPlace = true;
+        }
+
+        public void ForbidWicketsPlacement()
+        {
+            _canPlace = false;
+        }
     }
 }

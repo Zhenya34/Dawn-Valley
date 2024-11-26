@@ -1,66 +1,69 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PetInventorySlot : MonoBehaviour
+namespace UI.SampleScene.Inventory
 {
-    [SerializeField] private Image _itemImage;
-    [SerializeField] private InventoryManager _inventoryManager;
-
-    private Sprite _itemSprite;
-    private Color _normalColor = Color.white;
-    private Color _selectedColor = new Color32(200, 200, 200, 255);
-
-    private void Awake()
+    public class PetInventorySlot : MonoBehaviour
     {
-        _itemImage.preserveAspect = true;
-        ClearSlot();
-    }
+        [SerializeField] private Image itemImage;
+        [SerializeField] private InventoryManager inventoryManager;
 
-    public bool IsEmpty()
-    {
-        return _itemSprite == null;
-    }
+        private Sprite _itemSprite;
+        private readonly Color _normalColor = Color.white;
+        private readonly Color _selectedColor = new Color32(200, 200, 200, 255);
 
-    public void SetItem(Sprite sprite)
-    {
-        _itemSprite = sprite;
-        _itemImage.sprite = _itemSprite;
-        _itemImage.enabled = true;
-    }
-
-    public void ClearSlot()
-    {
-        _itemSprite = null;
-        _itemImage.enabled = false;
-    }
-
-    public Sprite GetItemSprite()
-    {
-        return _itemSprite;
-    }
-
-    public void Select()
-    {
-        if (_itemSprite != null)
+        private void Awake()
         {
-            _itemImage.color = _selectedColor;
+            itemImage.preserveAspect = true;
+            ClearSlot();
         }
-    }
 
-    public void Deselect()
-    {
-        _itemImage.color = _normalColor;
-    }
-
-    private void OnMouseDown()
-    {
-        if (IsEmpty())
+        public bool IsEmpty()
         {
-            _inventoryManager.OnPetSlotClicked(this);
+            return _itemSprite == null;
         }
-        else
+
+        public void SetItem(Sprite sprite)
         {
-            _inventoryManager.MovePetItemToInventory(this);
+            _itemSprite = sprite;
+            itemImage.sprite = _itemSprite;
+            itemImage.enabled = true;
+        }
+
+        public void ClearSlot()
+        {
+            _itemSprite = null;
+            itemImage.enabled = false;
+        }
+
+        public Sprite GetItemSprite()
+        {
+            return _itemSprite;
+        }
+
+        public void Select()
+        {
+            if (_itemSprite != null)
+            {
+                itemImage.color = _selectedColor;
+            }
+        }
+
+        public void Deselect()
+        {
+            itemImage.color = _normalColor;
+        }
+
+        private void OnMouseDown()
+        {
+            if (IsEmpty())
+            {
+                inventoryManager.OnPetSlotClicked(this);
+            }
+            else
+            {
+                inventoryManager.MovePetItemToInventory(this);
+            }
         }
     }
 }

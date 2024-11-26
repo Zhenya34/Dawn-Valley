@@ -1,130 +1,136 @@
 using System;
+using Enviroment.Time;
+using Player.ToolsLogic;
+using UI.SampleScene;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
-public class PlantsGrowth : MonoBehaviour
+
+namespace Enviroment.Plants
 {
-    [SerializeField] private SpriteRenderer _sr;
-    [SerializeField] private int _daysToNextStage;
-    [SerializeField] private GameObject _harvestedObject;
-    [SerializeField] private Sprite[] _plantsStages = new Sprite[4];
-    [SerializeField] private float _clickRadius = 0.3f;
-
-    private int _currentStage = 0;
-    private bool _canBeCollected = false;
-    private readonly int _maxStage = 3;
-    private int _daysSincePlanted = 0;
-    private Vector3Int _cellPosition;
-    private ToolSwitcher _toolswitcher;
-    private Planting _plantingSystem;
-    private WateringCanLogic _wateringCanLogic;
-
-    static public bool isWithinHarvestingReach = false;
-
-    private void Awake()
+    public class PlantsGrowth : MonoBehaviour
     {
-        if (_plantsStages.Length > 0)
-        {
-            _sr.sprite = _plantsStages[_currentStage];
-        }
+        [SerializeField] private SpriteRenderer sr;
+        [SerializeField] private int daysToNextStage;
+        [SerializeField] private GameObject harvestedObject;
+        [SerializeField] private Sprite[] plantsStages = new Sprite[4];
+        [SerializeField] private float clickRadius = 0.3f;
 
-        try
-        {
-            _toolswitcher = GameObject.FindGameObjectWithTag(Tags.TollIconUI.ToString()).GetComponent<ToolSwitcher>();
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError(ex.Message);
-        }
+        private int _currentStage = 0;
+        private bool _canBeCollected = false;
+        private readonly int _maxStage = 3;
+        private int _daysSincePlanted = 0;
+        private Vector3Int _cellPosition;
+        private ToolSwitcher _toolSwitcher;
+        private Planting _plantingSystem;
+        private WateringCanLogic _wateringCanLogic;
 
-        try
-        {
-            _plantingSystem = GameObject.FindGameObjectWithTag(Tags.Player.ToString()).GetComponent<Planting>();
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError(ex.Message);
-        }
+        static public bool IsWithinHarvestingReach = false;
 
-        try
+        private void Awake()
         {
-            _wateringCanLogic = GameObject.FindGameObjectWithTag(Tags.Player.ToString()).GetComponent<WateringCanLogic>();
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError(ex.Message);
-        }
-
-        if (_plantingSystem != null)
-        {
-            _cellPosition = _plantingSystem.GetCellPosition(transform.position);
-            _plantingSystem.RegisterPlant(_cellPosition, this);
-        }
-    }
-
-    private enum Tags
-    {
-        Player,
-        TollIconUI
-    }
-
-    private void Start()
-    {
-        DayNightCycle dayNightCycle = FindObjectOfType<DayNightCycle>();
-        if (dayNightCycle != null)
-        {
-            dayNightCycle.AddPlant(this);
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0) && _toolswitcher.GetCurrentTool() == ToolSwitcher.ToolType.Hoe)
-        {
-            Vector2 plantPosition = transform.position;
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            float distanceToPlant = Vector2.Distance(mousePos, plantPosition);
-
-            if (distanceToPlant <= _clickRadius && isWithinHarvestingReach)
+            if (plantsStages.Length > 0)
             {
-                HarvestPlants();
+                sr.sprite = plantsStages[_currentStage];
+            }
+
+            try
+            {
+                _toolSwitcher = GameObject.FindGameObjectWithTag(Tags.TollIconUI.ToString()).GetComponent<ToolSwitcher>();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError(ex.Message);
+            }
+
+            try
+            {
+                _plantingSystem = GameObject.FindGameObjectWithTag(Tags.Player.ToString()).GetComponent<Planting>();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError(ex.Message);
+            }
+
+            try
+            {
+                _wateringCanLogic = GameObject.FindGameObjectWithTag(Tags.Player.ToString()).GetComponent<WateringCanLogic>();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError(ex.Message);
+            }
+
+            if (_plantingSystem != null)
+            {
+                _cellPosition = _plantingSystem.GetCellPosition(transform.position);
+                _plantingSystem.RegisterPlant(_cellPosition, this);
             }
         }
-    }
 
-    private void HarvestPlants()
-    {
-        if (_canBeCollected && _harvestedObject != null)
+        private enum Tags
         {
-            Instantiate(_harvestedObject, transform.position, Quaternion.identity);
-            _plantingSystem.FreeCell(_cellPosition);
-            Destroy(gameObject);
+            Player,
+            TollIconUI
         }
-    }
 
-    private void OnDestroy()
-    {
-        if (_plantingSystem != null)
+        private void Start()
         {
-            _plantingSystem.UnregisterPlant(_cellPosition);
-        }
-    }
-
-    public void CheckGrowthProgress()
-    {
-        if (_wateringCanLogic.IsGrowingOnWetTile(_cellPosition))
-        {
-            _daysSincePlanted++;
-
-            if (_daysSincePlanted >= _daysToNextStage && _currentStage < _maxStage)
+            DayNightCycle dayNightCycle = FindObjectOfType<DayNightCycle>();
+            if (dayNightCycle != null)
             {
-                _currentStage++;
-                _sr.sprite = _plantsStages[_currentStage];
-                _daysSincePlanted = 0;
+                dayNightCycle.AddPlant(this);
+            }
+        }
 
-                if (_currentStage == _maxStage)
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0) && _toolSwitcher.GetCurrentTool() == ToolSwitcher.ToolType.Hoe)
+            {
+                Vector2 plantPosition = transform.position;
+                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                float distanceToPlant = Vector2.Distance(mousePos, plantPosition);
+
+                if (distanceToPlant <= clickRadius && IsWithinHarvestingReach)
                 {
-                    _canBeCollected = true;
+                    HarvestPlants();
+                }
+            }
+        }
+
+        private void HarvestPlants()
+        {
+            if (_canBeCollected && harvestedObject != null)
+            {
+                Instantiate(harvestedObject, transform.position, Quaternion.identity);
+                _plantingSystem.FreeCell(_cellPosition);
+                Destroy(gameObject);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (_plantingSystem != null)
+            {
+                _plantingSystem.UnregisterPlant(_cellPosition);
+            }
+        }
+
+        public void CheckGrowthProgress()
+        {
+            if (_wateringCanLogic.IsGrowingOnWetTile(_cellPosition))
+            {
+                _daysSincePlanted++;
+
+                if (_daysSincePlanted >= daysToNextStage && _currentStage < _maxStage)
+                {
+                    _currentStage++;
+                    sr.sprite = plantsStages[_currentStage];
+                    _daysSincePlanted = 0;
+
+                    if (_currentStage == _maxStage)
+                    {
+                        _canBeCollected = true;
+                    }
                 }
             }
         }

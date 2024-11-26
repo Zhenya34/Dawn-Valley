@@ -1,44 +1,49 @@
+using Enviroment.Plants;
+using Player;
 using UnityEngine;
 
-public class PlayerImpactRadius : MonoBehaviour
+namespace Select
 {
-    [SerializeField] private float _triggerFrameRadius = 2f;
-    [SerializeField] private float _toolsRadius = 1.5f;
-    [SerializeField] private TileSelector _tileSelector;
-    [SerializeField] private Player_Animation _playerAnim;
-
-    private void Update()
+    public class PlayerImpactRadius : MonoBehaviour
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0f;
+        [SerializeField] private float triggerFrameRadius;
+        [SerializeField] private float toolsRadius;
+        [SerializeField] private TileSelector tileSelector;
+        [SerializeField] private PlayerAnimation playerAnim;
 
-        Vector3 triggerPosition = transform.position;
-        float distance = Vector3.Distance(mousePosition, triggerPosition);
-        float distanceToTools = Vector3.Distance(mousePosition, triggerPosition);
+        private void Update()
+        {
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0f;
 
-        if (distance <= _triggerFrameRadius)
-        {
-            _tileSelector.AllowFramePlacement();
-        }
-        else
-        {
-            _tileSelector.ProhibitFramePlacement();
+            Vector3 triggerPosition = transform.position;
+            float distance = Vector3.Distance(mousePosition, triggerPosition);
+            float distanceToTools = Vector3.Distance(mousePosition, triggerPosition);
+
+            if (distance <= triggerFrameRadius)
+            {
+                tileSelector.AllowFramePlacement();
+            }
+            else
+            {
+                tileSelector.ProhibitFramePlacement();
+            }
+
+            if (distanceToTools <= toolsRadius)
+            {
+                playerAnim.AllowToolsUsing();
+                PlantsGrowth.IsWithinHarvestingReach = true;
+            }
+            else
+            {
+                playerAnim.ProhibitToolsUsing();
+                PlantsGrowth.IsWithinHarvestingReach = false;
+            }
         }
 
-        if (distanceToTools <= _toolsRadius)
+        public float GetToolDistanceValue()
         {
-            _playerAnim.AllowToolsUsing();
-            PlantsGrowth.isWithinHarvestingReach = true;
+            return toolsRadius;
         }
-        else
-        {
-            _playerAnim.ProhibitToolsUsing();
-            PlantsGrowth.isWithinHarvestingReach = false;
-        }
-    }
-
-    public float GetToolDistanceValue()
-    {
-        return _toolsRadius;
     }
 }

@@ -1,132 +1,144 @@
+using Enviroment.Fences;
+using Enviroment.Plants;
+using Enviroment.Wicket;
+using Player.Placement;
 using UnityEngine;
-using static Item;
+using static UI.SampleScene.Inventory.Item;
 
-public class ItemUsageManager : MonoBehaviour
+namespace UI.SampleScene.Inventory
 {
-    [SerializeField] private ItemDatabase _itemDatabase;
-    [SerializeField] private Planting _plantingSystem;
-    [SerializeField] private FencesManager _fencesManager;
-    [SerializeField] private WicketManager _wicketManager;
-    [SerializeField] private InventoryManager _inventoryManager;
-
-    private bool _isItemBeingUsed;
-    private InventorySlot _currentSlot;
-
-    public void UseSelectedItem(InventorySlot slot)
+    public class ItemUsageManager : MonoBehaviour
     {
-        if (slot.IsEmpty())
+        [SerializeField] private ItemDatabase itemDatabase;
+        [SerializeField] private Planting plantingSystem;
+        [SerializeField] private FencesManager fencesManager;
+        [SerializeField] private WicketManager wicketManager;
+        [SerializeField] private InventoryManager inventoryManager;
+        [SerializeField] private PlacementSystem placementSystem;
+        [SerializeField] private ObjectsDatabaseSo objectsDatabaseSo;
+
+        private bool _isItemBeingUsed;
+        private InventorySlot _currentSlot;
+        private int _structureID;
+
+        public void UseSelectedItem(InventorySlot slot)
         {
-            return;
-        }
-
-        if (_isItemBeingUsed && _currentSlot == slot)
-        {
-            StopUsingItem();
-            return;
-        }
-
-        Item item = GetItemFromSlot(slot);
-        _currentSlot = slot;
-        _isItemBeingUsed = true;
-
-        _plantingSystem.AllowPlanting();
-        _fencesManager.AllowFencesPlacement();
-        _wicketManager.AllowWicketsPlacement();
-
-        DefineTheObject(item, slot);
-    }
-
-    private void DefineTheObject(Item item, InventorySlot slot)
-    {
-        if (item.globalItemType != GlobalItemType.None)
-        {
-            GlobalItemType itemType = item.globalItemType;
-            UseItem(slot, item, itemType);
-        }
-        else if (item.globalItemType == GlobalItemType.None)
-        {
-            return;
-        }
-    }
-
-    private Item GetItemFromSlot(InventorySlot slot)
-    {
-        Sprite itemSprite = slot.GetItemSprite();
-        Item item = _itemDatabase.GetItemBySprite(itemSprite);
-        return item;
-    }
-
-    private void StopUsingItem()
-    {
-        _isItemBeingUsed = false;
-        _currentSlot = null;
-        _plantingSystem.ForbidPlanting();
-        _fencesManager.ForbidFencesPlacement();
-        _wicketManager.ForbidWicketsPlacement();
-    }
-
-    private void UseItem(InventorySlot slot, Item item ,GlobalItemType itemType)
-    {
-        int itemQuantity = slot.GetQuantity();
-
-        if (itemQuantity <= 0)
-        {
-            StopUsingItem();
-            return;
-        }
-
-        if(itemType == GlobalItemType.Seed)
-        {
-            Seed seed = _itemDatabase.GetSeedByItem(item);
-
-            if (seed != null)
+            if (slot.IsEmpty())
             {
-                _plantingSystem.PlantSeed(seed.plant, slot);
+                return;
+            }
+
+            if (_isItemBeingUsed && _currentSlot == slot)
+            {
+                StopUsingItem();
+                return;
+            }
+
+            Item item = GetItemFromSlot(slot);
+            _currentSlot = slot;
+            _isItemBeingUsed = true;
+
+            plantingSystem.AllowPlanting();
+            fencesManager.AllowFencesPlacement();
+            wicketManager.AllowWicketsPlacement();
+
+            DefineTheObject(item, slot);
+        }
+
+        private void DefineTheObject(Item item, InventorySlot slot)
+        {
+            if (item.globalItemType != GlobalItemType.None)
+            {
+                GlobalItemType itemType = item.globalItemType;
+                UseItem(slot, item, itemType);
+            }
+            else if (item.globalItemType == GlobalItemType.None)
+            {
+                return;
             }
         }
-        else if (itemType == GlobalItemType.Fence)
-        {
-            _fencesManager.SetFence(slot);
-        }
-        else if (itemType == GlobalItemType.Wicket)
-        {
-            _wicketManager.SetWicket(slot);
-        }
-        else if (itemType == GlobalItemType.Structure)
-        {
-            
-        }
-    }
 
-    public void UpdateCountOfItem(InventorySlot slot)
-    {
-        int itemQuantity = slot.GetQuantity();
-        itemQuantity--;
-        if (itemQuantity <= 0)
+        private Item GetItemFromSlot(InventorySlot slot)
         {
-            StopUsingItem();
-            slot.ClearSlot();
-            return;
+            Sprite itemSprite = slot.GetItemSprite();
+            Item item = itemDatabase.GetItemBySprite(itemSprite);
+            return item;
         }
-        else
-        {
-            slot.UpdateQuantity(itemQuantity);
-        }
-    }
 
-    public bool HasItemInInventory(GlobalItemType itemType)
-    {
-        foreach (InventorySlot slot in _inventoryManager.GetAllSlots())
+        private void StopUsingItem()
         {
-            if (!slot.IsEmpty())
+            _isItemBeingUsed = false;
+            _currentSlot = null;
+            plantingSystem.ForbidPlanting();
+            fencesManager.ForbidFencesPlacement();
+            wicketManager.ForbidWicketsPlacement();
+            placementSystem.StopPlacement();
+        }
+
+        private void UseItem(InventorySlot slot, Item item ,GlobalItemType itemType)
+        {
+            int itemQuantity = slot.GetQuantity();
+
+            if (itemQuantity <= 0)
             {
-                Item item = GetItemFromSlot(slot);
-                if (item.globalItemType == itemType)
+                StopUsingItem();
+                return;
+            }
+
+            if(itemType == GlobalItemType.Seed)
+            {
+                Seed seed = itemDatabase.GetSeedByItem(item);
+
+                if (seed != null)
                 {
-                    return true;
+                    plantingSystem.PlantSeed(seed.plant, slot);
                 }
             }
+            else if (itemType == GlobalItemType.Fence)
+            {
+                fencesManager.SetFence(slot);
+            }
+            else if (itemType == GlobalItemType.Wicket)
+            {
+                wicketManager.SetWicket(slot);
+            }
+            else if (itemType == GlobalItemType.Structure)
+            {
+                _structureID = objectsDatabaseSo.GetStructureIDByName(item.itemName);
+                placementSystem.StartPlacement(_structureID);
+            }
         }
-        return false;
+
+        public void UpdateCountOfItem(InventorySlot slot)
+        {
+            int itemQuantity = slot.GetQuantity();
+            itemQuantity--;
+            if (itemQuantity <= 0)
+            {
+                StopUsingItem();
+                slot.ClearSlot();
+                return;
+            }
+            else
+            {
+                slot.UpdateQuantity(itemQuantity);
+            }
+        }
+
+        public bool HasItemInInventory(GlobalItemType itemType)
+        {
+            foreach (InventorySlot slot in inventoryManager.GetAllSlots())
+            {
+                if (!slot.IsEmpty())
+                {
+                    Item item = GetItemFromSlot(slot);
+                    if (item.globalItemType == itemType)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 }

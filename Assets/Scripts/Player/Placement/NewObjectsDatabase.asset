@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5d1f1a5d987eb94f82c93a8fce9c492, type: 3}
+  m_Name: NewObjectsDatabase
+  m_EditorClassIdentifier: 
+  objectsData:
+  - <Name>k__BackingField: ShopItem Chicken Coop
+    <ID>k__BackingField: 1
+    <Size>k__BackingField: {x: 2, y: 2}
+    <Prefab>k__BackingField: {fileID: 8036380225145863387, guid: 99abfbd93f5480b4fb07e62d92503f64, type: 3}
+  - <Name>k__BackingField: ShopItem Hive
+    <ID>k__BackingField: 2
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 3368183742899697922, guid: 08ac442969613f647a6715535631a1ca, type: 3}
+  - <Name>k__BackingField: ShopItem Lamp
+    <ID>k__BackingField: 3
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 2327789980401053252, guid: 906cad7500f06f94e973a2c4d0fe9770, type: 3}
+  - <Name>k__BackingField: ShopItem Stone Path
+    <ID>k__BackingField: 4
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 7352876201906138263, guid: 9c15b7077004b904aabebd02b870af0c, type: 3}

@@ -1,46 +1,49 @@
 using UnityEngine;
 
-public class Player_Movement : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private float _moveSpeed = 5;
+    public class PlayerMovement : MonoBehaviour
+    {
+        [SerializeField] private float moveSpeed = 5;
     
-    private float _horizontalInput;
-    private float _verticalInput;
-    private bool _isMovementAnable = true;
+        private float _horizontalInput;
+        private float _verticalInput;
+        private bool _isMovementEnable = true;
 
-    private void Update()
-    {
-        _verticalInput = Input.GetAxis(Directions.Vertical.ToString());
-        _horizontalInput = Input.GetAxis(Directions.Horizontal.ToString());
-    }
-
-    private void FixedUpdate()
-    {
-        if (_isMovementAnable)
+        private void Update()
         {
-            Movement();
+            _verticalInput = Input.GetAxis(Directions.Vertical.ToString());
+            _horizontalInput = Input.GetAxis(Directions.Horizontal.ToString());
         }
-    }
 
-    private enum Directions
-    {
-        Vertical,
-        Horizontal
-    }
+        private void FixedUpdate()
+        {
+            if (_isMovementEnable)
+            {
+                Movement();
+            }
+        }
 
-    private void Movement()
-    {
-        Vector3 movement = new(_horizontalInput, _verticalInput, 0);
-        transform.position += _moveSpeed * Time.deltaTime * movement.normalized;
-    }
+        private enum Directions
+        {
+            Vertical,
+            Horizontal
+        }
 
-    public void AllowMovement()
-    {
-        _isMovementAnable = true;
-    }
+        private void Movement()
+        {
+            Vector3 movement = new(_horizontalInput, _verticalInput, 0);
+            transform.position += moveSpeed * Time.deltaTime * movement.normalized;
+        }
 
-    public void ProhibitMovement()
-    {
-        _isMovementAnable = false;
+        public void AllowMovement()
+        {
+            _isMovementEnable = true;
+        }
+
+        public void ProhibitMovement()
+        {
+            _isMovementEnable = false;
+        }
     }
 }

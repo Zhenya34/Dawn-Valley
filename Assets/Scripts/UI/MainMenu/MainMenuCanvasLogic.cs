@@ -1,65 +1,68 @@
 using UnityEditor;
 using UnityEngine;
 
-public class MainMenuUIManager : MonoBehaviour
+namespace UI.MainMenu
 {
-    [SerializeField] private GameObject _settingsPanel;
-    [SerializeField] private GameObject _infoPanel;
-    [SerializeField] private GameObject _exitPanel;
-    [SerializeField] private string _sceneName;
-
-    private readonly string _telegramUsername = "Zhenyazhnr_dev";
-
-    public void StartGame()
+    public class MainMenuUIManager : MonoBehaviour
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneName);
-    }
+        [SerializeField] private GameObject settingsPanel;
+        [SerializeField] private GameObject infoPanel;
+        [SerializeField] private GameObject exitPanel;
+        [SerializeField] private string sceneName;
 
-    public void SwitchOffGame()
-    {
-        EditorApplication.isPlaying = false;
-        Application.Quit();
-    }
+        private const string TelegramUsername = "Zhenyazhnr_dev";
 
-    public void OpenMainSettings()
-    {
-        _settingsPanel.SetActive(true);
-    }
-
-    public void CloseMainSettings()
-    {
-        _settingsPanel.SetActive(false);
-    }
-
-    public void GameInfoOpen()
-    {
-        _infoPanel.SetActive(true);
-    }
-
-    public void GameInfoClose()
-    {
-        _infoPanel.SetActive(false);
-    }
-
-    public void OpenExitPanel()
-    {
-        _exitPanel.SetActive(true);
-    }
-
-    public void CloseExitPanel()
-    {
-        _exitPanel.SetActive(false);
-    }
-
-    public void OpenOwnTelegram()
-    {
-        try
+        public void StartGame()
         {
-            Application.OpenURL($"https://t.me/{_telegramUsername}");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
         }
-        catch (System.Exception ex)
+
+        public void SwitchOffGame()
         {
-            Debug.LogError($"Failed to open Telegram. {ex.Message}");
+            EditorApplication.isPlaying = false;
+            Application.Quit();
+        }
+
+        public void OpenMainSettings()
+        {
+            settingsPanel.SetActive(true);
+        }
+
+        public void CloseMainSettings()
+        {
+            settingsPanel.SetActive(false);
+        }
+
+        public void GameInfoOpen()
+        {
+            infoPanel.SetActive(true);
+        }
+
+        public void GameInfoClose()
+        {
+            infoPanel.SetActive(false);
+        }
+
+        public void OpenExitPanel()
+        {
+            exitPanel.SetActive(true);
+        }
+
+        public void CloseExitPanel()
+        {
+            exitPanel.SetActive(false);
+        }
+
+        public void OpenOwnTelegram()
+        {
+            try
+            {
+                Application.OpenURL($"https://t.me/{TelegramUsername}");
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"Failed to open Telegram. {ex.Message}");
+            }
         }
     }
 }

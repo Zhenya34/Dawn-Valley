@@ -1,101 +1,105 @@
+using UI.SampleScene.Inventory;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SellingItemsLogic : MonoBehaviour
+namespace UI.SampleScene.Shop
 {
-    [SerializeField] private SellingSlot _shopSlot;
-    [SerializeField] private InventoryManager _inventoryManager;
-    [SerializeField] private PlayerCoinsWallet _playerWallet;
-    [SerializeField] private ItemDatabase _itemDatabase;
-    [SerializeField] private RectTransform _inventoryRectTransform;
-    [SerializeField] private SampleSceneCanvasLogic _sampleSceneCanvasLogic;
-    [SerializeField] private UIManager _uiManager;
-    [SerializeField] private float _shopRadius;
+    public class SellingItemsLogic : MonoBehaviour
+    {
+        [SerializeField] private SellingSlot shopSlot;
+        [SerializeField] private InventoryManager inventoryManager;
+        [SerializeField] private PlayerCoinsWallet playerWallet;
+        [SerializeField] private ItemDatabase itemDatabase;
+        [SerializeField] private RectTransform inventoryRectTransform;
+        [SerializeField] private SampleSceneCanvasLogic sampleSceneCanvasLogic;
+        [SerializeField] private UIManager.UIManager uiManager;
+        [SerializeField] private float shopRadius;
     
-    [SerializeField] private Button _confirmButton;
-    [SerializeField] private Button _cancelButton;
-    [SerializeField] private GameObject _inventoryPanel;
-    [SerializeField] private GameObject _sellingPanel;
-    [SerializeField] private GameObject _player;
-    [SerializeField] private GameObject _inventoryExitButton;
+        [SerializeField] private Button confirmButton;
+        [SerializeField] private Button cancelButton;
+        [SerializeField] private GameObject inventoryPanel;
+        [SerializeField] private GameObject sellingPanel;
+        [SerializeField] private GameObject player;
+        [SerializeField] private GameObject inventoryExitButton;
 
-    private void Start()
-    {
-        _confirmButton.onClick.AddListener(OnConfirmButtonClicked);
-        _cancelButton.onClick.AddListener(OnCancelButtonClicked);
-    }
-
-    private void OnMouseDown()
-    {
-        if (!_uiManager.IsUIActive())
+        private void Start()
         {
-            float distance = Vector3.Distance(_player.transform.position, transform.position);
-            if (distance <= _shopRadius)
+            confirmButton.onClick.AddListener(OnConfirmButtonClicked);
+            cancelButton.onClick.AddListener(OnCancelButtonClicked);
+        }
+
+        private void OnMouseDown()
+        {
+            if (!uiManager.IsUIActive())
             {
-                _uiManager.ActivateUI();
-                OpenShop();
+                float distance = Vector3.Distance(player.transform.position, transform.position);
+                if (distance <= shopRadius)
+                {
+                    uiManager.ActivateUI();
+                    OpenShop();
+                }
             }
         }
-    }
 
-    public bool PanelIsActive()
-    {
-        return _sellingPanel.activeSelf;
-    }
-
-    private void OpenShop()
-    {
-        _sampleSceneCanvasLogic.SwitchOffPauseButton();
-        Vector3 newPosition = _inventoryRectTransform.transform.localPosition;
-        newPosition.y = -150;
-        _inventoryRectTransform.localPosition = newPosition;
-
-        _inventoryPanel.SetActive(true);
-        _sellingPanel.SetActive(true);
-        _inventoryExitButton.SetActive(false);
-    }
-
-    public void CloseShop()
-    {
-        Vector3 newPosition = _inventoryRectTransform.transform.localPosition;
-        newPosition.y = -30;
-        _inventoryRectTransform.localPosition = newPosition;
-
-        _inventoryPanel.SetActive(false);
-        _sellingPanel.SetActive(false);
-        _inventoryExitButton.SetActive(true);
-    }
-
-    public void AddToShopSlot(Sprite sprite, int quantity)
-    {
-        _shopSlot.SetItem(sprite, quantity);
-    }
-
-    private void ConfirmSale()
-    {
-        if (_shopSlot.GetItemSprite() != null)
+        public bool PanelIsActive()
         {
-            int totalPrice = _shopSlot.GetTotalPrice();
-            _playerWallet.AddCoins(totalPrice);
-            _shopSlot.ClearSlot();
+            return sellingPanel.activeSelf;
         }
-    }
 
-    private void CancelSale()
-    {
-        if (_shopSlot.GetItemSprite() != null)
+        private void OpenShop()
         {
-            _inventoryManager.MoveItemToInventory(_shopSlot);
+            sampleSceneCanvasLogic.SwitchOffPauseButton();
+            Vector3 newPosition = inventoryRectTransform.transform.localPosition;
+            newPosition.y = -150;
+            inventoryRectTransform.localPosition = newPosition;
+
+            inventoryPanel.SetActive(true);
+            sellingPanel.SetActive(true);
+            inventoryExitButton.SetActive(false);
         }
-    }
 
-    private void OnConfirmButtonClicked()
-    {
-        ConfirmSale();
-    }
+        public void CloseShop()
+        {
+            Vector3 newPosition = inventoryRectTransform.transform.localPosition;
+            newPosition.y = -30;
+            inventoryRectTransform.localPosition = newPosition;
 
-    private void OnCancelButtonClicked()
-    {
-        CancelSale();
+            inventoryPanel.SetActive(false);
+            sellingPanel.SetActive(false);
+            inventoryExitButton.SetActive(true);
+        }
+
+        public void AddToShopSlot(Sprite sprite, int quantity)
+        {
+            shopSlot.SetItem(sprite, quantity);
+        }
+
+        private void ConfirmSale()
+        {
+            if (shopSlot.GetItemSprite() != null)
+            {
+                int totalPrice = shopSlot.GetTotalPrice();
+                playerWallet.AddCoins(totalPrice);
+                shopSlot.ClearSlot();
+            }
+        }
+
+        private void CancelSale()
+        {
+            if (shopSlot.GetItemSprite() != null)
+            {
+                inventoryManager.MoveItemToInventory(shopSlot);
+            }
+        }
+
+        private void OnConfirmButtonClicked()
+        {
+            ConfirmSale();
+        }
+
+        private void OnCancelButtonClicked()
+        {
+            CancelSale();
+        }
     }
 }

@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class GroundTriggerController : MonoBehaviour
+namespace Enviroment.Boat
 {
-    [SerializeField] private Boat_Controller _boatController;
-    
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class GroundTriggerController : MonoBehaviour
     {
-        _boatController.ResetHasTeleported();
+        [SerializeField] private BoatController boatController;
+    
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            boatController.ResetHasTeleported();
+        }
     }
 }

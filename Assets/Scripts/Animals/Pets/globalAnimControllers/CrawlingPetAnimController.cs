@@ -1,69 +1,72 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using AnimControllerNamespace;
+using Animals.Pets.Namespace;
 
-public class CrawlingPetAnimController : MonoBehaviour, INightTimeController
+namespace Animals.Pets.globalAnimControllers
 {
-    [SerializeField] private Animator _animator;
-    [SerializeField] private SpriteRenderer _sr;
-    [SerializeField] private float _minSecondValue;
-    [SerializeField] private float _maxSecondValue;
-
-    private float _middleSecondValue;
-    private States _selectedState;
-
-    private enum States
+    public class CrawlingPetAnimController : MonoBehaviour, INightTimeController
     {
-        happy,
-        embarrassed,
-        indifferent
-    }
+        [SerializeField] private Animator animator;
+        [SerializeField] private SpriteRenderer sr;
+        [SerializeField] private float minSecondValue;
+        [SerializeField] private float maxSecondValue;
 
-    private enum Variables
-    {
-        sleeping
-    }
+        private float _middleSecondValue;
+        private States _selectedState;
 
-    private void Start()
-    {
-        GenerateRandomDelay();
-        StartCoroutine(ChangeEmotionAfterTime(_middleSecondValue));
-    }
+        private enum States
+        {
+            Happy,
+            Embarrassed,
+            Indifferent
+        }
 
-    private void GenerateRandomDelay()
-    {
-        _middleSecondValue = UnityEngine.Random.Range(_minSecondValue, _maxSecondValue);
-    }
+        private enum Variables
+        {
+            Sleeping
+        }
 
-    private void GenerateRandomState()
-    {
-        _selectedState = GetRandomEnumValue<States>();
-    }
+        private void Start()
+        {
+            GenerateRandomDelay();
+            StartCoroutine(ChangeEmotionAfterTime(_middleSecondValue));
+        }
 
-    private IEnumerator ChangeEmotionAfterTime(float time)
-    {
-        yield return new WaitForSeconds(time);
-        GenerateRandomState();
-        _animator.SetTrigger(_selectedState.ToString());
-        GenerateRandomDelay();
-        StartCoroutine(ChangeEmotionAfterTime(_middleSecondValue));
-    }
+        private void GenerateRandomDelay()
+        {
+            _middleSecondValue = UnityEngine.Random.Range(minSecondValue, maxSecondValue);
+        }
 
-    private T GetRandomEnumValue<T>() where T : Enum
-    {
-        Array values = Enum.GetValues(typeof(T));
-        int randomIndex = UnityEngine.Random.Range(0, values.Length);
-        return (T)values.GetValue(randomIndex);
-    }
+        private void GenerateRandomState()
+        {
+            _selectedState = GetRandomEnumValue<States>();
+        }
 
-    public void ActivateNightTime()
-    {
-        _animator.SetBool(Variables.sleeping.ToString(), true);
-    }
+        private IEnumerator ChangeEmotionAfterTime(float time)
+        {
+            yield return new WaitForSeconds(time);
+            GenerateRandomState();
+            animator.SetTrigger(_selectedState.ToString());
+            GenerateRandomDelay();
+            StartCoroutine(ChangeEmotionAfterTime(_middleSecondValue));
+        }
 
-    public void DeactivateNightTime()
-    {
-        _animator.SetBool(Variables.sleeping.ToString(), false);
+        private T GetRandomEnumValue<T>() where T : Enum
+        {
+            Array values = Enum.GetValues(typeof(T));
+            int randomIndex = UnityEngine.Random.Range(0, values.Length);
+            return (T)values.GetValue(randomIndex);
+        }
+
+        public void ActivateNightTime()
+        {
+            animator.SetBool(Variables.Sleeping.ToString(), true);
+        }
+
+        public void DeactivateNightTime()
+        {
+            animator.SetBool(Variables.Sleeping.ToString(), false);
+        }
     }
 }

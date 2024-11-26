@@ -1,19 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+using Player.ToolsLogic;
 using UnityEngine;
 
-public class EventDispatcher : MonoBehaviour
+namespace Player.EventDispatchers
 {
-    [SerializeField] private WateringCanLogic _wateringCanLogic;
-    [SerializeField] private HoeLogic _hoeLogic;
+    public class EventDispatcher : MonoBehaviour
+    {
+        [SerializeField] private WateringCanLogic wateringCanLogic;
+        [SerializeField] private HoeLogic hoeLogic;
     
-    public void DispatchWateringEvent()
-    {
-        _wateringCanLogic.HandleWatering();
-    }
+        public void DispatchWateringEvent()
+        {
+            wateringCanLogic.HandleWatering();
+        }
 
-    public void DispatchHoeLogicEvent()
-    {
-        _hoeLogic.HandleHoeLogic();
+        public void DispatchHoeLogicEvent()
+        {
+            hoeLogic.HandleHoeLogic();
+        }
     }
 }

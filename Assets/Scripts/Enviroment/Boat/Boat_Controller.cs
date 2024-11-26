@@ -1,46 +1,49 @@
 using System.Collections;
 using UnityEngine;
 
-public class Boat_Controller : MonoBehaviour
+namespace Enviroment.Boat
 {
-    [SerializeField] private Transform _secondBoatPosition;
-    [SerializeField] private Transform _firstBoatPosition;
-    [SerializeField] private float _teleportTime;
-    [SerializeField] private Transform _player;
-    [SerializeField] private bool _itFirstBoat;
-
-    static private bool _hasTeleported = false;
-
-    private enum Tags
+    public class BoatController : MonoBehaviour
     {
-        Player
-    }
+        [SerializeField] private Transform secondBoatPosition;
+        [SerializeField] private Transform firstBoatPosition;
+        [SerializeField] private float teleportTime;
+        [SerializeField] private Transform player;
+        [SerializeField] private bool itFirstBoat;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag(Tags.Player.ToString()))
+        static private bool _hasTeleported = false;
+
+        private enum Tags
         {
-            if (_itFirstBoat && _hasTeleported == false)
+            Player
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag(Tags.Player.ToString()))
             {
-                StartCoroutine(TeleportToNextBoat(_secondBoatPosition));
-            }
-            else if (!_itFirstBoat && _hasTeleported == false)
-            {
-                StartCoroutine(TeleportToNextBoat(_firstBoatPosition));
+                if (itFirstBoat && _hasTeleported == false)
+                {
+                    StartCoroutine(TeleportToNextBoat(secondBoatPosition));
+                }
+                else if (!itFirstBoat && _hasTeleported == false)
+                {
+                    StartCoroutine(TeleportToNextBoat(firstBoatPosition));
+                }
             }
         }
-    }
 
-    public void ResetHasTeleported()
-    {
-        _hasTeleported = false;
-        StopAllCoroutines();
-    }
+        public void ResetHasTeleported()
+        {
+            _hasTeleported = false;
+            StopAllCoroutines();
+        }
 
-    private IEnumerator TeleportToNextBoat(Transform _boatPosition)
-    {
-        yield return new WaitForSeconds(_teleportTime);
-        _player.position = _boatPosition.position;
-        _hasTeleported = true;
+        private IEnumerator TeleportToNextBoat(Transform boatPosition)
+        {
+            yield return new WaitForSeconds(teleportTime);
+            player.position = boatPosition.position;
+            _hasTeleported = true;
+        }
     }
 }

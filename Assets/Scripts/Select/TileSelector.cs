@@ -1,40 +1,43 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TileSelector : MonoBehaviour
+namespace Select
 {
-    [SerializeField] private GameObject _framePrefab;
-    [SerializeField] private Camera _mainCamera;
-    [SerializeField] private Tilemap _tilemap;
-
-    private bool canPlaceFrame = true;
-
-    private void Update()
+    public class TileSelector : MonoBehaviour
     {
-        if (canPlaceFrame)
+        [SerializeField] private GameObject framePrefab;
+        [SerializeField] private Camera mainCamera;
+        [SerializeField] private Tilemap tilemap;
+
+        private bool _canPlaceFrame = true;
+
+        private void Update()
         {
-            Vector3 mouseWorldPos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorldPos.z = 0;
-            Vector3Int cellPosition = _tilemap.WorldToCell(mouseWorldPos);
-
-            if (_tilemap.HasTile(cellPosition))
+            if (_canPlaceFrame)
             {
-                Vector3 tileCenter = _tilemap.GetCellCenterWorld(cellPosition);
+                Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                mouseWorldPos.z = 0;
+                Vector3Int cellPosition = tilemap.WorldToCell(mouseWorldPos);
 
-                Vector3 cellSize = _tilemap.cellSize;
-                float offsetY = cellSize.y / 2f;
-                _framePrefab.transform.position = new Vector3(tileCenter.x, tileCenter.y - offsetY, tileCenter.z);
+                if (tilemap.HasTile(cellPosition))
+                {
+                    Vector3 tileCenter = tilemap.GetCellCenterWorld(cellPosition);
+
+                    Vector3 cellSize = tilemap.cellSize;
+                    float offsetY = cellSize.y / 2f;
+                    framePrefab.transform.position = new Vector3(tileCenter.x, tileCenter.y - offsetY, tileCenter.z);
+                }
             }
         }
-    }
 
-    public void AllowFramePlacement()
-    {
-        canPlaceFrame = true;
-    }
+        public void AllowFramePlacement()
+        {
+            _canPlaceFrame = true;
+        }
 
-    public void ProhibitFramePlacement()
-    {
-        canPlaceFrame = false;
+        public void ProhibitFramePlacement()
+        {
+            _canPlaceFrame = false;
+        }
     }
 }

@@ -1,52 +1,55 @@
 using UnityEngine;
 
-public class WicketController : MonoBehaviour
+namespace Enviroment.Wicket
 {
-    private Collider2D _collider;
-    private bool _isOpen;
-    private bool _isHorizontal;
-
-    [SerializeField] private Sprite _closedHorizontalSprite;
-    [SerializeField] private Sprite _openHorizontalSprite;
-    [SerializeField] private Sprite _closedVerticalSprite;
-    [SerializeField] private Sprite _openVerticalSprite;
-
-    private SpriteRenderer _spriteRenderer;
-
-    private void Awake()
+    public class WicketController : MonoBehaviour
     {
-        _collider = GetComponent<Collider2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _isOpen = false;
-    }
+        private Collider2D _collider;
+        private bool _isOpen;
+        private bool _isHorizontal;
 
-    public void Initialize(bool isHorizontal)
-    {
-        _isHorizontal = isHorizontal;
-        UpdateGateVisual();
-    }
+        [SerializeField] private Sprite closedHorizontalSprite;
+        [SerializeField] private Sprite openHorizontalSprite;
+        [SerializeField] private Sprite closedVerticalSprite;
+        [SerializeField] private Sprite openVerticalSprite;
 
-    private void OnMouseDown()
-    {
-        ToggleGate();
-    }
+        private SpriteRenderer _spriteRenderer;
 
-    private void ToggleGate()
-    {
-        _isOpen = !_isOpen;
-        UpdateGateVisual();
-        _collider.enabled = !_isOpen;
-    }
-
-    private void UpdateGateVisual()
-    {
-        if (_isHorizontal)
+        private void Awake()
         {
-            _spriteRenderer.sprite = _isOpen ? _openHorizontalSprite : _closedHorizontalSprite;
+            _collider = GetComponent<Collider2D>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _isOpen = false;
         }
-        else
+
+        public void Initialize(bool isHorizontal)
         {
-            _spriteRenderer.sprite = _isOpen ? _openVerticalSprite : _closedVerticalSprite;
+            _isHorizontal = isHorizontal;
+            UpdateGateVisual();
+        }
+
+        private void OnMouseDown()
+        {
+            ToggleGate();
+        }
+
+        private void ToggleGate()
+        {
+            _isOpen = !_isOpen;
+            UpdateGateVisual();
+            _collider.enabled = !_isOpen;
+        }
+
+        private void UpdateGateVisual()
+        {
+            if (_isHorizontal)
+            {
+                _spriteRenderer.sprite = _isOpen ? openHorizontalSprite : closedHorizontalSprite;
+            }
+            else
+            {
+                _spriteRenderer.sprite = _isOpen ? openVerticalSprite : closedVerticalSprite;
+            }
         }
     }
 }

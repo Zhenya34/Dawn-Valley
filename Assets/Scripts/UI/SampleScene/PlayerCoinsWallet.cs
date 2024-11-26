@@ -1,58 +1,61 @@
 using TMPro;
 using UnityEngine;
 
-public class PlayerCoinsWallet : MonoBehaviour
+namespace UI.SampleScene
 {
-    [SerializeField] private TextMeshProUGUI _coinsText;
-
-    private int _playerCoins;  
-
-    private void Start()
+    public class PlayerCoinsWallet : MonoBehaviour
     {
-        UpdatePlayerCoinsUI();
-    }
+        [SerializeField] private TextMeshProUGUI coinsText;
 
-    public bool SpendCoins(int amount)
-    {
-        if (_playerCoins >= amount)
+        private int _playerCoins;  
+
+        private void Start()
+        {
+            UpdatePlayerCoinsUI();
+        }
+
+        public bool SpendCoins(int amount)
+        {
+            if (_playerCoins >= amount)
+            {
+                _playerCoins -= amount;
+                UpdatePlayerCoinsUI();
+                return true;
+            }
+            return false;
+        }
+
+        public void AddCoins(int amount)
+        {
+            _playerCoins += amount;
+            UpdatePlayerCoinsUI();
+        }
+
+        private void UpdatePlayerCoinsUI()
+        {
+            if (coinsText != null)
+            {
+                coinsText.text = _playerCoins.ToString();
+            }
+        }
+
+        public void DeductCoins(int amount)
         {
             _playerCoins -= amount;
             UpdatePlayerCoinsUI();
-            return true;
         }
-        return false;
-    }
 
-    public void AddCoins(int amount)
-    {
-        _playerCoins += amount;
-        UpdatePlayerCoinsUI();
-    }
-
-    private void UpdatePlayerCoinsUI()
-    {
-        if (_coinsText != null)
+        public bool CanAfford(int amount)
         {
-            _coinsText.text = _playerCoins.ToString();
+            return _playerCoins >= amount;
         }
-    }
 
-    public void DeductCoins(int amount)
-    {
-        _playerCoins -= amount;
-        UpdatePlayerCoinsUI();
-    }
-
-    public bool CanAfford(int amount)
-    {
-        return _playerCoins >= amount;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C))//удали потом 
+        private void Update()
         {
-            AddCoins(100);
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                AddCoins(100);
+            }
         }
     }
 }

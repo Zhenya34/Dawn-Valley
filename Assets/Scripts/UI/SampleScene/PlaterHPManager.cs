@@ -2,56 +2,59 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHPManager : MonoBehaviour
+namespace UI.SampleScene
 {
-    [SerializeField] private Image _image;
-    [SerializeField] private Sprite[] _sprites = new Sprite[7];
-    [SerializeField] private float _triggerRadius;
-    [SerializeField] private GameObject _textObject;
-
-    private int _currentPlayerHealth;
-    private const int _maxPlayerHealth = 100;
-    private const int _minPlayerHealth = 0;
-    private TextMeshProUGUI _textComponent;
-
-
-    private void Start()
+    public class PlayerHpManager : MonoBehaviour
     {
-        _currentPlayerHealth = _maxPlayerHealth;
-        UpdateHealthSprite();
-    }
+        [SerializeField] private Image image;
+        [SerializeField] private Sprite[] sprites = new Sprite[7];
+        [SerializeField] private float triggerRadius;
+        [SerializeField] private GameObject textObject;
 
-    private void Update()
-    {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0f;
+        private int _currentPlayerHealth;
+        private const int MaxPlayerHealth = 100;
+        private const int MinPlayerHealth = 0;
+        private TextMeshProUGUI _textComponent;
 
-        float distance = Vector3.Distance(mousePosition, transform.position);
 
-        if (distance <= _triggerRadius)
+        private void Start()
         {
-            _textObject.SetActive(true);
+            _currentPlayerHealth = MaxPlayerHealth;
+            UpdateHealthSprite();
         }
-        else
+
+        private void Update()
         {
-            _textObject.SetActive(false);
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0f;
+
+            float distance = Vector3.Distance(mousePosition, transform.position);
+
+            if (distance <= triggerRadius)
+            {
+                textObject.SetActive(true);
+            }
+            else
+            {
+                textObject.SetActive(false);
+            }
         }
-    }
 
-    public void UpdatePlayerHealth(int damage)
-    {
-        _currentPlayerHealth -= damage;
-        _currentPlayerHealth = Mathf.Clamp(_currentPlayerHealth, _minPlayerHealth, _maxPlayerHealth);
-        _textObject.TryGetComponent(out _textComponent);
-        _textComponent.text = _currentPlayerHealth.ToString() + "%";
+        public void UpdatePlayerHealth(int damage)
+        {
+            _currentPlayerHealth -= damage;
+            _currentPlayerHealth = Mathf.Clamp(_currentPlayerHealth, MinPlayerHealth, MaxPlayerHealth);
+            textObject.TryGetComponent(out _textComponent);
+            _textComponent.text = _currentPlayerHealth.ToString() + "%";
 
-        UpdateHealthSprite();
-    }
+            UpdateHealthSprite();
+        }
 
-    private void UpdateHealthSprite()
-    {
-        int spriteIndex = Mathf.FloorToInt((_currentPlayerHealth / (float)_maxPlayerHealth) * (_sprites.Length - 1));
-        spriteIndex = Mathf.Clamp(spriteIndex, 0, _sprites.Length - 1);
-        _image.sprite = _sprites[spriteIndex];
+        private void UpdateHealthSprite()
+        {
+            int spriteIndex = Mathf.FloorToInt((_currentPlayerHealth / (float)MaxPlayerHealth) * (sprites.Length - 1));
+            spriteIndex = Mathf.Clamp(spriteIndex, 0, sprites.Length - 1);
+            image.sprite = sprites[spriteIndex];
+        }
     }
 }

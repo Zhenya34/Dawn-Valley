@@ -1,104 +1,110 @@
 using System.Collections.Generic;
+using Animals.Pets.Movement;
+using Enviroment.Plants;
+using Player.ToolsLogic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class DayNightCycle : MonoBehaviour
+namespace Enviroment.Time
 {
-    [SerializeField] private Light2D _globalLight2D;
-    [SerializeField] private float _dayDurationInMinutes;
-    [SerializeField] private List<PetsMovementController> _petsMovementControllers;
-    [SerializeField] private WateringCanLogic _wateringCanLogic;
-
-    private int _days = 1;
-    private float _currentTimeOfDay = 0.5f;
-    private float _timeMultiplier;
-    private bool _wasNightTime = false;
-    private readonly List<PlantsGrowth> _plantsGrowth = new();
-
-    private void Start()
+    public class DayNightCycle : MonoBehaviour
     {
-        _timeMultiplier = 1.0f / (_dayDurationInMinutes * 60.0f);
-    }
+        [SerializeField] private Light2D globalLight2D;
+        [SerializeField] private float dayDurationInMinutes;
+        [SerializeField] private List<PetsMovementController> petsMovementControllers;
+        [SerializeField] private WateringCanLogic wateringCanLogic;
 
-    private void Update()
-    {
-        _currentTimeOfDay += Time.deltaTime * _timeMultiplier;
-        _currentTimeOfDay %= 1;
+        private int _days = 1;
+        private float _currentTimeOfDay = 0.5f;
+        private float _timeMultiplier;
+        private bool _wasNightTime = false;
+        private readonly List<PlantsGrowth> _plantsGrowth = new();
 
-        UpdateLighting();
-
-        bool isNightTime = _currentTimeOfDay < 0.5f;
-
-        if (isNightTime != _wasNightTime)
+        private void Start()
         {
-            if (isNightTime)
+            _timeMultiplier = 1.0f / (dayDurationInMinutes * 60.0f);
+        }
+
+        private void Update()
+        {
+            _currentTimeOfDay += UnityEngine.Time.deltaTime * _timeMultiplier;
+            _currentTimeOfDay %= 1;
+
+            UpdateLighting();
+
+            bool isNightTime = _currentTimeOfDay < 0.5f;
+
+            if (isNightTime != _wasNightTime)
             {
-                foreach (var petController in _petsMovementControllers)
+                if (isNightTime)
                 {
-                    petController.ActivateNightTime();
+                    foreach (var petController in petsMovementControllers)
+                    {
+                        petController.ActivateNightTime();
+                    }
+                }
+                else
+                {
+                    foreach (var petController in petsMovementControllers)
+                    {
+                        petController.DeactivateNightTime();
+                    }
+                    IncrementDay();
+                    wateringCanLogic.CheckForDryingPlots();
+                    UpdatePlantGrowth();
+                }
+
+                _wasNightTime = isNightTime;
+            }
+        }
+
+        private void UpdateLighting()
+        {
+            if (globalLight2D != null)
+            {
+                globalLight2D.intensity = Mathf.Lerp(0.1f, 1f, Mathf.Clamp01(1 - Mathf.Abs(_currentTimeOfDay - 0.5f) * 2));
+                globalLight2D.color = Color.Lerp(Color.blue, Color.white, Mathf.Clamp01(1 - Mathf.Abs(_currentTimeOfDay - 0.5f) * 2));
+            }
+        }
+
+        private void UpdatePlantGrowth()
+        {
+            for (int i = _plantsGrowth.Count - 1; i >= 0; i--)
+            {
+                if (_plantsGrowth[i] != null)
+                {
+                    _plantsGrowth[i].CheckGrowthProgress();
+                }
+                else
+                {
+                    _plantsGrowth.RemoveAt(i);
                 }
             }
-            else
-            {
-                foreach (var petController in _petsMovementControllers)
-                {
-                    petController.DeactivateNightTime();
-                }
-                IncrementDay();
-                _wateringCanLogic.CheckForDryingPlots();
-                UpdatePlantGrowth();
-            }
-
-            _wasNightTime = isNightTime;
         }
-    }
 
-    private void UpdateLighting()
-    {
-        if (_globalLight2D != null)
+        public void AddPlant(PlantsGrowth plant)
         {
-            _globalLight2D.intensity = Mathf.Lerp(0.1f, 1f, Mathf.Clamp01(1 - Mathf.Abs(_currentTimeOfDay - 0.5f) * 2));
-            _globalLight2D.color = Color.Lerp(Color.blue, Color.white, Mathf.Clamp01(1 - Mathf.Abs(_currentTimeOfDay - 0.5f) * 2));
+            _plantsGrowth.Add(plant);
         }
-    }
 
-    private void UpdatePlantGrowth()
-    {
-        for (int i = _plantsGrowth.Count - 1; i >= 0; i--)
+        public int GetCurrentDay()
         {
-            if (_plantsGrowth[i] != null)
-            {
-                _plantsGrowth[i].CheckGrowthProgress();
-            }
-            else
-            {
-                _plantsGrowth.RemoveAt(i);
-            }
+            return _days;
         }
-    }
 
-    public void AddPlant(PlantsGrowth plant)
-    {
-        _plantsGrowth.Add(plant);
-    }
+        private void IncrementDay()
+        {
+            _days++;
+        }
 
-    public int GetCurrentDay()
-    {
-        return _days;
-    }
+        public void PauseGame()
+        {
+            UnityEngine.Time.timeScale = 0;
+        }
 
-    private void IncrementDay()
-    {
-        _days++;
-    }
-
-    public void PauseGame()
-    {
-        Time.timeScale = 0;
-    }
-
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
+        public void ResumeGame()
+        {
+            UnityEngine.Time.timeScale = 1;
+        }
     }
 }

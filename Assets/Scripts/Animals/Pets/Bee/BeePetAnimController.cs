@@ -1,62 +1,65 @@
 using System.Collections;
+using Animals.Pets.Namespace;
 using UnityEngine;
-using AnimControllerNamespace;
 
-public class BeePetAnimController : MonoBehaviour, INightTimeController
+namespace Animals.Pets.Bee
 {
-    [SerializeField] private Animator _animator;
-    [SerializeField] private SpriteRenderer _sr;
-
-    private readonly float _minSecondValue = 16f;
-    private readonly float _maxSecondValue = 22f;
-    private float _middleSecondValue;
-
-    private enum Triggers
+    public class BeePetAnimController : MonoBehaviour, INightTimeController
     {
-        coup,
-        coupFliped
-    }
+        [SerializeField] private Animator animator;
+        [SerializeField] private SpriteRenderer sr;
 
-    private enum Variables
-    {
-        sleeping
-    }
+        private readonly float _minSecondValue = 16f;
+        private readonly float _maxSecondValue = 22f;
+        private float _middleSecondValue;
 
-    private void Start()
-    {
-        GenerateRandomDelay();
-        StartCoroutine(TriggerFlipAfterTime(_middleSecondValue));
-    }
-
-    private void GenerateRandomDelay()
-    {
-        _middleSecondValue = Random.Range(_minSecondValue, _maxSecondValue);
-    }
-
-    private IEnumerator TriggerFlipAfterTime(float time)
-    {
-        yield return new WaitForSeconds(time);
-
-        if(_sr.flipX == false)
+        private enum Triggers
         {
-            _animator.SetTrigger(Triggers.coup.ToString());
-        }
-        else
-        {
-            _animator.SetTrigger(Triggers.coupFliped.ToString());
+            Coup,
+            CoupFliped
         }
 
-        GenerateRandomDelay();
-        StartCoroutine(TriggerFlipAfterTime(_middleSecondValue));
-    }
+        private enum Variables
+        {
+            Sleeping
+        }
 
-    public void ActivateNightTime()
-    {
-        _animator.SetBool(Variables.sleeping.ToString(), true);
-    }
+        private void Start()
+        {
+            GenerateRandomDelay();
+            StartCoroutine(TriggerFlipAfterTime(_middleSecondValue));
+        }
 
-    public void DeactivateNightTime()
-    {
-        _animator.SetBool(Variables.sleeping.ToString(), false);
+        private void GenerateRandomDelay()
+        {
+            _middleSecondValue = Random.Range(_minSecondValue, _maxSecondValue);
+        }
+
+        private IEnumerator TriggerFlipAfterTime(float time)
+        {
+            yield return new WaitForSeconds(time);
+
+            if(sr.flipX == false)
+            {
+                animator.SetTrigger(Triggers.Coup.ToString());
+            }
+            else
+            {
+                animator.SetTrigger(Triggers.CoupFliped.ToString());
+            }
+
+            GenerateRandomDelay();
+            StartCoroutine(TriggerFlipAfterTime(_middleSecondValue));
+        }
+
+        public void ActivateNightTime()
+        {
+            animator.SetBool(Variables.Sleeping.ToString(), true);
+        }
+
+        public void DeactivateNightTime()
+        {
+            animator.SetBool(Variables.Sleeping.ToString(), false);
+        }
     }
 }

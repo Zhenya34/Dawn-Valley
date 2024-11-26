@@ -1,5 +1,109 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &424174085708576901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4625890944225276757}
+  - component: {fileID: 1625238265123934739}
+  - component: {fileID: 1102844077736294591}
+  - component: {fileID: 2195870485115097156}
+  - component: {fileID: 1228343101752392085}
+  m_Layer: 0
+  m_Name: PlacementSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4625890944225276757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424174085708576901}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3946503565849685827}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1625238265123934739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424174085708576901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b54aa4951769243869c8804f01d52a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputManager: {fileID: 0}
+  _grid: {fileID: 0}
+  _database: {fileID: 11400000, guid: 9c9c9fad49575e541933aa8792cca35b, type: 2}
+  _gridVisualization: {fileID: 0}
+  _correctPlacementClip: {fileID: 0}
+  _wrongPlacementClip: {fileID: 0}
+  _source: {fileID: 0}
+  _preview: {fileID: 1102844077736294591}
+  _objectPlacer: {fileID: 2195870485115097156}
+  _soundFeedback: {fileID: 1228343101752392085}
+--- !u!114 &1102844077736294591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424174085708576901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bfc62c81e8150c4196940bf939899d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _previewYOffset: 0.06
+  _cellIndicator: {fileID: 0}
+  _previewObject: {fileID: 0}
+  _previewMaterialPrefab: {fileID: 0}
+  _previewMaterialInstance: {fileID: 0}
+--- !u!114 &2195870485115097156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424174085708576901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 182c7fe1d23a51149840be8e616c1e37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _placedGameObjects: []
+--- !u!114 &1228343101752392085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424174085708576901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2e68873c1be8334eaccb00127b2e8f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSound: {fileID: 0}
+  placeSound: {fileID: 0}
+  removeSound: {fileID: 0}
+  wrongPlacementSound: {fileID: 0}
+  _audioSource: {fileID: 0}
 --- !u!1 &1185901559827872533
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,8 +269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93af8c2a05cd95e4b866f42e68488f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _triggerFrameRadius: 5
-  _toolsRadius: 3
+  _triggerFrameRadius: 3.5
+  _toolsRadius: 2.6
   _tileSelector: {fileID: 4622805209177197933}
   _playerAnim: {fileID: 7588711494444571899}
 --- !u!1 &4795924863943822867
@@ -348,6 +452,7 @@ Transform:
   - {fileID: 819743097075886694}
   - {fileID: 2855029427407319718}
   - {fileID: 1527994326453945536}
+  - {fileID: 4625890944225276757}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6771505984925096872
@@ -377,9 +482,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 365098221235394365}
   _timeBeforeBlinking: 3
-  _timeBeforeUsingTools: 0
   _toolSwitcher: {fileID: 0}
-  _holdThreshold: 0.5
+  _holdThresholdForLeftButton: 0.4
+  _holdThresholdForRightButton: 0.1
 --- !u!114 &4566911252269265720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,6 +526,7 @@ MonoBehaviour:
   _wetDirtTile: {fileID: 11400000, guid: b5132a4091898f14b98596eb58085035, type: 2}
   _toolswitcher: {fileID: 0}
   _dayNightCycle: {fileID: 0}
+  _playerImpactRadius: {fileID: 7458653154327168871}
   _daysBeforeDirtBecomeGrass: 4
 --- !u!114 &6152273032351284133
 MonoBehaviour:

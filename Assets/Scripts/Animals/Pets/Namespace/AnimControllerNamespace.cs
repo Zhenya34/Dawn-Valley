@@ -1,4 +1,4 @@
-namespace AnimControllerNamespace
+namespace Animals.Pets.Namespace
 {
     public interface INightTimeController
     {

@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class InventoryInitialization : MonoBehaviour
+namespace UI.SampleScene.Inventory
 {
-    [SerializeField] private InventoryManager _inventoryManager;
-
-    private void Awake()
+    public class InventoryInitialization : MonoBehaviour
     {
-        _inventoryManager.InitializeInventory();
+        [SerializeField] private InventoryManager inventoryManager;
+
+        private void Awake() => inventoryManager.InitializeInventory();
     }
 }
