@@ -18,10 +18,7 @@ namespace UI.SampleScene.Inventory
             ClearSlot();
         }
 
-        public bool IsEmpty()
-        {
-            return _itemSprite == null;
-        }
+        public bool IsEmpty() => !_itemSprite;
 
         public void SetItem(Sprite sprite)
         {
@@ -36,23 +33,17 @@ namespace UI.SampleScene.Inventory
             itemImage.enabled = false;
         }
 
-        public Sprite GetItemSprite()
-        {
-            return _itemSprite;
-        }
+        public Sprite GetItemSprite() => _itemSprite;
 
         public void Select()
         {
-            if (_itemSprite != null)
+            if (_itemSprite)
             {
                 itemImage.color = _selectedColor;
             }
         }
 
-        public void Deselect()
-        {
-            itemImage.color = _normalColor;
-        }
+        public void Deselect() => itemImage.color = _normalColor;
 
         private void OnMouseDown()
         {

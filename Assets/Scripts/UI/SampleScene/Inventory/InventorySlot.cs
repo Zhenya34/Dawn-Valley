@@ -15,15 +15,9 @@ namespace UI.SampleScene.Inventory
         private readonly Color _normalColor = Color.white;
         private readonly Color _selectedColor = new Color32(200, 200, 200, 255);
 
-        private void Awake()
-        {
-            itemImage.preserveAspect = true;
-        }
+        private void Awake() => itemImage.preserveAspect = true;
 
-        public bool IsEmpty()
-        {
-            return _itemSprite == null;
-        }
+        public bool IsEmpty() => !_itemSprite;
 
         public void SetItem(Sprite sprite, int qty)
         {
@@ -56,15 +50,9 @@ namespace UI.SampleScene.Inventory
             quantityText.enabled = false;
         }
 
-        public Sprite GetItemSprite()
-        {
-            return _itemSprite;
-        }
+        public Sprite GetItemSprite() => _itemSprite;
 
-        public int GetQuantity()
-        {
-            return _quantity;
-        }
+        public int GetQuantity() => _quantity;
 
         public void Select()
         {
@@ -74,10 +62,7 @@ namespace UI.SampleScene.Inventory
             }
         }
 
-        public void Deselect()
-        {
-            itemImage.color = _normalColor;
-        }
+        public void Deselect() => itemImage.color = _normalColor;
 
         public void OnPointerClick(PointerEventData eventData)
         {

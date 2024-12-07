@@ -22,7 +22,7 @@ namespace UI.SampleScene.Inventory
 
         public void InitializeInventory()
         {
-            if (inventoryUI != null)
+            if (inventoryUI)
             {
                 foreach (Transform slotTransform in inventoryUI.transform)
                 {
@@ -119,7 +119,7 @@ namespace UI.SampleScene.Inventory
                 return;
             }
 
-            if (_selectedSlot != null)
+            if (_selectedSlot)
             {
                 _selectedSlot.Deselect();
             }
@@ -131,7 +131,7 @@ namespace UI.SampleScene.Inventory
 
         public void OnSlotLeftClicked(InventorySlot slot)
         {
-            if (_selectedSlot != null && _isItemSelected)
+            if (_selectedSlot && _isItemSelected)
             {
                 if (slot.IsEmpty())
                 {
@@ -163,7 +163,7 @@ namespace UI.SampleScene.Inventory
 
         public void OnSellingSlotClicked(SellingSlot slot)
         {
-            if (_selectedSlot != null && _isItemSelected)
+            if (_selectedSlot && _isItemSelected)
             {
                 if (slot.IsEmpty())
                 {
@@ -181,7 +181,7 @@ namespace UI.SampleScene.Inventory
 
         public void OnPetSlotClicked(PetInventorySlot slot)
         {
-            if (_selectedSlot != null && _isItemSelected)
+            if (_selectedSlot && _isItemSelected)
             {
                 if (slot.IsEmpty())
                 {
@@ -213,7 +213,7 @@ namespace UI.SampleScene.Inventory
 
         public void MoveItemToInventory(SellingSlot slot)
         {
-            if (_selectedSlot == null && _isItemSelected && slot.GetItemSprite() != null)
+            if (!_selectedSlot && _isItemSelected && slot.GetItemSprite())
             {
                 Sprite itemSprite = slot.GetItemSprite();
                 int itemQuantity = slot.GetQuantity();
@@ -269,7 +269,7 @@ namespace UI.SampleScene.Inventory
 
         private void SelectSellingSlot(SellingSlot slot)
         {
-            if (slot.GetItemSprite() != null)
+            if (slot.GetItemSprite())
             {
                 slot.Select();
                 _isItemSelected = true;
@@ -278,7 +278,7 @@ namespace UI.SampleScene.Inventory
 
         private void SelectPetSlot(PetInventorySlot slot)
         {
-            if (slot.GetItemSprite() != null)
+            if (slot.GetItemSprite())
             {
                 slot.Select();
                 _isItemSelected = true;
@@ -287,7 +287,7 @@ namespace UI.SampleScene.Inventory
 
         private void DeselectSlot()
         {
-            if (_selectedSlot != null)
+            if (_selectedSlot)
             {
                 _selectedSlot.Deselect();
             }

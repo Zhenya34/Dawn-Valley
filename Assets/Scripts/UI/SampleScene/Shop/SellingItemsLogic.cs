@@ -41,10 +41,7 @@ namespace UI.SampleScene.Shop
             }
         }
 
-        public bool PanelIsActive()
-        {
-            return sellingPanel.activeSelf;
-        }
+        public bool PanelIsActive() => sellingPanel.activeSelf;
 
         private void OpenShop()
         {
@@ -69,14 +66,11 @@ namespace UI.SampleScene.Shop
             inventoryExitButton.SetActive(true);
         }
 
-        public void AddToShopSlot(Sprite sprite, int quantity)
-        {
-            shopSlot.SetItem(sprite, quantity);
-        }
+        public void AddToShopSlot(Sprite sprite, int quantity) => shopSlot.SetItem(sprite, quantity);
 
         private void ConfirmSale()
         {
-            if (shopSlot.GetItemSprite() != null)
+            if (shopSlot.GetItemSprite())
             {
                 int totalPrice = shopSlot.GetTotalPrice();
                 playerWallet.AddCoins(totalPrice);
@@ -86,20 +80,14 @@ namespace UI.SampleScene.Shop
 
         private void CancelSale()
         {
-            if (shopSlot.GetItemSprite() != null)
+            if (shopSlot.GetItemSprite())
             {
                 inventoryManager.MoveItemToInventory(shopSlot);
             }
         }
 
-        private void OnConfirmButtonClicked()
-        {
-            ConfirmSale();
-        }
+        private void OnConfirmButtonClicked() => ConfirmSale();
 
-        private void OnCancelButtonClicked()
-        {
-            CancelSale();
-        }
+        private void OnCancelButtonClicked() => CancelSale();
     }
 }

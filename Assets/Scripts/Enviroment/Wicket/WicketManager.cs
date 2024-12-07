@@ -11,7 +11,7 @@ namespace Enviroment.Wicket
         [SerializeField] private GameObject verticalGatePrefab;
         [SerializeField] private ItemUsageManager itemUsageManager;
 
-        private bool _canPlace = false;
+        private bool _canPlace;
         private InventorySlot _currentSlot;
 
         private void Update()
@@ -31,10 +31,7 @@ namespace Enviroment.Wicket
             }
         }
 
-        private bool IsTileEmpty(Vector3Int position)
-        {
-            return tilemap.GetTile(position) == null;
-        }
+        private bool IsTileEmpty(Vector3Int position) => !tilemap.GetTile(position);
 
         private void CreateGate(Vector3Int tilePos)
         {
@@ -72,22 +69,13 @@ namespace Enviroment.Wicket
         private bool IsNeighbor(Vector3Int position, Vector3Int direction)
         {
             Vector3Int neighborPos = position + direction;
-            return tilemap.GetTile(neighborPos) != null;
+            return tilemap.GetTile(neighborPos);
         }
 
-        public void SetWicket(InventorySlot slot)
-        {
-            _currentSlot = slot;
-        }
+        public void SetWicket(InventorySlot slot) => _currentSlot = slot;
 
-        public void AllowWicketsPlacement()
-        {
-            _canPlace = true;
-        }
+        public void AllowWicketsPlacement() => _canPlace = true;
 
-        public void ForbidWicketsPlacement()
-        {
-            _canPlace = false;
-        }
+        public void ForbidWicketsPlacement() => _canPlace = false;
     }
 }

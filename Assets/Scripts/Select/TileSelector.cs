@@ -6,16 +6,31 @@ namespace Select
     public class TileSelector : MonoBehaviour
     {
         [SerializeField] private GameObject framePrefab;
-        [SerializeField] private Camera mainCamera;
         [SerializeField] private Tilemap tilemap;
 
         private bool _canPlaceFrame = true;
+        private Camera _camera;
+
+        private void Awake()
+        {
+            _camera = Camera.main;
+        }
 
         private void Update()
         {
-            if (_canPlaceFrame)
+            if (_canPlaceFrame && _camera)
             {
-                Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                if (!Application.isFocused) return;
+                
+                Vector3 mouseScreenPos = Input.mousePosition;
+                
+                if (mouseScreenPos.x < 0 || mouseScreenPos.x > Screen.width ||
+                    mouseScreenPos.y < 0 || mouseScreenPos.y > Screen.height)
+                {
+                    return;
+                }
+                
+                Vector3 mouseWorldPos = _camera.ScreenToWorldPoint(Input.mousePosition);
                 mouseWorldPos.z = 0;
                 Vector3Int cellPosition = tilemap.WorldToCell(mouseWorldPos);
 
@@ -30,14 +45,8 @@ namespace Select
             }
         }
 
-        public void AllowFramePlacement()
-        {
-            _canPlaceFrame = true;
-        }
+        public void AllowFramePlacement() => _canPlaceFrame = true;
 
-        public void ProhibitFramePlacement()
-        {
-            _canPlaceFrame = false;
-        }
+        public void ProhibitFramePlacement() => _canPlaceFrame = false;
     }
 }

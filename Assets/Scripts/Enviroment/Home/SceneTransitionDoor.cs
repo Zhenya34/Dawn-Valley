@@ -1,4 +1,5 @@
 using System.Collections;
+using UI.SampleScene.Upgrades;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,25 +10,26 @@ namespace Enviroment.Home
         [SerializeField] private float teleportDelay;
         [SerializeField] private Vector3 targetPositionExternal;
         [SerializeField] private GameObject player;
+        [SerializeField] private HouseLevelManager houseLevelManager;
     
         private bool _isInternalDoor;
-        private bool _isTeleporting = false;
-        private Coroutine _teleportCoroutine = null;
+        private bool _isTeleporting;
+        private Coroutine _teleportCoroutine;
 
-        static private bool _isPreviousSceneHome = false;
+        private static bool _isPreviousSceneHome;
 
         private void Start()
         {
             string currentSceneName = SceneManager.GetActiveScene().name;
 
-            if (currentSceneName == SceneNames.SampleScene.ToString() && _isPreviousSceneHome == true)
+            if (currentSceneName == HouseLevelManager.SceneNames.SampleScene.ToString() && _isPreviousSceneHome)
             {
                 player.transform.position = targetPositionExternal;
                 _isPreviousSceneHome = false;
             }
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnCollisionEnter2D()
         {
             if (!_isTeleporting)
             {
@@ -37,7 +39,7 @@ namespace Enviroment.Home
             }
         }
 
-        private void OnCollisionExit2D(Collision2D collision)
+        private void OnCollisionExit2D()
         {
             if (_teleportCoroutine != null)
             {
@@ -45,14 +47,6 @@ namespace Enviroment.Home
                 _isTeleporting = false;
                 _teleportCoroutine = null;
             }
-        }
-
-        private enum SceneNames
-        {
-            SampleScene,
-            HomeSceneMini,
-            HomeSceneMiddle,
-            HomeSceneMax
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -82,12 +76,12 @@ namespace Enviroment.Home
             if (_isInternalDoor)
             {
                 _isPreviousSceneHome = true;
-                SceneManager.LoadScene(SceneNames.SampleScene.ToString());
+                SceneManager.LoadScene(HouseLevelManager.SceneNames.SampleScene.ToString());
             }
             else
             {
                 _isPreviousSceneHome = false;
-                SceneManager.LoadScene(SceneNames.HomeSceneMax.ToString());
+                SceneManager.LoadScene(houseLevelManager.GetSceneForHouseLevel().ToString());
             }
 
             _isTeleporting = false;
@@ -95,4 +89,3 @@ namespace Enviroment.Home
         }
     }
 }
-

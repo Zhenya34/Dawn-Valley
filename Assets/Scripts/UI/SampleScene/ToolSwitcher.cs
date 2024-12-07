@@ -12,11 +12,9 @@ namespace UI.SampleScene
         [SerializeField] private PlacementSystem placementSystem;
 
         private ToolType _currentTool = ToolType.Hand;
+        private bool _isToolChangeAvaliable;
 
-        private void Awake()
-        {
-            playerAnim.UpdateToolType(ToolType.Hand);
-        }
+        private void Awake() => playerAnim.UpdateToolType(ToolType.Hand);
 
         public enum ToolType
         {
@@ -35,31 +33,34 @@ namespace UI.SampleScene
 
         private void ChangeToolType()
         {
-            float scroll = Input.GetAxis("MouseScrollWheel");
-            if (scroll != 0)
+            if (_isToolChangeAvaliable)
             {
-                int newToolIndex = (int)_currentTool + (scroll > 0 ? 1 : -1);
-
-                if (newToolIndex >= System.Enum.GetValues(typeof(ToolType)).Length)
+                float scroll = Input.GetAxis("MouseScrollWheel");
+                if (scroll != 0)
                 {
-                    newToolIndex = 0;
-                }
-                else if (newToolIndex < 0)
-                {
-                    newToolIndex = System.Enum.GetValues(typeof(ToolType)).Length - 1;
-                }
+                    int newToolIndex = (int)_currentTool + (scroll > 0 ? 1 : -1);
 
-                _currentTool = (ToolType)newToolIndex;
+                    if (newToolIndex >= System.Enum.GetValues(typeof(ToolType)).Length)
+                    {
+                        newToolIndex = 0;
+                    }
+                    else if (newToolIndex < 0)
+                    {
+                        newToolIndex = System.Enum.GetValues(typeof(ToolType)).Length - 1;
+                    }
 
-                playerAnim.UpdateToolType(_currentTool);
-                UpdateToolIcon();
-                UpdatePlacementMode();
+                    _currentTool = (ToolType)newToolIndex;
+
+                    playerAnim.UpdateToolType(_currentTool);
+                    UpdateToolIcon();
+                    UpdatePlacementMode();
+                }
             }
         }
 
         private void UpdatePlacementMode()
         {
-            if (ToolType.Pickaxe == _currentTool || ToolType.Axe == _currentTool)
+            if (ToolType.Pickaxe == _currentTool)
             {
                 placementSystem.StartRemoving();
             }
@@ -78,10 +79,11 @@ namespace UI.SampleScene
             }
         }
 
-        public ToolType GetCurrentTool()
-        {
-            return _currentTool;
-        }
+        public ToolType GetCurrentTool() => _currentTool;
+        
+        public void AllowToolChanges() => _isToolChangeAvaliable = true;
+
+        public void ProhibitToolChanges() => _isToolChangeAvaliable = false;
     }
 }
 

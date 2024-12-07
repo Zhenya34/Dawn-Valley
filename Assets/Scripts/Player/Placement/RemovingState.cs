@@ -28,14 +28,13 @@ namespace Player.Placement
             previewSystem.StartShowingRemovePreview();
         }
 
-        public void EndState()
-        {
-            _previewSystem.StopShowingPreview();
-        }
+        public void EndState() => _previewSystem.StopShowingPreview();
 
-        public void OnAction(Vector3Int gridPosition)
+        public void OnAction(Vector2Int gridPosition)
         {
             GridData selectedData = null;
+            Vector3Int gridPosition3D = new Vector3Int(gridPosition.x, gridPosition.y, 0);
+
             if (_furnitureData.CanPlaceObjectAt(gridPosition, Vector2Int.one) == false)
             {
                 selectedData = _furnitureData;
@@ -58,20 +57,22 @@ namespace Player.Placement
                 selectedData.RemoveObjectAt(gridPosition);
                 _objectPlacer.RemoveObjectAt(_gameObjectIndex);
             }
-            Vector3 cellPosition = _grid.CellToWorld(gridPosition);
+
+            Vector3 cellPosition = _grid.CellToWorld(gridPosition3D);
             _previewSystem.UpdatePosition(cellPosition, CheckIfSelectionIsValid(gridPosition));
         }
 
-        private bool CheckIfSelectionIsValid(Vector3Int gridPosition)
+        private bool CheckIfSelectionIsValid(Vector2Int gridPosition)
         {
             return !(_furnitureData.CanPlaceObjectAt(gridPosition, Vector2Int.one) &&
                      _floorData.CanPlaceObjectAt(gridPosition, Vector2Int.one));
         }
 
-        public void UpdateState(Vector3Int gridPosition)
+        public void UpdateState(Vector2Int gridPosition)
         {
             bool validity = CheckIfSelectionIsValid(gridPosition);
-            _previewSystem.UpdatePosition(_grid.CellToWorld(gridPosition), validity);
+            Vector3Int gridPosition3D = new Vector3Int(gridPosition.x, gridPosition.y, 0);
+            _previewSystem.UpdatePosition(_grid.CellToWorld(gridPosition3D), validity);
         }
     }
 }

@@ -24,10 +24,7 @@ namespace UI.SampleScene.Shop
         [SerializeField] private GameObject upgradePanel;
         [SerializeField] private UIManager.UIManager uiManager;
 
-        private void Start()
-        {
-            InitializeShop();
-        }
+        private void Start() => InitializeShop();
 
         private void OnMouseDown()
         {
@@ -60,7 +57,6 @@ namespace UI.SampleScene.Shop
                 if (playerCoinsWallet.SpendCoins(cost))
                 {
                     upgrade.currentLevel++;
-                    ApplyUpgradeEffects(upgrade);
                     UpdateUpgradeButton(upgrade);
                 }
             }
@@ -78,11 +74,6 @@ namespace UI.SampleScene.Shop
                 int cost = upgrade.costPerLevel[upgrade.currentLevel];
                 upgrade.upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = cost.ToString();
             }
-        }
-
-        private void ApplyUpgradeEffects(Upgrade upgrade)
-        {
-            Debug.Log("ApplyEffects");
         }
     }
 }

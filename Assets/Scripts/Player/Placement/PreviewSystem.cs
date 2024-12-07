@@ -12,7 +12,6 @@ namespace Player.Placement
 
         private void Awake()
         {
-            cellIndicator.SetActive(false);
             _cellIndicatorRenderer = cellIndicator.GetComponentInChildren<SpriteRenderer>();
         }
 
@@ -21,16 +20,11 @@ namespace Player.Placement
             _previewObject = Instantiate(prefab);
             PreparePreview(_previewObject);
             PrepareCursor(size);
-            cellIndicator.SetActive(true);
         }
 
         private void PrepareCursor(Vector2Int size)
         {
-            if (size.x > 0 || size.y > 0)
-            {
-                cellIndicator.transform.localScale = new Vector3(size.x, 1, size.y);
-                _cellIndicatorRenderer.material.mainTextureScale = size;
-            }
+            if (size.x > 0 || size.y > 0) cellIndicator.transform.localScale = new Vector3(size.x, size.y, 1);
         }
 
         private void PreparePreview(GameObject previewObject)
@@ -44,8 +38,7 @@ namespace Player.Placement
 
         public void StopShowingPreview()
         {
-            cellIndicator.SetActive(false);
-            if (_previewObject != null)
+            if (_previewObject)
             {
                 Destroy(_previewObject);
                 _previewObject = null;
@@ -54,7 +47,7 @@ namespace Player.Placement
 
         public void UpdatePosition(Vector3 position, bool validity)
         {
-            if (_previewObject != null)
+            if (_previewObject)
             {
                 MovePreview(position);
                 ApplyFeedbackToPreview(validity);
@@ -72,11 +65,25 @@ namespace Player.Placement
                 spriteRenderer.color = c;
             }
         }
+        
+        private void ResetCursorSize()
+        {
+            cellIndicator.transform.localScale = Vector3.one;
+        }
 
         private void ApplyFeedbackToCursor(bool validity)
         {
-            Color c = validity ? Color.white : Color.red;
-            c.a = 0.5f;
+            Color c;
+            if (validity)
+            {
+                c = Color.white;
+                c.a = 1f;
+            }
+            else
+            {
+                c = Color.red;
+                c.a = 0.5f;
+            }
             _cellIndicatorRenderer.material.color = c;
         }
 
@@ -102,9 +109,14 @@ namespace Player.Placement
 
         internal void StartShowingRemovePreview()
         {
-            cellIndicator.SetActive(true);
             PrepareCursor(Vector2Int.one);
             ApplyFeedbackToCursor(false);
         }
+
+        internal void StopShowingRemovePreview()
+        {
+            ApplyFeedbackToCursor(true);
+            ResetCursorSize();
+        } 
     }
 }

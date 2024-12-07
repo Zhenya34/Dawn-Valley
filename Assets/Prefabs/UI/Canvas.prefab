@@ -53,9 +53,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8314b610427b27345a8c472525ce1844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 4594426249665021556}
-  _quantityText: {fileID: 527377858288857719}
-  _inventoryManager: {fileID: 1698788934358704430}
+  itemImage: {fileID: 4594426249665021556}
+  quantityText: {fileID: 527377858288857719}
+  inventoryManager: {fileID: 1698788934358704430}
 --- !u!61 &190618115533079047
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -284,16 +284,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a034df6775c33aa4b86896b64be8d17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sellingItemsLogic: {fileID: 0}
-  _pausePanel: {fileID: 3658626837413160683}
-  _settingsPanel: {fileID: 8474729921492531513}
-  _statsPanel: {fileID: 5024055971046659789}
-  _pauseButton: {fileID: 4133675682390463171}
-  _inventoryPanel: {fileID: 8863029636150018874}
-  _upgradePanel: {fileID: 1136324624548749575}
-  _shopPanel: {fileID: 1182847448614314734}
-  _sellingPanel: {fileID: 847545710888059137}
-  _sceneName: MainMenuScene
+  uiManager: {fileID: 0}
+  sellingItemsLogic: {fileID: 0}
+  pausePanel: {fileID: 3658626837413160683}
+  settingsPanel: {fileID: 8474729921492531513}
+  statsPanel: {fileID: 5024055971046659789}
+  pauseButton: {fileID: 4133675682390463171}
+  inventoryPanel: {fileID: 8863029636150018874}
+  upgradePanel: {fileID: 1136324624548749575}
+  shopPanel: {fileID: 1182847448614314734}
+  sellingPanel: {fileID: 847545710888059137}
+  sceneName: MainMenuScene
+  dayNightCycle: {fileID: 0}
 --- !u!1 &88874743048429053
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,9 +617,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8314b610427b27345a8c472525ce1844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 6345282695351709973}
-  _quantityText: {fileID: 8441848521098388633}
-  _inventoryManager: {fileID: 1698788934358704430}
+  itemImage: {fileID: 6345282695351709973}
+  quantityText: {fileID: 8441848521098388633}
+  inventoryManager: {fileID: 1698788934358704430}
 --- !u!61 &1916025505259074145
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1433,9 +1435,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8314b610427b27345a8c472525ce1844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 1344314709510070419}
-  _quantityText: {fileID: 6496320650212046133}
-  _inventoryManager: {fileID: 1698788934358704430}
+  itemImage: {fileID: 1344314709510070419}
+  quantityText: {fileID: 6496320650212046133}
+  inventoryManager: {fileID: 1698788934358704430}
 --- !u!61 &356056435717090002
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1664,16 +1666,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a034df6775c33aa4b86896b64be8d17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sellingItemsLogic: {fileID: 0}
-  _pausePanel: {fileID: 3658626837413160683}
-  _settingsPanel: {fileID: 8474729921492531513}
-  _statsPanel: {fileID: 5024055971046659789}
-  _pauseButton: {fileID: 4133675682390463171}
-  _inventoryPanel: {fileID: 8863029636150018874}
-  _upgradePanel: {fileID: 1136324624548749575}
-  _shopPanel: {fileID: 1182847448614314734}
-  _sellingPanel: {fileID: 847545710888059137}
-  _sceneName: MainMenuScene
+  uiManager: {fileID: 0}
+  sellingItemsLogic: {fileID: 0}
+  pausePanel: {fileID: 3658626837413160683}
+  settingsPanel: {fileID: 8474729921492531513}
+  statsPanel: {fileID: 5024055971046659789}
+  pauseButton: {fileID: 4133675682390463171}
+  inventoryPanel: {fileID: 8863029636150018874}
+  upgradePanel: {fileID: 1136324624548749575}
+  shopPanel: {fileID: 1182847448614314734}
+  sellingPanel: {fileID: 847545710888059137}
+  sceneName: MainMenuScene
+  dayNightCycle: {fileID: 0}
 --- !u!1 &632997373616372084
 GameObject:
   m_ObjectHideFlags: 0
@@ -2615,9 +2619,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8314b610427b27345a8c472525ce1844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 1192761711851137717}
-  _quantityText: {fileID: 4376387449665041130}
-  _inventoryManager: {fileID: 1698788934358704430}
+  itemImage: {fileID: 1192761711851137717}
+  quantityText: {fileID: 4376387449665041130}
+  inventoryManager: {fileID: 1698788934358704430}
 --- !u!61 &5351079931430322918
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4735,9 +4739,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8314b610427b27345a8c472525ce1844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 1292515289511006660}
-  _quantityText: {fileID: 2213540455189448018}
-  _inventoryManager: {fileID: 1698788934358704430}
+  itemImage: {fileID: 1292515289511006660}
+  quantityText: {fileID: 2213540455189448018}
+  inventoryManager: {fileID: 1698788934358704430}
 --- !u!61 &5841097769741407988
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4874,9 +4878,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8314b610427b27345a8c472525ce1844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 8381869199836063401}
-  _quantityText: {fileID: 5814570372262674936}
-  _inventoryManager: {fileID: 1698788934358704430}
+  itemImage: {fileID: 8381869199836063401}
+  quantityText: {fileID: 5814570372262674936}
+  inventoryManager: {fileID: 1698788934358704430}
 --- !u!61 &8157187118261880501
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5965,9 +5969,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8314b610427b27345a8c472525ce1844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 3153628489535989515}
-  _quantityText: {fileID: 349279592894479446}
-  _inventoryManager: {fileID: 1698788934358704430}
+  itemImage: {fileID: 3153628489535989515}
+  quantityText: {fileID: 349279592894479446}
+  inventoryManager: {fileID: 1698788934358704430}
 --- !u!61 &7045152590081835588
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6637,16 +6641,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a034df6775c33aa4b86896b64be8d17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sellingItemsLogic: {fileID: 0}
-  _pausePanel: {fileID: 3658626837413160683}
-  _settingsPanel: {fileID: 8474729921492531513}
-  _statsPanel: {fileID: 5024055971046659789}
-  _pauseButton: {fileID: 4133675682390463171}
-  _inventoryPanel: {fileID: 8863029636150018874}
-  _upgradePanel: {fileID: 1136324624548749575}
-  _shopPanel: {fileID: 1182847448614314734}
-  _sellingPanel: {fileID: 847545710888059137}
-  _sceneName: MainMenuScene
+  uiManager: {fileID: 0}
+  sellingItemsLogic: {fileID: 0}
+  pausePanel: {fileID: 3658626837413160683}
+  settingsPanel: {fileID: 8474729921492531513}
+  statsPanel: {fileID: 5024055971046659789}
+  pauseButton: {fileID: 4133675682390463171}
+  inventoryPanel: {fileID: 8863029636150018874}
+  upgradePanel: {fileID: 1136324624548749575}
+  shopPanel: {fileID: 1182847448614314734}
+  sellingPanel: {fileID: 847545710888059137}
+  sceneName: MainMenuScene
+  dayNightCycle: {fileID: 0}
 --- !u!1 &2187546604645380561
 GameObject:
   m_ObjectHideFlags: 0
@@ -8035,16 +8041,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a034df6775c33aa4b86896b64be8d17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sellingItemsLogic: {fileID: 0}
-  _pausePanel: {fileID: 3658626837413160683}
-  _settingsPanel: {fileID: 8474729921492531513}
-  _statsPanel: {fileID: 5024055971046659789}
-  _pauseButton: {fileID: 4133675682390463171}
-  _inventoryPanel: {fileID: 8863029636150018874}
-  _upgradePanel: {fileID: 1136324624548749575}
-  _shopPanel: {fileID: 1182847448614314734}
-  _sellingPanel: {fileID: 847545710888059137}
-  _sceneName: MainMenuScene
+  uiManager: {fileID: 0}
+  sellingItemsLogic: {fileID: 0}
+  pausePanel: {fileID: 3658626837413160683}
+  settingsPanel: {fileID: 8474729921492531513}
+  statsPanel: {fileID: 5024055971046659789}
+  pauseButton: {fileID: 4133675682390463171}
+  inventoryPanel: {fileID: 8863029636150018874}
+  upgradePanel: {fileID: 1136324624548749575}
+  shopPanel: {fileID: 1182847448614314734}
+  sellingPanel: {fileID: 847545710888059137}
+  sceneName: MainMenuScene
+  dayNightCycle: {fileID: 0}
 --- !u!1 &3027040472023526328
 GameObject:
   m_ObjectHideFlags: 0
@@ -8399,16 +8407,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a034df6775c33aa4b86896b64be8d17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sellingItemsLogic: {fileID: 0}
-  _pausePanel: {fileID: 3658626837413160683}
-  _settingsPanel: {fileID: 8474729921492531513}
-  _statsPanel: {fileID: 5024055971046659789}
-  _pauseButton: {fileID: 4133675682390463171}
-  _inventoryPanel: {fileID: 8863029636150018874}
-  _upgradePanel: {fileID: 1136324624548749575}
-  _shopPanel: {fileID: 1182847448614314734}
-  _sellingPanel: {fileID: 847545710888059137}
-  _sceneName: MainMenuScene
+  uiManager: {fileID: 0}
+  sellingItemsLogic: {fileID: 0}
+  pausePanel: {fileID: 3658626837413160683}
+  settingsPanel: {fileID: 8474729921492531513}
+  statsPanel: {fileID: 5024055971046659789}
+  pauseButton: {fileID: 4133675682390463171}
+  inventoryPanel: {fileID: 8863029636150018874}
+  upgradePanel: {fileID: 1136324624548749575}
+  shopPanel: {fileID: 1182847448614314734}
+  sellingPanel: {fileID: 847545710888059137}
+  sceneName: MainMenuScene
+  dayNightCycle: {fileID: 0}
 --- !u!1 &3200684571085750281
 GameObject:
   m_ObjectHideFlags: 0
@@ -9102,9 +9112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8314b610427b27345a8c472525ce1844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 3757865049665050394}
-  _quantityText: {fileID: 2838986181442700514}
-  _inventoryManager: {fileID: 1698788934358704430}
+  itemImage: {fileID: 3757865049665050394}
+  quantityText: {fileID: 2838986181442700514}
+  inventoryManager: {fileID: 1698788934358704430}
 --- !u!61 &7762802652891540822
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9986,16 +9996,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a034df6775c33aa4b86896b64be8d17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sellingItemsLogic: {fileID: 0}
-  _pausePanel: {fileID: 3658626837413160683}
-  _settingsPanel: {fileID: 8474729921492531513}
-  _statsPanel: {fileID: 5024055971046659789}
-  _pauseButton: {fileID: 4133675682390463171}
-  _inventoryPanel: {fileID: 8863029636150018874}
-  _upgradePanel: {fileID: 1136324624548749575}
-  _shopPanel: {fileID: 1182847448614314734}
-  _sellingPanel: {fileID: 847545710888059137}
-  _sceneName: MainMenuScene
+  uiManager: {fileID: 0}
+  sellingItemsLogic: {fileID: 0}
+  pausePanel: {fileID: 3658626837413160683}
+  settingsPanel: {fileID: 8474729921492531513}
+  statsPanel: {fileID: 5024055971046659789}
+  pauseButton: {fileID: 4133675682390463171}
+  inventoryPanel: {fileID: 8863029636150018874}
+  upgradePanel: {fileID: 1136324624548749575}
+  shopPanel: {fileID: 1182847448614314734}
+  sellingPanel: {fileID: 847545710888059137}
+  sceneName: MainMenuScene
+  dayNightCycle: {fileID: 0}
 --- !u!1 &4192272772320949475
 GameObject:
   m_ObjectHideFlags: 0
@@ -11269,7 +11281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705cea46db5ac7b46ad363ead2bb6c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventoryManager: {fileID: 1698788934358704430}
+  inventoryManager: {fileID: 1698788934358704430}
 --- !u!114 &542723838431102392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11619,9 +11631,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8314b610427b27345a8c472525ce1844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 4861603701766356985}
-  _quantityText: {fileID: 8020744729107519773}
-  _inventoryManager: {fileID: 1698788934358704430}
+  itemImage: {fileID: 4861603701766356985}
+  quantityText: {fileID: 8020744729107519773}
+  inventoryManager: {fileID: 1698788934358704430}
 --- !u!61 &6731413637059517391
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12170,6 +12182,7 @@ GameObject:
   - component: {fileID: 834166203672742331}
   - component: {fileID: 1551439655475462846}
   - component: {fileID: 322098768109536058}
+  - component: {fileID: 6656169641890238925}
   m_Layer: 5
   m_Name: House
   m_TagString: Untagged
@@ -12279,7 +12292,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1551439655475462846}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6656169641890238925}
+        m_TargetAssemblyTypeName: UI.SampleScene.Upgrades.HouseLevelManager, Assembly-CSharp
+        m_MethodName: UpdateHouseLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6656169641890238925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5038476490520958011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f607eea5ddc865047ba841ce5eb761f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5155347065238620166
 GameObject:
   m_ObjectHideFlags: 0
@@ -12491,15 +12528,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c5f92dfa116034782e502c79482af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _toolIcon: {fileID: 2230899530105174782}
-  _playerAnim: {fileID: 0}
-  _toolSprites:
+  toolIcon: {fileID: 2230899530105174782}
+  playerAnim: {fileID: 0}
+  toolSprites:
   - {fileID: 8975172903509912901, guid: ed3a10cfef469dc40a12225b8fa71838, type: 3}
   - {fileID: 7055057822812236248, guid: ed3a10cfef469dc40a12225b8fa71838, type: 3}
   - {fileID: -1580858945885696424, guid: ed3a10cfef469dc40a12225b8fa71838, type: 3}
   - {fileID: -222770171534894969, guid: ed3a10cfef469dc40a12225b8fa71838, type: 3}
   - {fileID: -6924689505622849655, guid: ed3a10cfef469dc40a12225b8fa71838, type: 3}
   - {fileID: 3315495998958308751, guid: ed3a10cfef469dc40a12225b8fa71838, type: 3}
+  placementSystem: {fileID: 0}
 --- !u!1 &5321794789733492414
 GameObject:
   m_ObjectHideFlags: 0
@@ -12565,7 +12603,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Regeneration Level
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12592,8 +12630,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -12854,16 +12892,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a034df6775c33aa4b86896b64be8d17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sellingItemsLogic: {fileID: 0}
-  _pausePanel: {fileID: 3658626837413160683}
-  _settingsPanel: {fileID: 8474729921492531513}
-  _statsPanel: {fileID: 5024055971046659789}
-  _pauseButton: {fileID: 4133675682390463171}
-  _inventoryPanel: {fileID: 8863029636150018874}
-  _upgradePanel: {fileID: 1136324624548749575}
-  _shopPanel: {fileID: 1182847448614314734}
-  _sellingPanel: {fileID: 847545710888059137}
-  _sceneName: MainMenuScene
+  uiManager: {fileID: 0}
+  sellingItemsLogic: {fileID: 0}
+  pausePanel: {fileID: 3658626837413160683}
+  settingsPanel: {fileID: 8474729921492531513}
+  statsPanel: {fileID: 5024055971046659789}
+  pauseButton: {fileID: 4133675682390463171}
+  inventoryPanel: {fileID: 8863029636150018874}
+  upgradePanel: {fileID: 1136324624548749575}
+  shopPanel: {fileID: 1182847448614314734}
+  sellingPanel: {fileID: 847545710888059137}
+  sceneName: MainMenuScene
+  dayNightCycle: {fileID: 0}
 --- !u!1 &5367238316861884973
 GameObject:
   m_ObjectHideFlags: 0
@@ -13040,9 +13080,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8314b610427b27345a8c472525ce1844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 6887401758742649221}
-  _quantityText: {fileID: 2294828067188468582}
-  _inventoryManager: {fileID: 1698788934358704430}
+  itemImage: {fileID: 6887401758742649221}
+  quantityText: {fileID: 2294828067188468582}
+  inventoryManager: {fileID: 1698788934358704430}
 --- !u!61 &3268319208157151068
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13363,13 +13403,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82315b2ad61ccee46925abcbf53f99f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sellingItemsLogic: {fileID: 0}
-  _itemUsageLogic: {fileID: 0}
-  _inventoryUI: {fileID: 5643556070900172859}
-  _itemDatabase: {fileID: 0}
-  _sellingSlot: {fileID: 6129442586106292658}
-  _petInventorySlot: {fileID: 2837551761622361950}
-  _allPetsActivator: {fileID: 0}
+  sellingItemsLogic: {fileID: 0}
+  itemUsageLogic: {fileID: 0}
+  inventoryUI: {fileID: 5643556070900172859}
+  itemDatabase: {fileID: 0}
+  sellingSlot: {fileID: 6129442586106292658}
+  petInventorySlot: {fileID: 2837551761622361950}
+  allPetsActivator: {fileID: 0}
 --- !u!1 &5738412466225716138
 GameObject:
   m_ObjectHideFlags: 0
@@ -13874,16 +13914,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a034df6775c33aa4b86896b64be8d17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sellingItemsLogic: {fileID: 0}
-  _pausePanel: {fileID: 3658626837413160683}
-  _settingsPanel: {fileID: 8474729921492531513}
-  _statsPanel: {fileID: 5024055971046659789}
-  _pauseButton: {fileID: 4133675682390463171}
-  _inventoryPanel: {fileID: 8863029636150018874}
-  _upgradePanel: {fileID: 1136324624548749575}
-  _shopPanel: {fileID: 1182847448614314734}
-  _sellingPanel: {fileID: 847545710888059137}
-  _sceneName: MainMenuScene
+  uiManager: {fileID: 0}
+  sellingItemsLogic: {fileID: 0}
+  pausePanel: {fileID: 3658626837413160683}
+  settingsPanel: {fileID: 8474729921492531513}
+  statsPanel: {fileID: 5024055971046659789}
+  pauseButton: {fileID: 4133675682390463171}
+  inventoryPanel: {fileID: 8863029636150018874}
+  upgradePanel: {fileID: 1136324624548749575}
+  shopPanel: {fileID: 1182847448614314734}
+  sellingPanel: {fileID: 847545710888059137}
+  sceneName: MainMenuScene
+  dayNightCycle: {fileID: 0}
 --- !u!1 &5921424411879992588
 GameObject:
   m_ObjectHideFlags: 0
@@ -14160,7 +14202,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Damage Level
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14187,8 +14229,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -14282,9 +14324,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8314b610427b27345a8c472525ce1844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 8612729795120310744}
-  _quantityText: {fileID: 7185612888246273840}
-  _inventoryManager: {fileID: 1698788934358704430}
+  itemImage: {fileID: 8612729795120310744}
+  quantityText: {fileID: 7185612888246273840}
+  inventoryManager: {fileID: 1698788934358704430}
 --- !u!61 &6937268176555414889
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14670,9 +14712,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8314b610427b27345a8c472525ce1844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 3160687509571844676}
-  _quantityText: {fileID: 3934398628317581352}
-  _inventoryManager: {fileID: 1698788934358704430}
+  itemImage: {fileID: 3160687509571844676}
+  quantityText: {fileID: 3934398628317581352}
+  inventoryManager: {fileID: 1698788934358704430}
 --- !u!61 &6240085802369947991
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14901,16 +14943,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a034df6775c33aa4b86896b64be8d17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sellingItemsLogic: {fileID: 0}
-  _pausePanel: {fileID: 3658626837413160683}
-  _settingsPanel: {fileID: 8474729921492531513}
-  _statsPanel: {fileID: 5024055971046659789}
-  _pauseButton: {fileID: 4133675682390463171}
-  _inventoryPanel: {fileID: 8863029636150018874}
-  _upgradePanel: {fileID: 1136324624548749575}
-  _shopPanel: {fileID: 1182847448614314734}
-  _sellingPanel: {fileID: 847545710888059137}
-  _sceneName: MainMenuScene
+  uiManager: {fileID: 0}
+  sellingItemsLogic: {fileID: 0}
+  pausePanel: {fileID: 3658626837413160683}
+  settingsPanel: {fileID: 8474729921492531513}
+  statsPanel: {fileID: 5024055971046659789}
+  pauseButton: {fileID: 4133675682390463171}
+  inventoryPanel: {fileID: 8863029636150018874}
+  upgradePanel: {fileID: 1136324624548749575}
+  shopPanel: {fileID: 1182847448614314734}
+  sellingPanel: {fileID: 847545710888059137}
+  sceneName: MainMenuScene
+  dayNightCycle: {fileID: 0}
 --- !u!1 &6088690902277442590
 GameObject:
   m_ObjectHideFlags: 0
@@ -14976,7 +15020,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: House Level
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15003,8 +15047,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -15110,7 +15154,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Inventory Level
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15137,8 +15181,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -15721,10 +15765,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c1c5b86c9fdb7469e107661f06e139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 183599206986020546}
-  _quantityText: {fileID: 7704802070060469785}
-  _inventoryManager: {fileID: 1698788934358704430}
-  _itemDatabase: {fileID: 0}
+  itemImage: {fileID: 183599206986020546}
+  quantityText: {fileID: 7704802070060469785}
+  inventoryManager: {fileID: 1698788934358704430}
+  itemDatabase: {fileID: 0}
 --- !u!61 &1313217373194293875
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16065,16 +16109,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a034df6775c33aa4b86896b64be8d17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sellingItemsLogic: {fileID: 0}
-  _pausePanel: {fileID: 3658626837413160683}
-  _settingsPanel: {fileID: 8474729921492531513}
-  _statsPanel: {fileID: 5024055971046659789}
-  _pauseButton: {fileID: 4133675682390463171}
-  _inventoryPanel: {fileID: 8863029636150018874}
-  _upgradePanel: {fileID: 1136324624548749575}
-  _shopPanel: {fileID: 1182847448614314734}
-  _sellingPanel: {fileID: 847545710888059137}
-  _sceneName: MainMenuScene
+  uiManager: {fileID: 0}
+  sellingItemsLogic: {fileID: 0}
+  pausePanel: {fileID: 3658626837413160683}
+  settingsPanel: {fileID: 8474729921492531513}
+  statsPanel: {fileID: 5024055971046659789}
+  pauseButton: {fileID: 4133675682390463171}
+  inventoryPanel: {fileID: 8863029636150018874}
+  upgradePanel: {fileID: 1136324624548749575}
+  shopPanel: {fileID: 1182847448614314734}
+  sellingPanel: {fileID: 847545710888059137}
+  sceneName: MainMenuScene
+  dayNightCycle: {fileID: 0}
 --- !u!1 &6662899166311796961
 GameObject:
   m_ObjectHideFlags: 0
@@ -16925,9 +16971,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8314b610427b27345a8c472525ce1844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 7040356812615159019}
-  _quantityText: {fileID: 7982936472850698467}
-  _inventoryManager: {fileID: 1698788934358704430}
+  itemImage: {fileID: 7040356812615159019}
+  quantityText: {fileID: 7982936472850698467}
+  inventoryManager: {fileID: 1698788934358704430}
 --- !u!61 &3127198530490314407
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17467,7 +17513,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Protection Level
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17494,8 +17540,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -17952,9 +17998,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8314b610427b27345a8c472525ce1844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 9150693643520494772}
-  _quantityText: {fileID: 3687457562176694084}
-  _inventoryManager: {fileID: 1698788934358704430}
+  itemImage: {fileID: 9150693643520494772}
+  quantityText: {fileID: 3687457562176694084}
+  inventoryManager: {fileID: 1698788934358704430}
 --- !u!61 &7827231037242997828
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18601,16 +18647,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a034df6775c33aa4b86896b64be8d17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sellingItemsLogic: {fileID: 0}
-  _pausePanel: {fileID: 3658626837413160683}
-  _settingsPanel: {fileID: 8474729921492531513}
-  _statsPanel: {fileID: 5024055971046659789}
-  _pauseButton: {fileID: 4133675682390463171}
-  _inventoryPanel: {fileID: 8863029636150018874}
-  _upgradePanel: {fileID: 1136324624548749575}
-  _shopPanel: {fileID: 1182847448614314734}
-  _sellingPanel: {fileID: 847545710888059137}
-  _sceneName: MainMenuScene
+  uiManager: {fileID: 0}
+  sellingItemsLogic: {fileID: 0}
+  pausePanel: {fileID: 3658626837413160683}
+  settingsPanel: {fileID: 8474729921492531513}
+  statsPanel: {fileID: 5024055971046659789}
+  pauseButton: {fileID: 4133675682390463171}
+  inventoryPanel: {fileID: 8863029636150018874}
+  upgradePanel: {fileID: 1136324624548749575}
+  shopPanel: {fileID: 1182847448614314734}
+  sellingPanel: {fileID: 847545710888059137}
+  sceneName: MainMenuScene
+  dayNightCycle: {fileID: 0}
 --- !u!1 &8004799285633309620
 GameObject:
   m_ObjectHideFlags: 0
@@ -19000,9 +19048,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8314b610427b27345a8c472525ce1844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 38416749389540919}
-  _quantityText: {fileID: 4577255847143080333}
-  _inventoryManager: {fileID: 1698788934358704430}
+  itemImage: {fileID: 38416749389540919}
+  quantityText: {fileID: 4577255847143080333}
+  inventoryManager: {fileID: 1698788934358704430}
 --- !u!61 &6626232509025434232
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19494,7 +19542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0122aef6cc3d9b142979cecdb6fcb398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinsText: {fileID: 6791604636406767784}
+  coinsText: {fileID: 6791604636406767784}
 --- !u!1 &8325755765754686938
 GameObject:
   m_ObjectHideFlags: 0
@@ -20370,8 +20418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7874c98afe5315644bdb652ba4951954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 5383464714978535136}
-  _sprites:
+  image: {fileID: 5383464714978535136}
+  sprites:
   - {fileID: -2789828258894020359, guid: ed3a10cfef469dc40a12225b8fa71838, type: 3}
   - {fileID: 8098325090699622831, guid: ed3a10cfef469dc40a12225b8fa71838, type: 3}
   - {fileID: -280878704707199146, guid: ed3a10cfef469dc40a12225b8fa71838, type: 3}
@@ -20379,8 +20427,8 @@ MonoBehaviour:
   - {fileID: 7745019284384770374, guid: ed3a10cfef469dc40a12225b8fa71838, type: 3}
   - {fileID: -6596520936123449161, guid: ed3a10cfef469dc40a12225b8fa71838, type: 3}
   - {fileID: 5361409359328093427, guid: ed3a10cfef469dc40a12225b8fa71838, type: 3}
-  _triggerRadius: 5.05
-  _textObject: {fileID: 8004799285633309620}
+  triggerRadius: 5.05
+  textObject: {fileID: 8004799285633309620}
 --- !u!1 &8626612459781081587
 GameObject:
   m_ObjectHideFlags: 0
@@ -21505,8 +21553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d294e6d61ca16ca4faeb4b08544a8c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 5346573911669887383}
-  _inventoryManager: {fileID: 1698788934358704430}
+  itemImage: {fileID: 5346573911669887383}
+  inventoryManager: {fileID: 1698788934358704430}
 --- !u!1 &8997029843670707237
 GameObject:
   m_ObjectHideFlags: 0

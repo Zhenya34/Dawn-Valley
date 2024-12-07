@@ -30,10 +30,7 @@ namespace UI.SampleScene.Shop
 
         private readonly Dictionary<string, int> _cart = new();
 
-        private void Start()
-        {
-            InitializeShop();
-        }
+        private void Start() => InitializeShop();
 
         private void OnMouseDown()
         {
@@ -116,10 +113,7 @@ namespace UI.SampleScene.Shop
             }
         }
 
-        private void CancelPurchase()
-        {
-            ClearCart();
-        }
+        private void CancelPurchase() => ClearCart();
 
         private void ClearCart()
         {

@@ -16,7 +16,7 @@ namespace Player.Placement
         [SerializeField] private SoundFeedback soundFeedback;
 
         private GridData _floorData, _furnitureData;
-        private Vector3Int _lastDetectedPosition = Vector3Int.zero;
+        private Vector2Int _lastDetectedPosition = Vector2Int.zero;
         private IBuildingState _buildingState;
         private bool _isPlacementInitialized;
         private bool _isRemovingInitialized;
@@ -24,7 +24,6 @@ namespace Player.Placement
         private void Start()
         {
             inputManager.OnClickedRightButton += PerformAction;
-            inputManager.OnClickedLeftButton += PerformAction;
             inputManager.OnExit += StopPlacement;
 
             gridVisualization.SetActive(false);
@@ -39,7 +38,7 @@ namespace Player.Placement
                 return;
             }
             Vector3 mousePosition = inputManager.GetSelectedTileMapPosition();
-            Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+            Vector2Int gridPosition = (Vector2Int)grid.WorldToCell(mousePosition);
             if (_lastDetectedPosition != gridPosition)
             {
                 _buildingState.UpdateState(gridPosition);
@@ -65,7 +64,7 @@ namespace Player.Placement
             _isRemovingInitialized = true;
             gridVisualization.SetActive(true);
             _buildingState = new RemovingState(grid, preview, _floorData, _furnitureData, objectPlacer, soundFeedback);
-            inputManager.OnClickedLeftButton += PerformAction;
+            inputManager.OnClickedRightButton += PerformAction;
         }
         
         private void PerformAction()
@@ -79,9 +78,9 @@ namespace Player.Placement
             {
                 return;
             }
-
+            
             Vector3 mousePosition = inputManager.GetSelectedTileMapPosition();
-            Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+            Vector2Int gridPosition = (Vector2Int)grid.WorldToCell(mousePosition);
             _buildingState.OnAction(gridPosition);
         }
         
@@ -102,7 +101,7 @@ namespace Player.Placement
             _buildingState.EndState();
             inputManager.OnClickedRightButton -= PerformAction;
             inputManager.OnExit -= StopPlacement;
-            _lastDetectedPosition = Vector3Int.zero;
+            _lastDetectedPosition = (Vector2Int)Vector3Int.zero;
             _buildingState = null;
         }
         
@@ -119,11 +118,12 @@ namespace Player.Placement
             {
                 return;
             }
-
+            
+            preview.StopShowingRemovePreview();
             gridVisualization.SetActive(false);
             _buildingState.EndState();
-            inputManager.OnClickedLeftButton -= PerformAction;
-            _lastDetectedPosition = Vector3Int.zero;
+            inputManager.OnClickedRightButton -= PerformAction;
+            _lastDetectedPosition = Vector2Int.zero;
             _buildingState = null;
         }
     }

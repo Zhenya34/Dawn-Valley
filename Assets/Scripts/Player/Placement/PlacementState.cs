@@ -32,29 +32,28 @@ namespace Player.Placement
             _furnitureData = furnitureData;
             _objectPlacer = objectPlacer;
             _soundFeedback = soundFeedback;
-
+            
             _selectedObjectIndex = _database.objectsData.FindIndex(data => data.ID == _id);
-            if(_selectedObjectIndex > -1)
+            if (_selectedObjectIndex > -1)
             {
                 previewSystem.StartShowingPlacementPreview(
                     _database.objectsData[_selectedObjectIndex].Prefab,
-                    _database.objectsData[_selectedObjectIndex].Size);
+                    _database.objectsData[_selectedObjectIndex].Size
+                );
             }
             else
             {
-                if (_selectedObjectIndex == -1)
-                {
-                    Debug.LogError($"No object with ID {_id} found in the database.");
-                }
+                Debug.LogError($"No object with ID {_id} found in the database.");
             }
         }
 
         public void EndState()
         {
             _previewSystem.StopShowingPreview();
+            _previewSystem.StopShowingRemovePreview();
         }
 
-        public void OnAction(Vector3Int gridPosition)
+        public void OnAction(Vector2Int gridPosition)
         {
             bool placementValidity = CheckPlacementValidity(gridPosition, _selectedObjectIndex);
 
@@ -65,10 +64,13 @@ namespace Player.Placement
             }
 
             _soundFeedback.PlaySound(SoundType.Place);
+            
+            Vector3 worldPosition = _grid.CellToWorld((Vector3Int)gridPosition) + 
+                                    new Vector3(_grid.cellSize.x / 2, 0, 0);
 
             int index = _objectPlacer.PlaceObject(
                 _database.objectsData[_selectedObjectIndex].Prefab,
-                _grid.CellToWorld(gridPosition) + new Vector3(_grid.cellSize.x / 2, 0, 0)
+                worldPosition
             );
 
             GridData selectedData = (_database.objectsData[_selectedObjectIndex].ID == 0)
@@ -81,22 +83,29 @@ namespace Player.Placement
                 _database.objectsData[_selectedObjectIndex].ID,
                 index
             );
-            _previewSystem.UpdatePosition(_grid.CellToWorld(gridPosition), false);
+
+            _previewSystem.UpdatePosition(worldPosition, false);
         }
 
-        private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
+        private bool CheckPlacementValidity(Vector2Int gridPosition, int selectedObjectIndex)
         {
-            GridData selectedData = _database.objectsData[selectedObjectIndex].ID == 0 ?
-                _floorData :
-                _furnitureData;
+            GridData selectedData = _database.objectsData[selectedObjectIndex].ID == 0
+                ? _floorData
+                : _furnitureData;
 
-            return selectedData.CanPlaceObjectAt(gridPosition, _database.objectsData[selectedObjectIndex].Size);
+            return selectedData.CanPlaceObjectAt(
+                gridPosition,
+                _database.objectsData[selectedObjectIndex].Size
+            );
         }
 
-        public void UpdateState(Vector3Int gridPosition)
+        public void UpdateState(Vector2Int gridPosition)
         {
             bool placementValidity = CheckPlacementValidity(gridPosition, _selectedObjectIndex);
-            _previewSystem.UpdatePosition(_grid.CellToWorld(gridPosition), placementValidity);
+
+            Vector3 worldPosition = _grid.CellToWorld((Vector3Int)gridPosition);
+
+            _previewSystem.UpdatePosition(worldPosition, placementValidity);
         }
     }
 }

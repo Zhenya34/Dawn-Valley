@@ -1,65 +1,49 @@
 using System.Collections;
-using Animals.Pets.Namespace;
 using UnityEngine;
+using Animals.Pets.globalAnimControllers;
+using Animals.Pets.Interfaces;
 
 namespace Animals.Pets.Bee
 {
-    public class BeePetAnimController : MonoBehaviour, INightTimeController
+    public class BeePetAnimController : PetAnimController, IStateChangeController
     {
-        [SerializeField] private Animator animator;
-        [SerializeField] private SpriteRenderer sr;
-
-        private readonly float _minSecondValue = 16f;
-        private readonly float _maxSecondValue = 22f;
-        private float _middleSecondValue;
+        private Coroutine _flipCoroutine;
 
         private enum Triggers
         {
             Coup,
-            CoupFliped
+            CoupFlipped
         }
 
-        private enum Variables
-        {
-            Sleeping
-        }
-
-        private void Start()
+        private IEnumerator ChangeStateAfterTime()
         {
             GenerateRandomDelay();
-            StartCoroutine(TriggerFlipAfterTime(_middleSecondValue));
-        }
+            yield return new WaitForSeconds(DelayDuration);
 
-        private void GenerateRandomDelay()
-        {
-            _middleSecondValue = Random.Range(_minSecondValue, _maxSecondValue);
-        }
-
-        private IEnumerator TriggerFlipAfterTime(float time)
-        {
-            yield return new WaitForSeconds(time);
-
-            if(sr.flipX == false)
-            {
-                animator.SetTrigger(Triggers.Coup.ToString());
-            }
+            if (spriteRenderer.flipX)
+                animator.SetTrigger(Triggers.CoupFlipped.ToString());
             else
-            {
-                animator.SetTrigger(Triggers.CoupFliped.ToString());
-            }
+                animator.SetTrigger(Triggers.Coup.ToString());
 
-            GenerateRandomDelay();
-            StartCoroutine(TriggerFlipAfterTime(_middleSecondValue));
+            _flipCoroutine = null;
+
+            if (CanChangeState)
+                StartChangingStates();
+        }
+        
+        public void StartChangingStates()
+        {
+            CanChangeState = true;
+            if (_flipCoroutine == null)
+                _flipCoroutine = StartCoroutine(ChangeStateAfterTime());
         }
 
-        public void ActivateNightTime()
+        public void StopChangingStates()
         {
-            animator.SetBool(Variables.Sleeping.ToString(), true);
-        }
-
-        public void DeactivateNightTime()
-        {
-            animator.SetBool(Variables.Sleeping.ToString(), false);
+            if (_flipCoroutine == null) return;
+            CanChangeState = false;
+            StopCoroutine(_flipCoroutine);
+            _flipCoroutine = null;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace UI.SampleScene.Shop
 
         public bool IsEmpty()
         {
-            return _itemSprite == null;
+            return !_itemSprite;
         }
 
         public void SetItem(Sprite sprite, int qty)
@@ -59,28 +59,19 @@ namespace UI.SampleScene.Shop
             quantityText.enabled = false;
         }
 
-        public Sprite GetItemSprite()
-        {
-            return _itemSprite;
-        }
+        public Sprite GetItemSprite() => _itemSprite;
 
-        public int GetQuantity()
-        {
-            return _quantity;
-        }
+        public int GetQuantity() => _quantity;
 
         public void Select()
         {
-            if (_itemSprite != null)
+            if (_itemSprite)
             {
                 itemImage.color = _selectedColor;
             }
         }
 
-        public void Deselect()
-        {
-            itemImage.color = _normalColor;
-        }
+        public void Deselect() => itemImage.color = _normalColor;
 
         public int GetTotalPrice()
         {
@@ -92,9 +83,6 @@ namespace UI.SampleScene.Shop
             return 0;
         }
 
-        private void OnMouseDown()
-        {
-            inventoryManager.OnSellingSlotClicked(this);
-        }
+        private void OnMouseDown() => inventoryManager.OnSellingSlotClicked(this);
     }
 }

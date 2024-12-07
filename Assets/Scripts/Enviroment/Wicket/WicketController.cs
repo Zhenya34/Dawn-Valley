@@ -28,10 +28,7 @@ namespace Enviroment.Wicket
             UpdateGateVisual();
         }
 
-        private void OnMouseDown()
-        {
-            ToggleGate();
-        }
+        private void OnMouseDown() => ToggleGate();
 
         private void ToggleGate()
         {

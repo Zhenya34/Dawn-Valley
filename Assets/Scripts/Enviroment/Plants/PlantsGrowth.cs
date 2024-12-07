@@ -4,7 +4,6 @@ using Player.ToolsLogic;
 using UI.SampleScene;
 using UnityEngine;
 
-
 namespace Enviroment.Plants
 {
     public class PlantsGrowth : MonoBehaviour
@@ -15,10 +14,10 @@ namespace Enviroment.Plants
         [SerializeField] private Sprite[] plantsStages = new Sprite[4];
         [SerializeField] private float clickRadius = 0.3f;
 
-        private int _currentStage = 0;
-        private bool _canBeCollected = false;
+        private int _currentStage;
+        private bool _canBeCollected;
         private readonly int _maxStage = 3;
-        private int _daysSincePlanted = 0;
+        private int _daysSincePlanted;
         private Vector3Int _cellPosition;
         private ToolSwitcher _toolSwitcher;
         private Planting _plantingSystem;
@@ -60,7 +59,7 @@ namespace Enviroment.Plants
                 Debug.LogError(ex.Message);
             }
 
-            if (_plantingSystem != null)
+            if (_plantingSystem)
             {
                 _cellPosition = _plantingSystem.GetCellPosition(transform.position);
                 _plantingSystem.RegisterPlant(_cellPosition, this);
@@ -76,7 +75,7 @@ namespace Enviroment.Plants
         private void Start()
         {
             DayNightCycle dayNightCycle = FindObjectOfType<DayNightCycle>();
-            if (dayNightCycle != null)
+            if (dayNightCycle)
             {
                 dayNightCycle.AddPlant(this);
             }
@@ -99,7 +98,7 @@ namespace Enviroment.Plants
 
         private void HarvestPlants()
         {
-            if (_canBeCollected && harvestedObject != null)
+            if (_canBeCollected && harvestedObject)
             {
                 Instantiate(harvestedObject, transform.position, Quaternion.identity);
                 _plantingSystem.FreeCell(_cellPosition);
@@ -109,7 +108,7 @@ namespace Enviroment.Plants
 
         private void OnDestroy()
         {
-            if (_plantingSystem != null)
+            if (_plantingSystem)
             {
                 _plantingSystem.UnregisterPlant(_cellPosition);
             }

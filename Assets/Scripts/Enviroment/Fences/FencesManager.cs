@@ -14,7 +14,7 @@ namespace Enviroment.Fences
         [SerializeField] private ItemUsageManager itemUsageManager;
 
         private readonly List<GameObject> _allFences = new();
-        private bool _canPlace = false;
+        private bool _canPlace;
         private InventorySlot _currentSlot;
 
         private void Update()
@@ -89,19 +89,10 @@ namespace Enviroment.Fences
                 connection.transform.right = direction;
         }
 
-        public void SetFence(InventorySlot slot)
-        {
-            _currentSlot = slot;
-        }
+        public void SetFence(InventorySlot slot) => _currentSlot = slot;
 
-        public void AllowFencesPlacement()
-        {
-            _canPlace = true;
-        }
+        public void AllowFencesPlacement() => _canPlace = true;
 
-        public void ForbidFencesPlacement()
-        {
-            _canPlace = false;
-        }
+        public void ForbidFencesPlacement() => _canPlace = false;
     }
 }

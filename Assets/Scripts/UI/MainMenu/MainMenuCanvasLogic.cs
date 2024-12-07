@@ -12,10 +12,7 @@ namespace UI.MainMenu
 
         private const string TelegramUsername = "Zhenyazhnr_dev";
 
-        public void StartGame()
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
-        }
+        public void StartGame() => UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
 
         public void SwitchOffGame()
         {
@@ -23,35 +20,17 @@ namespace UI.MainMenu
             Application.Quit();
         }
 
-        public void OpenMainSettings()
-        {
-            settingsPanel.SetActive(true);
-        }
+        public void OpenMainSettings() => settingsPanel.SetActive(true);
 
-        public void CloseMainSettings()
-        {
-            settingsPanel.SetActive(false);
-        }
+        public void CloseMainSettings() => settingsPanel.SetActive(false);
 
-        public void GameInfoOpen()
-        {
-            infoPanel.SetActive(true);
-        }
+        public void GameInfoOpen() => infoPanel.SetActive(true);
 
-        public void GameInfoClose()
-        {
-            infoPanel.SetActive(false);
-        }
+        public void GameInfoClose() => infoPanel.SetActive(false);
 
-        public void OpenExitPanel()
-        {
-            exitPanel.SetActive(true);
-        }
+        public void OpenExitPanel() => exitPanel.SetActive(true);
 
-        public void CloseExitPanel()
-        {
-            exitPanel.SetActive(false);
-        }
+        public void CloseExitPanel() => exitPanel.SetActive(false);
 
         public void OpenOwnTelegram()
         {

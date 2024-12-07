@@ -36,14 +36,8 @@ namespace Player
             transform.position += moveSpeed * Time.deltaTime * movement.normalized;
         }
 
-        public void AllowMovement()
-        {
-            _isMovementEnable = true;
-        }
+        public void AllowMovement() => _isMovementEnable = true;
 
-        public void ProhibitMovement()
-        {
-            _isMovementEnable = false;
-        }
+        public void ProhibitMovement() => _isMovementEnable = false;
     }
 }

@@ -16,6 +16,8 @@ namespace UI.SampleScene.Inventory
         [SerializeField] private InventoryManager inventoryManager;
         [SerializeField] private PlacementSystem placementSystem;
         [SerializeField] private ObjectsDatabaseSo objectsDatabaseSo;
+        [SerializeField] private ObjectPlacer objectPlacer;
+        [SerializeField] private PreviewSystem previewSystem;
 
         private bool _isItemBeingUsed;
         private InventorySlot _currentSlot;
@@ -52,10 +54,6 @@ namespace UI.SampleScene.Inventory
                 GlobalItemType itemType = item.globalItemType;
                 UseItem(slot, item, itemType);
             }
-            else if (item.globalItemType == GlobalItemType.None)
-            {
-                return;
-            }
         }
 
         private Item GetItemFromSlot(InventorySlot slot)
@@ -73,6 +71,7 @@ namespace UI.SampleScene.Inventory
             fencesManager.ForbidFencesPlacement();
             wicketManager.ForbidWicketsPlacement();
             placementSystem.StopPlacement();
+            previewSystem.StopShowingRemovePreview();
         }
 
         private void UseItem(InventorySlot slot, Item item ,GlobalItemType itemType)
@@ -89,7 +88,7 @@ namespace UI.SampleScene.Inventory
             {
                 Seed seed = itemDatabase.GetSeedByItem(item);
 
-                if (seed != null)
+                if (seed)
                 {
                     plantingSystem.PlantSeed(seed.plant, slot);
                 }
@@ -106,6 +105,7 @@ namespace UI.SampleScene.Inventory
             {
                 _structureID = objectsDatabaseSo.GetStructureIDByName(item.itemName);
                 placementSystem.StartPlacement(_structureID);
+                objectPlacer.SetStructure(slot);
             }
         }
 
@@ -117,7 +117,6 @@ namespace UI.SampleScene.Inventory
             {
                 StopUsingItem();
                 slot.ClearSlot();
-                return;
             }
             else
             {

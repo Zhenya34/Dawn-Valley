@@ -9,10 +9,7 @@ namespace UI.SampleScene
 
         private int _playerCoins;  
 
-        private void Start()
-        {
-            UpdatePlayerCoinsUI();
-        }
+        private void Start() => UpdatePlayerCoinsUI();
 
         public bool SpendCoins(int amount)
         {
@@ -33,7 +30,7 @@ namespace UI.SampleScene
 
         private void UpdatePlayerCoinsUI()
         {
-            if (coinsText != null)
+            if (coinsText)
             {
                 coinsText.text = _playerCoins.ToString();
             }
@@ -45,10 +42,7 @@ namespace UI.SampleScene
             UpdatePlayerCoinsUI();
         }
 
-        public bool CanAfford(int amount)
-        {
-            return _playerCoins >= amount;
-        }
+        public bool CanAfford(int amount) => _playerCoins >= amount;
 
         private void Update()
         {

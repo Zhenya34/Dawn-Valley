@@ -28,7 +28,7 @@ namespace Enviroment.Plants
         {
             if (_canPlant)
             {
-                if (Input.GetMouseButtonDown(1) && playerAnim.GetToolsUsingValue() == true && _currentPlant != null)
+                if (Input.GetMouseButtonDown(1) && playerAnim.GetToolsUsingValue() == true && _currentPlant)
                 {
                     Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
                     mouseWorldPos.z = 0;
@@ -64,10 +64,7 @@ namespace Enviroment.Plants
             }
         }
 
-        public bool IsPlantAtTile(Vector3Int cellPosition)
-        {
-            return _plantsByTile.ContainsKey(cellPosition);
-        }
+        public bool IsPlantAtTile(Vector3Int cellPosition) => _plantsByTile.ContainsKey(cellPosition);
 
         public PlantsGrowth GetPlantAtTile(Vector3Int cellPosition)
         {
@@ -83,10 +80,7 @@ namespace Enviroment.Plants
             }
         }
 
-        public Vector3Int GetCellPosition(Vector3 worldPosition)
-        {
-            return tilemap.WorldToCell(worldPosition);
-        }
+        public Vector3Int GetCellPosition(Vector3 worldPosition) => tilemap.WorldToCell(worldPosition);
 
         public void PlantSeed(Plant plant, InventorySlot slot)
         {
@@ -94,14 +88,8 @@ namespace Enviroment.Plants
             _currentSlot = slot;
         }
 
-        public void AllowPlanting()
-        {
-            _canPlant = true;
-        }
+        public void AllowPlanting() => _canPlant = true;
 
-        public void ForbidPlanting()
-        {
-            _canPlant = false;
-        }
+        public void ForbidPlanting() => _canPlant = false;
     }
 }

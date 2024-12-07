@@ -99,10 +99,10 @@ namespace Player.ToolsLogic
         private void RemovePlantIfExists(Vector3Int gridPosition)
         {
             var plantingSystem = FindObjectOfType<Planting>();
-            if (plantingSystem != null && plantingSystem.IsPlantAtTile(gridPosition))
+            if (plantingSystem && plantingSystem.IsPlantAtTile(gridPosition))
             {
                 var plant = plantingSystem.GetPlantAtTile(gridPosition);
-                if (plant != null)
+                if (plant)
                 {
                     Destroy(plant.gameObject);
                 }

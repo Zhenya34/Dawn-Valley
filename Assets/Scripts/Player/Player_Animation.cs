@@ -167,10 +167,7 @@ namespace Player
             animator.SetInteger(AnimationState.ToolType.ToString(), toolIndex);
         } 
 
-        public bool GetToolsUsingValue()
-        {
-            return _toolsAllowed;
-        }
+        public bool GetToolsUsingValue() => _toolsAllowed;
 
         private IEnumerator ActivateBlinking()
         {
@@ -179,14 +176,8 @@ namespace Player
             _activateBlinkingRunning = false;
         }
 
-        public void AllowToolsUsing()
-        {
-            _toolsAllowed = true;
-        }
+        public void AllowToolsUsing() => _toolsAllowed = true;
 
-        public void ProhibitToolsUsing()
-        {
-            _toolsAllowed = false;
-        }
+        public void ProhibitToolsUsing() => _toolsAllowed = false;
     }
 }

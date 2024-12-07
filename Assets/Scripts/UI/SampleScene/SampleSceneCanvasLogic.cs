@@ -21,20 +21,20 @@ namespace UI.SampleScene
 
         private void Awake()
         {
-            dayNightCycle.ResumeGame();
+            if(dayNightCycle)
+                dayNightCycle.ResumeGame();
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.I))
             {
-                if (!inventoryPanel.activeSelf)
+                if (inventoryPanel)
                 {
-                    OpenInventory();
-                }
-                else
-                {
-                    CloseInventory();
+                    if (!inventoryPanel.activeSelf)
+                        OpenInventory();
+                    else
+                        CloseInventory();
                 }
             }
         }
@@ -46,7 +46,8 @@ namespace UI.SampleScene
                 pausePanel.SetActive(true);
                 pauseButton.SetActive(false);
                 uiManager.ActivateUI();
-                dayNightCycle.PauseGame();
+                if(dayNightCycle)
+                    dayNightCycle.PauseGame();
             }
         }
 
@@ -55,7 +56,8 @@ namespace UI.SampleScene
             pausePanel.SetActive(false);
             pauseButton.SetActive(true);
             uiManager.DeactivateUI();
-            dayNightCycle.ResumeGame();
+            if(dayNightCycle)
+                dayNightCycle.ResumeGame();
         }
 
         public void OpenSettingsPanel()
@@ -125,14 +127,8 @@ namespace UI.SampleScene
             uiManager.DeactivateUI();
         }
 
-        public void SwitchOffPauseButton()
-        {
-            pauseButton.SetActive(false);
-        }
+        public void SwitchOffPauseButton() => pauseButton.SetActive(false);
 
-        public void OpenMainMenu()
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
-        }
+        public void OpenMainMenu() => UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
 }

@@ -11,17 +11,13 @@ namespace Player.Placement
         [SerializeField] private Tilemap tilemap;
 
         private Vector3 _lastPosition;
-        public event Action OnClickedRightButton, OnClickedLeftButton, OnExit;
+        public event Action OnClickedRightButton, OnExit;
 
         private void Update()
         {
             if (Input.GetMouseButtonDown(1))
             {
                 OnClickedRightButton?.Invoke();
-            }
-            if (Input.GetMouseButtonDown(0))
-            {
-                OnClickedLeftButton?.Invoke();
             }
             if (Input.GetKeyDown(KeyCode.Escape))
             {

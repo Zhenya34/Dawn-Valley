@@ -15,7 +15,9 @@ namespace UI.SampleScene
         private const int MaxPlayerHealth = 100;
         private const int MinPlayerHealth = 0;
         private TextMeshProUGUI _textComponent;
+        private Camera _camera;
 
+        private void Awake() => _camera = Camera.main;
 
         private void Start()
         {
@@ -25,18 +27,30 @@ namespace UI.SampleScene
 
         private void Update()
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0f;
-
-            float distance = Vector3.Distance(mousePosition, transform.position);
-
-            if (distance <= triggerRadius)
+            if(_camera)
             {
-                textObject.SetActive(true);
-            }
-            else
-            {
-                textObject.SetActive(false);
+                if (!Application.isFocused) return;
+                
+                Vector3 mouseScreenPos = Input.mousePosition;
+                
+                if (mouseScreenPos.x < 0 || mouseScreenPos.x > Screen.width ||
+                    mouseScreenPos.y < 0 || mouseScreenPos.y > Screen.height)
+                {
+                    return;
+                }
+                
+                Vector3 mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+                mousePosition.z = 0f;
+
+                float distance = Vector3.Distance(mousePosition, transform.position);
+                if (distance <= triggerRadius)
+                {
+                    textObject.SetActive(true);
+                }
+                else
+                {
+                    textObject.SetActive(false);
+                }
             }
         }
 

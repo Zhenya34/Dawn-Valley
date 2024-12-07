@@ -11,7 +11,7 @@ namespace Enviroment.Boat
         [SerializeField] private Transform player;
         [SerializeField] private bool itFirstBoat;
 
-        static private bool _hasTeleported = false;
+        static private bool _hasTeleported;
 
         private enum Tags
         {

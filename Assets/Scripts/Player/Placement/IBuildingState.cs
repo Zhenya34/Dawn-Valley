@@ -5,7 +5,7 @@ namespace Player.Placement
     public interface IBuildingState
     {
         void EndState();
-        void OnAction(Vector3Int gridPosition);
-        void UpdateState(Vector3Int gridPosition);
+        void OnAction(Vector2Int gridPosition);
+        void UpdateState(Vector2Int gridPosition);
     }
 }

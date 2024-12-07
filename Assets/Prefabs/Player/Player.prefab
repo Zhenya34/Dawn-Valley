@@ -47,16 +47,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83b54aa4951769243869c8804f01d52a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputManager: {fileID: 0}
-  _grid: {fileID: 0}
-  _database: {fileID: 11400000, guid: 9c9c9fad49575e541933aa8792cca35b, type: 2}
-  _gridVisualization: {fileID: 0}
-  _correctPlacementClip: {fileID: 0}
-  _wrongPlacementClip: {fileID: 0}
-  _source: {fileID: 0}
-  _preview: {fileID: 1102844077736294591}
-  _objectPlacer: {fileID: 2195870485115097156}
-  _soundFeedback: {fileID: 1228343101752392085}
+  inputManager: {fileID: 0}
+  grid: {fileID: 0}
+  database: {fileID: 11400000, guid: 68e662cfb53e2f447935afb8e70c4d77, type: 2}
+  gridVisualization: {fileID: 0}
+  correctPlacementClip: {fileID: 0}
+  wrongPlacementClip: {fileID: 0}
+  source: {fileID: 3891609518556725047}
+  preview: {fileID: 1102844077736294591}
+  objectPlacer: {fileID: 2195870485115097156}
+  soundFeedback: {fileID: 1228343101752392085}
 --- !u!114 &1102844077736294591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,11 +69,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bfc62c81e8150c4196940bf939899d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _previewYOffset: 0.06
-  _cellIndicator: {fileID: 0}
-  _previewObject: {fileID: 0}
-  _previewMaterialPrefab: {fileID: 0}
-  _previewMaterialInstance: {fileID: 0}
+  cellIndicator: {fileID: 0}
+  grid: {fileID: 0}
 --- !u!114 &2195870485115097156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,7 +83,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182c7fe1d23a51149840be8e616c1e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _placedGameObjects: []
 --- !u!114 &1228343101752392085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +99,7 @@ MonoBehaviour:
   placeSound: {fileID: 0}
   removeSound: {fileID: 0}
   wrongPlacementSound: {fileID: 0}
-  _audioSource: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &1185901559827872533
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,8 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7a418022ccd00f4a9157672e65d229d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wateringCanLogic: {fileID: 4566911252269265720}
-  _hoeLogic: {fileID: 8382391527557088164}
+  wateringCanLogic: {fileID: 4566911252269265720}
+  hoeLogic: {fileID: 8382391527557088164}
 --- !u!212 &596991918115300723
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -269,10 +265,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93af8c2a05cd95e4b866f42e68488f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _triggerFrameRadius: 3.5
-  _toolsRadius: 2.6
-  _tileSelector: {fileID: 4622805209177197933}
-  _playerAnim: {fileID: 7588711494444571899}
+  triggerFrameRadius: 3.5
+  toolsRadius: 2.6
+  tileSelector: {fileID: 4622805209177197933}
+  playerAnim: {fileID: 7588711494444571899}
 --- !u!1 &4795924863943822867
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,6 +424,7 @@ GameObject:
   - component: {fileID: 7406810469871532983}
   - component: {fileID: 7176944764366030000}
   - component: {fileID: 3098745980859448731}
+  - component: {fileID: 3891609518556725047}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -467,7 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8aa24385d184dc4d97cbc5a854555c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 6.5
+  moveSpeed: 5
 --- !u!114 &7588711494444571899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,11 +477,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9614f8c0889dd2445ae105add9011c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 365098221235394365}
-  _timeBeforeBlinking: 3
-  _toolSwitcher: {fileID: 0}
-  _holdThresholdForLeftButton: 0.4
-  _holdThresholdForRightButton: 0.1
+  animator: {fileID: 365098221235394365}
+  timeBeforeBlinking: 3
+  toolSwitcher: {fileID: 0}
+  holdThresholdForLeftButton: 0.4
+  holdThresholdForRightButton: 0.1
 --- !u!114 &4566911252269265720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,15 +494,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7958b7ab69c8ae4fb263ae158087f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _toolSwitcher: {fileID: 0}
-  _tilemap: {fileID: 0}
-  _dryDirtTile: {fileID: 11400000, guid: 9fa343e3a1f8f6247b03a28f36e43747, type: 2}
-  _wetDirtTile: {fileID: 11400000, guid: b5132a4091898f14b98596eb58085035, type: 2}
-  _dryGardenBedTile: {fileID: 11400000, guid: f03c6afb80f37cd42906ded8c83269e6, type: 2}
-  _wetGardenBedTile: {fileID: 11400000, guid: 9cea03a0420092144bc51af2cf13ac4f, type: 2}
-  _wateringCanUses: 5
-  _wetDuration: 3
-  _dayNightCycle: {fileID: 0}
+  toolSwitcher: {fileID: 0}
+  tilemap: {fileID: 0}
+  dryDirtTile: {fileID: 11400000, guid: 9fa343e3a1f8f6247b03a28f36e43747, type: 2}
+  wetDirtTile: {fileID: 11400000, guid: b5132a4091898f14b98596eb58085035, type: 2}
+  dryGardenBedTile: {fileID: 11400000, guid: f03c6afb80f37cd42906ded8c83269e6, type: 2}
+  wetGardenBedTile: {fileID: 11400000, guid: 9cea03a0420092144bc51af2cf13ac4f, type: 2}
+  wateringCanUses: 5
+  wetDuration: 3
+  dayNightCycle: {fileID: 0}
 --- !u!114 &8382391527557088164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,16 +515,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b74b3f7dba44c489e567223a2751ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tilemap: {fileID: 0}
-  _grassTile: {fileID: 11400000, guid: 64711b34377739f4ab7c27177f327ae9, type: 2}
-  _dirtTile: {fileID: 11400000, guid: 9fa343e3a1f8f6247b03a28f36e43747, type: 2}
-  _gardenBed: {fileID: 11400000, guid: f03c6afb80f37cd42906ded8c83269e6, type: 2}
-  _wetGardenBed: {fileID: 11400000, guid: 9cea03a0420092144bc51af2cf13ac4f, type: 2}
-  _wetDirtTile: {fileID: 11400000, guid: b5132a4091898f14b98596eb58085035, type: 2}
-  _toolswitcher: {fileID: 0}
-  _dayNightCycle: {fileID: 0}
-  _playerImpactRadius: {fileID: 7458653154327168871}
-  _daysBeforeDirtBecomeGrass: 4
+  tilemap: {fileID: 0}
+  grassTile: {fileID: 11400000, guid: 64711b34377739f4ab7c27177f327ae9, type: 2}
+  dirtTile: {fileID: 11400000, guid: 9fa343e3a1f8f6247b03a28f36e43747, type: 2}
+  gardenBed: {fileID: 11400000, guid: f03c6afb80f37cd42906ded8c83269e6, type: 2}
+  wetGardenBed: {fileID: 11400000, guid: 9cea03a0420092144bc51af2cf13ac4f, type: 2}
+  wetDirtTile: {fileID: 11400000, guid: b5132a4091898f14b98596eb58085035, type: 2}
+  toolSwitcher: {fileID: 0}
+  dayNightCycle: {fileID: 0}
+  playerImpactRadius: {fileID: 7458653154327168871}
+  daysBeforeDirtBecomeGrass: 4
 --- !u!114 &6152273032351284133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,12 +537,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6d6917be047b094888ea3a44be888a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAnim: {fileID: 7588711494444571899}
-  _mainCamera: {fileID: 6490556927211532068}
-  _tilemap: {fileID: 0}
-  _tilledTile: {fileID: 11400000, guid: f03c6afb80f37cd42906ded8c83269e6, type: 2}
-  _itemUsageManager: {fileID: 5602291912188726837}
-  _dayNightCycle: {fileID: 0}
+  playerAnim: {fileID: 7588711494444571899}
+  mainCamera: {fileID: 6490556927211532068}
+  tilemap: {fileID: 0}
+  gardenBedTile: {fileID: 11400000, guid: f03c6afb80f37cd42906ded8c83269e6, type: 2}
+  wetGardenBedTile: {fileID: 11400000, guid: 9cea03a0420092144bc51af2cf13ac4f, type: 2}
+  itemUsageManager: {fileID: 5602291912188726837}
+  dayNightCycle: {fileID: 0}
 --- !u!114 &5602291912188726837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,11 +556,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22bf0502f1d9a3e4cb9178fbd76775d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemDatabase: {fileID: 0}
-  _plantingSystem: {fileID: 6152273032351284133}
-  _fencesManager: {fileID: 0}
-  _wicketManager: {fileID: 0}
-  _inventoryManager: {fileID: 0}
+  itemDatabase: {fileID: 0}
+  plantingSystem: {fileID: 6152273032351284133}
+  fencesManager: {fileID: 0}
+  wicketManager: {fileID: 0}
+  inventoryManager: {fileID: 0}
+  placementSystem: {fileID: 1625238265123934739}
+  objectsDatabaseSo: {fileID: 11400000, guid: 68e662cfb53e2f447935afb8e70c4d77, type: 2}
 --- !u!114 &7406810469871532983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,8 +575,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f1e6c3050b92b4ebe8cd722c3110f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemDatabase: {fileID: 0}
-  _inventoryManager: {fileID: 0}
+  itemDatabase: {fileID: 0}
+  inventoryManager: {fileID: 0}
 --- !u!50 &7176944764366030000
 Rigidbody2D:
   serializedVersion: 4
@@ -639,6 +639,102 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.44}
   m_Size: {x: 0.88, y: 0.88}
   m_Direction: 0
+--- !u!82 &3891609518556725047
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7289750717197545862}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1.7576022
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7608230785617686848
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,6 +779,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f37ea9a19c6f0f469d08fedce351605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _framePrefab: {fileID: 0}
-  _mainCamera: {fileID: 6490556927211532068}
-  _tilemap: {fileID: 0}
+  framePrefab: {fileID: 0}
+  tilemap: {fileID: 0}

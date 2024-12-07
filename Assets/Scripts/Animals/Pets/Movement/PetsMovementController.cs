@@ -1,8 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using Animals.Pets.Bee;
+using Animals.Pets.CrawlingPets;
 using Animals.Pets.Ghost;
 using Animals.Pets.globalAnimControllers;
-using Animals.Pets.Namespace;
+using Animals.Pets.Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,13 +16,17 @@ namespace Animals.Pets.Movement
         [SerializeField] private float followRadius;
         [SerializeField] private float avoidRadius;
         [SerializeField] private SpriteRenderer sr;
+        [SerializeField] private float teleportThreshold;
+        [SerializeField] private float teleportCheckInterval = 1f;
         [SerializeField] private NavMeshAgent navMeshAgent;
-        [SerializeField] private GlobalPetAnimController globalPetAnimController;
+        [SerializeField] private PetAnimController petAnimController;
         [SerializeField] private CrawlingPetAnimController crawlingPetAnimController;
         [SerializeField] private GhostPetAnimController ghostPetAnimController;
         [SerializeField] private BeePetAnimController beePetAnimController;
 
-        private bool _isNightTime = false;
+        private bool _isNightTime;
+        private bool _isStopped;
+        private Coroutine _teleportCoroutine;
 
         private void Awake()
         {
@@ -35,21 +41,59 @@ namespace Animals.Pets.Movement
             if (distanceToPlayer > followRadius)
             {
                 MoveTowardsPlayer();
+                StartTeleportCoroutine();
             }
             else if (distanceToPlayer < avoidRadius)
             {
                 MoveAwayFromPlayer();
+                StopTeleportCoroutine();
             }
             else
             {
                 StopMovement();
+                StopTeleportCoroutine();
             }
 
             UpdateSpriteDirection();
+            UpdateNightTimeForControllers();
+        }
+
+        private void StartTeleportCoroutine()
+        {
+            if (_teleportCoroutine == null) _teleportCoroutine = StartCoroutine(CheckDistanceToPlayer());
+        }
+
+        private void StopTeleportCoroutine()
+        {
+            if (_teleportCoroutine != null)
+            {
+                StopCoroutine(_teleportCoroutine);
+                _teleportCoroutine = null;
+            }
+        }
+
+        private IEnumerator CheckDistanceToPlayer()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(teleportCheckInterval);
+                float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        
+                if (distanceToPlayer > teleportThreshold) TeleportToPlayer();
+
+                if (distanceToPlayer <= followRadius)
+                    yield break;
+            }
+        }
+
+        private void TeleportToPlayer()
+        {
+            transform.position = player.position;
         }
 
         private void MoveTowardsPlayer()
         {
+            _isStopped = false;
             navMeshAgent.SetDestination(player.position);
             navMeshAgent.isStopped = false;
             SetRunningAnimation();
@@ -70,51 +114,57 @@ namespace Animals.Pets.Movement
 
         private void StopMovement()
         {
+            if (_isStopped) return;
+            _isStopped = true;
             navMeshAgent.isStopped = true;
-            UpdateNightTimeForControllers();
+
+            List<IStateChangeController> stateChangeControllers = new()
+            {
+                beePetAnimController,
+                ghostPetAnimController,
+                crawlingPetAnimController
+            };
+
+            foreach (var controller in stateChangeControllers)
+            {
+                controller?.StartChangingStates();
+            }
         }
 
         private void SetRunningAnimation()
         {
-            globalPetAnimController.SetRunningAnimation();
-            UpdateNightTimeForControllers();
-        }
-
-        private void UpdateNightTimeForControllers()
-        {
-            List<INightTimeController> nightTimeControllers = new()
+            List<IStateChangeController> stateChangeControllers = new()
             {
                 beePetAnimController,
                 ghostPetAnimController,
-                crawlingPetAnimController,
-                globalPetAnimController
+                crawlingPetAnimController
             };
-
-            foreach (var controller in nightTimeControllers)
+            foreach (var controller in stateChangeControllers)
             {
-                if (controller != null)
-                {
-                    if (_isNightTime)
-                    {
-                        controller.ActivateNightTime();
-                    }
-                    else
-                    {
-                        controller.DeactivateNightTime();
-                    }
-                }
+                controller?.StopChangingStates();
+            }
+            petAnimController?.SetRunningAnimation();
+        }
+
+        public void UpdateNightTimeForControllers()
+        {
+            if (!petAnimController)
+                return;
+
+            if (_isNightTime)
+            {
+                StopMovement();
+                petAnimController.ActivateNightTime();
+            }
+            else
+            {
+                petAnimController.DeactivateNightTime();
             }
         }
 
-        public void ActivateNightTime()
-        {
-            _isNightTime = true;
-        }
+        public void ActivateNightTime() => _isNightTime = true;
 
-        public void DeactivateNightTime()
-        {
-            _isNightTime = false;
-        }
+        public void DeactivateNightTime() => _isNightTime = false;
 
         private void UpdateSpriteDirection()
         {

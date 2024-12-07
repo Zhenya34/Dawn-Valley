@@ -23,10 +23,7 @@ namespace Animals.Animals
             Walking
         }
 
-        private void Start()
-        {
-            _startingPosition = transform.position;
-        }
+        private void Start() => _startingPosition = transform.position;
 
         private void Awake()
         {
