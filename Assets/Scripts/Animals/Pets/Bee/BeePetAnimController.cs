@@ -20,10 +20,7 @@ namespace Animals.Pets.Bee
             GenerateRandomDelay();
             yield return new WaitForSeconds(DelayDuration);
 
-            if (spriteRenderer.flipX)
-                animator.SetTrigger(Triggers.CoupFlipped.ToString());
-            else
-                animator.SetTrigger(Triggers.Coup.ToString());
+            animator.SetTrigger(spriteRenderer.flipX ? Triggers.CoupFlipped.ToString() : Triggers.Coup.ToString());
 
             _flipCoroutine = null;
 
@@ -34,8 +31,7 @@ namespace Animals.Pets.Bee
         public void StartChangingStates()
         {
             CanChangeState = true;
-            if (_flipCoroutine == null)
-                _flipCoroutine = StartCoroutine(ChangeStateAfterTime());
+            _flipCoroutine ??= StartCoroutine(ChangeStateAfterTime());
         }
 
         public void StopChangingStates()

@@ -147,7 +147,7 @@ namespace Player
 
         private void ActivateLeftToolTrigger()
         {
-            if (_toolsAllowed == true)
+            if (_toolsAllowed)
             {
                 animator.SetTrigger(AnimationState.LeftButtonIsActive.ToString());
             }
@@ -155,7 +155,7 @@ namespace Player
 
         private void ActivateRightToolTrigger()
         {
-            if (_toolsAllowed == true)
+            if (_toolsAllowed)
             {
                 animator.SetTrigger(AnimationState.RightButtonIsActive.ToString());
             }

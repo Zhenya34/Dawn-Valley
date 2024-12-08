@@ -56,12 +56,11 @@ namespace Enviroment.Time
         private void EnterNight()
         {
             ActivateLamps(true);
-
             foreach (var petController in petsMovementControllers)
             {
-                if (petController || !petController.gameObject.activeInHierarchy)
+                if (!petController.gameObject.activeInHierarchy)
                     continue;
-
+                
                 petController.ActivateNightTime();
                 petController.UpdateNightTimeForControllers();
             }
@@ -121,6 +120,11 @@ namespace Enviroment.Time
                     _plantsGrowth.RemoveAt(i);
                 }
             }
+        }
+        
+        public float GetCurrentShadowIntensity()
+        {
+            return Mathf.Clamp01(1 - Mathf.Abs(_currentTimeOfDay - 0.5f) * 2);
         }
 
         public void AddPlant(PlantsGrowth plant) => _plantsGrowth.Add(plant);

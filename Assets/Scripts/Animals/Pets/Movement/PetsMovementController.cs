@@ -60,7 +60,7 @@ namespace Animals.Pets.Movement
 
         private void StartTeleportCoroutine()
         {
-            if (_teleportCoroutine == null) _teleportCoroutine = StartCoroutine(CheckDistanceToPlayer());
+            _teleportCoroutine ??= StartCoroutine(CheckDistanceToPlayer());
         }
 
         private void StopTeleportCoroutine()

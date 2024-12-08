@@ -1,3 +1,4 @@
+using Enviroment.Fences;
 using Player;
 using Player.Placement;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace UI.SampleScene
         [SerializeField] private PlayerAnimation playerAnim;
         [SerializeField] private Sprite[] toolSprites;
         [SerializeField] private PlacementSystem placementSystem;
+        [SerializeField] private FencesManager fencesManager;
 
         private ToolType _currentTool = ToolType.Hand;
         private bool _isToolChangeAvaliable;
@@ -54,7 +56,20 @@ namespace UI.SampleScene
                     playerAnim.UpdateToolType(_currentTool);
                     UpdateToolIcon();
                     UpdatePlacementMode();
+                    UpdateFenceRemovingMode();
                 }
+            }
+        }
+
+        private void UpdateFenceRemovingMode()
+        {
+            if (ToolType.Axe == _currentTool)
+            {
+                fencesManager.StartRemoving();
+            }
+            else
+            {
+                fencesManager.StopRemoving();
             }
         }
 

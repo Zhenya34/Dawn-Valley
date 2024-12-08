@@ -12,23 +12,44 @@ namespace Enviroment.Fences
         [SerializeField] private GameObject verticalConnectionPrefab;
         [SerializeField] private GameObject fencePrefab;
         [SerializeField] private ItemUsageManager itemUsageManager;
+        [SerializeField] private InventoryManager inventoryManager;
 
         private readonly List<GameObject> _allFences = new();
+        private readonly List<GameObject> _allConnections = new();
         private bool _canPlace;
+        private bool _isRemovingMode;
         private InventorySlot _currentSlot;
+        private float _holdTimer;
+        private const float HoldThreshold = 0.5f;
 
         private void Update()
         {
             if (_canPlace)
             {
-                if (Input.GetMouseButtonDown(1) && itemUsageManager.HasItemInInventory(Item.GlobalItemType.Fence))
+                HandleFencePlacement();
+            }
+
+            if (_isRemovingMode)
+            {
+                HandleFenceRemoving();
+            }
+        }
+
+        private void HandleFencePlacement()
+        {
+            if (Input.GetMouseButtonDown(1) && itemUsageManager.HasItemInInventory(Item.GlobalItemType.Fence))
+            {
+                if (Camera.main)
                 {
                     Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     Vector3Int tilePos = tilemap.WorldToCell(mouseWorldPos);
+                    
+                    Vector3 adjustedPos = tilemap.GetCellCenterWorld(tilePos);
+                    adjustedPos.z = 0f;
 
                     if (!IsFenceAtPosition(tilePos))
                     {
-                        GameObject newFence = Instantiate(fencePrefab, tilemap.GetCellCenterWorld(tilePos), Quaternion.identity);
+                        GameObject newFence = Instantiate(fencePrefab, adjustedPos, Quaternion.identity);
                         _allFences.Add(newFence);
 
                         itemUsageManager.UpdateCountOfItem(_currentSlot);
@@ -43,6 +64,57 @@ namespace Enviroment.Fences
                         }
                     }
                 }
+            }
+        }
+        
+        private void HandleFenceRemoving()
+        {
+            if (Input.GetMouseButton(0))
+            {
+                _holdTimer += UnityEngine.Time.deltaTime;
+
+                if (_holdTimer >= HoldThreshold)
+                {
+                    if (Camera.main)
+                    {
+                        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        Vector3Int tilePos = tilemap.WorldToCell(mouseWorldPos);
+
+                        if (IsFenceAtPosition(tilePos))
+                        {
+                            RemoveFenceAtPosition(tilePos);
+                        }
+                    }
+
+                    _holdTimer = 0.0f;
+                }
+            }
+            else
+            {
+                _holdTimer = 0.0f;
+            }
+        }
+        
+        private void RemoveFenceAtPosition(Vector3Int tilePos)
+        {
+            GameObject fenceToRemove = null;
+    
+            foreach (var fence in _allFences)
+            {
+                Vector3Int fencePos = tilemap.WorldToCell(fence.transform.position);
+                if (fencePos == tilePos)
+                {
+                    fenceToRemove = fence;
+                    break;
+                }
+            }
+
+            if (fenceToRemove)
+            {
+                inventoryManager.AddItem("ShopItem Fence", 1);
+                _allFences.Remove(fenceToRemove);
+                RemoveConnections(fenceToRemove);
+                Destroy(fenceToRemove);
             }
         }
 
@@ -69,25 +141,54 @@ namespace Enviroment.Fences
             Vector3 midPoint = (fenceA.transform.position + fenceB.transform.position) / 2f;
             Vector3 direction = fenceB.transform.position - fenceA.transform.position;
 
+            GameObject connection = null;
+
             if (Mathf.Approximately(direction.x, 0f))
             {
-                InstantiateFencePrefab(verticalConnectionPrefab, midPoint, direction, true);
+                connection = Instantiate(verticalConnectionPrefab, midPoint, Quaternion.identity);
+                connection.transform.up = direction;
             }
             else if (Mathf.Approximately(direction.y, 0f))
             {
-                InstantiateFencePrefab(horizontalConnectionPrefab, midPoint, direction, false);
+                connection = Instantiate(horizontalConnectionPrefab, midPoint, Quaternion.identity);
+                connection.transform.right = direction;
+            }
+
+            if (connection)
+            {
+                _allConnections.Add(connection);
             }
         }
-
-        private void InstantiateFencePrefab(GameObject connectionPrefab, Vector3 midPoint, Vector3 direction, bool isVertical)
+        
+        private void RemoveConnections(GameObject fence)
         {
-            GameObject connection = Instantiate(connectionPrefab, midPoint, Quaternion.identity);
+            List<GameObject> connectionsToRemove = new();
 
-            if (isVertical)
-                connection.transform.up = direction;
-            else
-                connection.transform.right = direction;
+            foreach (var connection in _allConnections)
+            {
+                foreach (var otherFence in _allFences)
+                {
+                    if (otherFence == fence) continue;
+
+                    Vector3 expectedMidPoint = (fence.transform.position + otherFence.transform.position) / 2f;
+
+                    if (Vector3.Distance(connection.transform.position, expectedMidPoint) < 0.1f)
+                    {
+                        connectionsToRemove.Add(connection);
+                    }
+                }
+            }
+
+            foreach (var connection in connectionsToRemove)
+            {
+                _allConnections.Remove(connection);
+                Destroy(connection);
+            }
         }
+        
+        public void StartRemoving() => _isRemovingMode = true;
+
+        public void StopRemoving() => _isRemovingMode = false;
 
         public void SetFence(InventorySlot slot) => _currentSlot = slot;
 

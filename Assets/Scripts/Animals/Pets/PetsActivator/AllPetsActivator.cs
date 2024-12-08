@@ -10,7 +10,7 @@ namespace Animals.Pets.PetsActivator
         {
             GameObject petObject = FindPetByName(petName);
 
-            if (petObject != null)
+            if (petObject)
             {
                 petObject.SetActive(true);
                 TeleportPetToPlayer(petObject);
@@ -21,7 +21,7 @@ namespace Animals.Pets.PetsActivator
         {
             GameObject petObject = FindPetByName(petName);
 
-            if (petObject != null)
+            if (petObject)
             {
                 petObject.SetActive(false);
             }
@@ -41,7 +41,7 @@ namespace Animals.Pets.PetsActivator
 
         private void TeleportPetToPlayer(GameObject petObject)
         {
-            if (player != null)
+            if (player)
             {
                 petObject.transform.position = player.position;
             }
