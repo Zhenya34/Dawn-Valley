@@ -11,10 +11,7 @@ namespace Enviroment.Well
 
         private void OnMouseDown()
         {
-            if (toolSwitcher.GetCurrentTool() == ToolSwitcher.ToolType.WateringCan)
-            {
-                wateringCanLogic.RefillWateringCan();
-            }
+            if (toolSwitcher.GetCurrentTool() == ToolSwitcher.ToolType.WateringCan) wateringCanLogic.RefillWateringCan();
         }
     }
 }

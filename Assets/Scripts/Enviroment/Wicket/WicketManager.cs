@@ -16,18 +16,15 @@ namespace Enviroment.Wicket
 
         private void Update()
         {
-            if (_canPlace)
-            {
-                if (Input.GetMouseButtonDown(1) && itemUsageManager.HasItemInInventory(Item.GlobalItemType.Wicket))
-                {
-                    Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    Vector3Int tilePos = tilemap.WorldToCell(mouseWorldPos);
+            if (!_canPlace) return;
+            if (!Input.GetMouseButtonDown(1) ||
+                !itemUsageManager.HasItemInInventory(Item.GlobalItemType.Wicket)) return;
+            var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var tilePos = tilemap.WorldToCell(mouseWorldPos);
                 
-                    if (IsTileEmpty(tilePos))
-                    {
-                        CreateGate(tilePos);
-                    }
-                }
+            if (IsTileEmpty(tilePos))
+            {
+                CreateGate(tilePos);
             }
         }
 
@@ -36,10 +33,10 @@ namespace Enviroment.Wicket
         private void CreateGate(Vector3Int tilePos)
         {
             GameObject newGate;
-            bool hasTopNeighbor = IsNeighbor(tilePos, Vector3Int.up);
-            bool hasBottomNeighbor = IsNeighbor(tilePos, Vector3Int.down);
-            bool hasLeftNeighbor = IsNeighbor(tilePos, Vector3Int.left);
-            bool hasRightNeighbor = IsNeighbor(tilePos, Vector3Int.right);
+            var hasTopNeighbor = IsNeighbor(tilePos, Vector3Int.up);
+            var hasBottomNeighbor = IsNeighbor(tilePos, Vector3Int.down);
+            var hasLeftNeighbor = IsNeighbor(tilePos, Vector3Int.left);
+            var hasRightNeighbor = IsNeighbor(tilePos, Vector3Int.right);
 
             if (hasTopNeighbor && hasBottomNeighbor)
             {
@@ -62,13 +59,13 @@ namespace Enviroment.Wicket
 
         private void InitializeGateController(bool isHorizontal, GameObject newGate)
         {
-            WicketController gateController = newGate.AddComponent<WicketController>();
+            var gateController = newGate.AddComponent<WicketController>();
             gateController.Initialize(isHorizontal);
         }
 
         private bool IsNeighbor(Vector3Int position, Vector3Int direction)
         {
-            Vector3Int neighborPos = position + direction;
+            var neighborPos = position + direction;
             return tilemap.GetTile(neighborPos);
         }
 

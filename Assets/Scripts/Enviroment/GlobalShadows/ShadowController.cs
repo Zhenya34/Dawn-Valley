@@ -13,7 +13,7 @@ namespace Enviroment.GlobalShadows
 
         public void SetShadowAlpha(int alpha)
         {
-            float normalizedAlpha = Mathf.Clamp01(alpha / 132f);
+            var normalizedAlpha = Mathf.Clamp01(alpha / 132f);
             var color =_spriteRenderer.color;
             color.a = normalizedAlpha / 2;
             _spriteRenderer.color = color;

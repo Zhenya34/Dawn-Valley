@@ -10,7 +10,7 @@ namespace Enviroment.ItemCollecting
 
         public void CollectItem(Sprite itemSprite)
         {
-            Item item = itemDatabase.GetItemBySprite(itemSprite);
+            var item = itemDatabase.GetItemBySprite(itemSprite);
 
             if (item != null)
             {

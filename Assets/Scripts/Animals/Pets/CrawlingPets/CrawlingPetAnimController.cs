@@ -33,8 +33,7 @@ namespace Animals.Pets.CrawlingPets
         public void StartChangingStates()
         {
             CanChangeState = true;
-            if (_stateCoroutine == null)
-                _stateCoroutine = StartCoroutine(ChangeStateAfterTime());
+            _stateCoroutine ??= StartCoroutine(ChangeStateAfterTime());
         }
 
         public void StopChangingStates()

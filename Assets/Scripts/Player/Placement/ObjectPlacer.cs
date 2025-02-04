@@ -16,24 +16,22 @@ namespace Player.Placement
         
         public int PlaceObject(GameObject prefab, Vector3 position)
         {
-            GameObject newObject = Instantiate(prefab);
+            var newObject = Instantiate(prefab);
             newObject.transform.position = position;
             _placedGameObjects.Add(newObject);
             
             itemUsageManager.UpdateCountOfItem(_currentSlot);
-            
-            if (newObject.TryGetComponent<Light2D>(out var lightComponent))
+
+            if (!newObject.TryGetComponent<Light2D>(out var lightComponent)) return _placedGameObjects.Count - 1;
+            try
             {
-                try
-                {
-                    dayNightCycle.AddLamp(lightComponent);
-                }
-                catch (System.Exception ex)
-                {
-                    Debug.LogError(ex.Message);
-                }
+                dayNightCycle.AddLamp(lightComponent);
             }
-            
+            catch (System.Exception ex)
+            {
+                Debug.LogError(ex.Message);
+            }
+
             return _placedGameObjects.Count - 1;
         }
         

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UI.SampleScene.Inventory;
 using UnityEngine;
@@ -34,16 +35,12 @@ namespace UI.SampleScene.Shop
 
         private void OnMouseDown()
         {
-            if (!uiManager.IsUIActive())
-            {
-                float distance = Vector3.Distance(player.transform.position, transform.position);
-                if (distance <= shopRadius)
-                {
-                    shopPanel.SetActive(true);
-                    uiManager.ActivateUI();
-                    sampleSceneCanvasLogic.SwitchOffPauseButton();
-                }
-            }
+            if (uiManager.IsUIActive()) return;
+            var distance = Vector3.Distance(player.transform.position, transform.position);
+            if (!(distance <= shopRadius)) return;
+            shopPanel.SetActive(true);
+            uiManager.ActivateUI();
+            sampleSceneCanvasLogic.SwitchOffPauseButton();
         }
 
         private void InitializeShop()
@@ -60,14 +57,11 @@ namespace UI.SampleScene.Shop
 
         private void AddToCart(ShopItem shopItem)
         {
-            if (_cart.ContainsKey(shopItem.itemName))
+            if (!_cart.TryAdd(shopItem.itemName, 1))
             {
                 _cart[shopItem.itemName]++;
             }
-            else
-            {
-                _cart[shopItem.itemName] = 1;
-            }
+
             UpdateQuantityText(shopItem.itemName);
         }
 
@@ -75,36 +69,23 @@ namespace UI.SampleScene.Shop
         {
             foreach (var shopItem in shopItems)
             {
-                if (shopItem.itemName == itemName)
-                {
-                    shopItem.itemQuantityText.text = _cart[itemName].ToString();
-                    break;
-                }
+                if (shopItem.itemName != itemName) continue;
+                shopItem.itemQuantityText.text = _cart[itemName].ToString();
+                break;
             }
         }
 
         private void ConfirmPurchase()
         {
-            int totalCost = 0;
-            foreach (var entry in _cart)
-            {
-                Item item = itemDatabase.GetItemByName(entry.Key);
-                if (item != null)
-                {
-                    totalCost += item.purchasePrice * entry.Value;
-                }
-            }
+            var totalCost = (from entry in _cart let item = itemDatabase.GetItemByName(entry.Key) where item != null select item.purchasePrice * entry.Value).Sum();
 
             if (playerCoinsWallet.SpendCoins(totalCost))
             {
-                foreach (var entry in _cart)
+                foreach (var entry in from entry in _cart let purchasedItem = itemDatabase.GetItemByName(entry.Key) where purchasedItem != null select entry)
                 {
-                    Item purchasedItem = itemDatabase.GetItemByName(entry.Key);
-                    if (purchasedItem != null)
-                    {
-                        inventoryManager.AddItem(entry.Key, entry.Value);
-                    }
+                    inventoryManager.AddItem(entry.Key, entry.Value);
                 }
+
                 ClearCart();
             }
             else

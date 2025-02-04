@@ -67,11 +67,9 @@ namespace Player
             {
                 _holdTimer += Time.deltaTime;
 
-                if (_holdTimer >= holdThreshold && !isButtonHolding)
-                {
-                    isButtonHolding = true;
-                    animator.SetBool(animationState, true);
-                }
+                if (!(_holdTimer >= holdThreshold) || isButtonHolding) return;
+                isButtonHolding = true;
+                animator.SetBool(animationState, true);
             }
             else
             {
@@ -87,19 +85,13 @@ namespace Player
         private void UpdateLastMovementDirection()
         {
             if (_horizontalInput != 0)
-            {
                 _lastMovementDirection = (_horizontalInput > 0) ? Vector2.right : Vector2.left;
-            }
             else if (_verticalInput != 0)
-            {
                 _lastMovementDirection = (_verticalInput > 0) ? Vector2.up : Vector2.down;
-            }
-            else if(_horizontalInput == 0 && _verticalInput == 0)
-            {
+            else if(_horizontalInput == 0 && _verticalInput == 0) 
                 animator.SetBool(AnimationState.IsMoving.ToString(), false);
-            }
 
-            bool isMoving = _horizontalInput != 0 || _verticalInput != 0;
+            var isMoving = _horizontalInput != 0 || _verticalInput != 0;
             animator.SetBool(AnimationState.IsMoving.ToString(), isMoving);
         }
 
@@ -123,47 +115,33 @@ namespace Player
 
         private void SetBlendValue()
         {
-            float blendValue = 0f;
+            var blendValue = 0f;
 
             if (_lastMovementDirection == Vector2.up)
-            {
                 blendValue = 0.66f;
-            }
             else if (_lastMovementDirection == Vector2.right)
-            {
                 blendValue = 1f;
-            }
             else if (_lastMovementDirection == Vector2.down)
-            {
                 blendValue = 0.33f;
-            }
-            else if(_lastMovementDirection == Vector2.left)
-            {
+            else if(_lastMovementDirection == Vector2.left) 
                 blendValue = 0f;
-            }
 
             animator.SetFloat(AnimationState.Blend.ToString(), blendValue);
         }
 
         private void ActivateLeftToolTrigger()
         {
-            if (_toolsAllowed)
-            {
-                animator.SetTrigger(AnimationState.LeftButtonIsActive.ToString());
-            }
+            if (_toolsAllowed) animator.SetTrigger(AnimationState.LeftButtonIsActive.ToString());
         }
 
         private void ActivateRightToolTrigger()
         {
-            if (_toolsAllowed)
-            {
-                animator.SetTrigger(AnimationState.RightButtonIsActive.ToString());
-            }
+            if (_toolsAllowed) animator.SetTrigger(AnimationState.RightButtonIsActive.ToString());
         }
 
         public void UpdateToolType(ToolType toolType)
         {
-            int toolIndex = (int)toolType;
+            var toolIndex = (int)toolType;
             animator.SetInteger(AnimationState.ToolType.ToString(), toolIndex);
         } 
 

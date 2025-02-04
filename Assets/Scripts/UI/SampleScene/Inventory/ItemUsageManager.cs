@@ -1,3 +1,4 @@
+using System.Linq;
 using Enviroment.Fences;
 using Enviroment.Plants;
 using Enviroment.Wicket;
@@ -36,7 +37,7 @@ namespace UI.SampleScene.Inventory
                 return;
             }
 
-            Item item = GetItemFromSlot(slot);
+            var item = GetItemFromSlot(slot);
             _currentSlot = slot;
             _isItemBeingUsed = true;
 
@@ -49,17 +50,15 @@ namespace UI.SampleScene.Inventory
 
         private void DefineTheObject(Item item, InventorySlot slot)
         {
-            if (item.globalItemType != GlobalItemType.None)
-            {
-                GlobalItemType itemType = item.globalItemType;
-                UseItem(slot, item, itemType);
-            }
+            if (item.globalItemType == GlobalItemType.None) return;
+            var itemType = item.globalItemType;
+            UseItem(slot, item, itemType);
         }
 
         private Item GetItemFromSlot(InventorySlot slot)
         {
-            Sprite itemSprite = slot.GetItemSprite();
-            Item item = itemDatabase.GetItemBySprite(itemSprite);
+            var itemSprite = slot.GetItemSprite();
+            var item = itemDatabase.GetItemBySprite(itemSprite);
             return item;
         }
 
@@ -76,7 +75,7 @@ namespace UI.SampleScene.Inventory
 
         private void UseItem(InventorySlot slot, Item item ,GlobalItemType itemType)
         {
-            int itemQuantity = slot.GetQuantity();
+            var itemQuantity = slot.GetQuantity();
 
             if (itemQuantity <= 0)
             {
@@ -86,7 +85,7 @@ namespace UI.SampleScene.Inventory
 
             if(itemType == GlobalItemType.Seed)
             {
-                Seed seed = itemDatabase.GetSeedByItem(item);
+                var seed = itemDatabase.GetSeedByItem(item);
 
                 if (seed)
                 {
@@ -111,7 +110,7 @@ namespace UI.SampleScene.Inventory
 
         public void UpdateCountOfItem(InventorySlot slot)
         {
-            int itemQuantity = slot.GetQuantity();
+            var itemQuantity = slot.GetQuantity();
             itemQuantity--;
             if (itemQuantity <= 0)
             {
@@ -126,18 +125,7 @@ namespace UI.SampleScene.Inventory
 
         public bool HasItemInInventory(GlobalItemType itemType)
         {
-            foreach (InventorySlot slot in inventoryManager.GetAllSlots())
-            {
-                if (!slot.IsEmpty())
-                {
-                    Item item = GetItemFromSlot(slot);
-                    if (item.globalItemType == itemType)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
+            return (from slot in inventoryManager.GetAllSlots() where !slot.IsEmpty() select GetItemFromSlot(slot)).Any(item => item.globalItemType == itemType);
         }
     }
 }

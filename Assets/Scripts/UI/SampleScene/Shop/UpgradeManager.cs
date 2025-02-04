@@ -28,16 +28,12 @@ namespace UI.SampleScene.Shop
 
         private void OnMouseDown()
         {
-            if (!uiManager.IsUIActive())
-            {
-                float distance = Vector3.Distance(player.transform.position, transform.position);
-                if (distance <= shopRadius)
-                {
-                    upgradePanel.SetActive(true);
-                    uiManager.ActivateUI();
-                    sampleSceneCanvasLogic.SwitchOffPauseButton();
-                }
-            }
+            if (uiManager.IsUIActive()) return;
+            var distance = Vector3.Distance(player.transform.position, transform.position);
+            if (!(distance <= shopRadius)) return;
+            upgradePanel.SetActive(true);
+            uiManager.ActivateUI();
+            sampleSceneCanvasLogic.SwitchOffPauseButton();
         }
 
         private void InitializeShop()
@@ -51,18 +47,14 @@ namespace UI.SampleScene.Shop
 
         private void OnUpgradeButtonClicked(Upgrade upgrade)
         {
-            if (upgrade.currentLevel < upgrade.maxLevel)
-            {
-                int cost = upgrade.costPerLevel[upgrade.currentLevel];
-                if (playerCoinsWallet.SpendCoins(cost))
-                {
-                    upgrade.currentLevel++;
-                    UpdateUpgradeButton(upgrade);
-                }
-            }
+            if (upgrade.currentLevel >= upgrade.maxLevel) return;
+            var cost = upgrade.costPerLevel[upgrade.currentLevel];
+            if (!playerCoinsWallet.SpendCoins(cost)) return;
+            upgrade.currentLevel++;
+            UpdateUpgradeButton(upgrade);
         }
 
-        private void UpdateUpgradeButton(Upgrade upgrade)
+        private static void UpdateUpgradeButton(Upgrade upgrade)
         {
             if (upgrade.currentLevel >= upgrade.maxLevel)
             {
@@ -71,7 +63,7 @@ namespace UI.SampleScene.Shop
             }
             else
             {
-                int cost = upgrade.costPerLevel[upgrade.currentLevel];
+                var cost = upgrade.costPerLevel[upgrade.currentLevel];
                 upgrade.upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = cost.ToString();
             }
         }

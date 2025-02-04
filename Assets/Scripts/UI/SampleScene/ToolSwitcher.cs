@@ -30,64 +30,55 @@ namespace UI.SampleScene
 
         private void Update()
         {
-            ChangeToolType();
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                ChangeToolType();
+            }
         }
 
         private void ChangeToolType()
         {
-            if (_isToolChangeAvaliable)
+            if (!_isToolChangeAvaliable) return;
+            var scroll = Input.GetAxis("MouseScrollWheel");
+            if (scroll == 0) return;
+            var newToolIndex = (int)_currentTool + (scroll > 0 ? 1 : -1);
+
+            if (newToolIndex >= System.Enum.GetValues(typeof(ToolType)).Length)
             {
-                float scroll = Input.GetAxis("MouseScrollWheel");
-                if (scroll != 0)
-                {
-                    int newToolIndex = (int)_currentTool + (scroll > 0 ? 1 : -1);
-
-                    if (newToolIndex >= System.Enum.GetValues(typeof(ToolType)).Length)
-                    {
-                        newToolIndex = 0;
-                    }
-                    else if (newToolIndex < 0)
-                    {
-                        newToolIndex = System.Enum.GetValues(typeof(ToolType)).Length - 1;
-                    }
-
-                    _currentTool = (ToolType)newToolIndex;
-
-                    playerAnim.UpdateToolType(_currentTool);
-                    UpdateToolIcon();
-                    UpdatePlacementMode();
-                    UpdateFenceRemovingMode();
-                }
+                newToolIndex = 0;
             }
+            else if (newToolIndex < 0)
+            {
+                newToolIndex = System.Enum.GetValues(typeof(ToolType)).Length - 1;
+            }
+
+            _currentTool = (ToolType)newToolIndex;
+
+            playerAnim.UpdateToolType(_currentTool);
+            UpdateToolIcon();
+            UpdatePlacementMode();
+            UpdateFenceRemovingMode();
         }
 
         private void UpdateFenceRemovingMode()
         {
             if (ToolType.Axe == _currentTool)
-            {
                 fencesManager.StartRemoving();
-            }
             else
-            {
                 fencesManager.StopRemoving();
-            }
         }
 
         private void UpdatePlacementMode()
         {
             if (ToolType.Pickaxe == _currentTool)
-            {
                 placementSystem.StartRemoving();
-            }
             else
-            {
                 placementSystem.StopRemoving();
-            }
         }
 
         private void UpdateToolIcon()
         {
-            int toolIndex = (int)_currentTool;
+            var toolIndex = (int)_currentTool;
             if (toolIndex >= 0 && toolIndex < toolSprites.Length)
             {
                 toolIcon.sprite = toolSprites[toolIndex];

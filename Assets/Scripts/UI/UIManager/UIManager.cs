@@ -1,4 +1,3 @@
-using System;
 using Player;
 using UI.SampleScene;
 using UnityEngine;

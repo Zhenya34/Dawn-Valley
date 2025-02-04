@@ -11,7 +11,7 @@ namespace Enviroment.Boat
         [SerializeField] private Transform player;
         [SerializeField] private bool itFirstBoat;
 
-        static private bool _hasTeleported;
+        private static bool _hasTeleported;
 
         private enum Tags
         {
@@ -20,16 +20,14 @@ namespace Enviroment.Boat
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag(Tags.Player.ToString()))
+            if (!collision.CompareTag(Tags.Player.ToString())) return;
+            if (itFirstBoat && _hasTeleported == false)
             {
-                if (itFirstBoat && _hasTeleported == false)
-                {
-                    StartCoroutine(TeleportToNextBoat(secondBoatPosition));
-                }
-                else if (!itFirstBoat && _hasTeleported == false)
-                {
-                    StartCoroutine(TeleportToNextBoat(firstBoatPosition));
-                }
+                StartCoroutine(TeleportToNextBoat(secondBoatPosition));
+            }
+            else if (!itFirstBoat && _hasTeleported == false)
+            {
+                StartCoroutine(TeleportToNextBoat(firstBoatPosition));
             }
         }
 

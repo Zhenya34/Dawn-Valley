@@ -7,6 +7,7 @@ using Animals.Pets.globalAnimControllers;
 using Animals.Pets.Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
+using Zenject;
 
 namespace Animals.Pets.Movement
 {
@@ -19,15 +20,25 @@ namespace Animals.Pets.Movement
         [SerializeField] private float teleportThreshold;
         [SerializeField] private float teleportCheckInterval = 1f;
         [SerializeField] private NavMeshAgent navMeshAgent;
-        [SerializeField] private PetAnimController petAnimController;
-        [SerializeField] private CrawlingPetAnimController crawlingPetAnimController;
-        [SerializeField] private GhostPetAnimController ghostPetAnimController;
-        [SerializeField] private BeePetAnimController beePetAnimController;
+        
+        private PetAnimController _petAnimController;
+        private CrawlingPetAnimController _crawlingPetAnimController;
+        private GhostPetAnimController _ghostPetAnimController;
+        private BeePetAnimController _beePetAnimController;
 
         private bool _isNightTime;
         private bool _isStopped;
         private Coroutine _teleportCoroutine;
 
+        [Inject]
+        private void Construct(PetAnimController petAnimController, CrawlingPetAnimController crawlingPetAnimController, GhostPetAnimController ghostPetAnimController, BeePetAnimController beePetAnimController)
+        {
+            _petAnimController = petAnimController;
+            _crawlingPetAnimController = crawlingPetAnimController;
+            _ghostPetAnimController = ghostPetAnimController;
+            _beePetAnimController = beePetAnimController;
+        }
+        
         private void Awake()
         {
             navMeshAgent.updateRotation = false;
@@ -120,9 +131,9 @@ namespace Animals.Pets.Movement
 
             List<IStateChangeController> stateChangeControllers = new()
             {
-                beePetAnimController,
-                ghostPetAnimController,
-                crawlingPetAnimController
+                _beePetAnimController,
+                _ghostPetAnimController,
+                _crawlingPetAnimController
             };
 
             foreach (var controller in stateChangeControllers)
@@ -135,30 +146,30 @@ namespace Animals.Pets.Movement
         {
             List<IStateChangeController> stateChangeControllers = new()
             {
-                beePetAnimController,
-                ghostPetAnimController,
-                crawlingPetAnimController
+                _beePetAnimController,
+                _ghostPetAnimController,
+                _crawlingPetAnimController
             };
             foreach (var controller in stateChangeControllers)
             {
                 controller?.StopChangingStates();
             }
-            petAnimController?.SetRunningAnimation();
+            _petAnimController?.SetRunningAnimation();
         }
 
         public void UpdateNightTimeForControllers()
         {
-            if (!petAnimController)
+            if (!_petAnimController)
                 return;
 
             if (_isNightTime)
             {
                 StopMovement();
-                petAnimController.ActivateNightTime();
+                _petAnimController.ActivateNightTime();
             }
             else
             {
-                petAnimController.DeactivateNightTime();
+                _petAnimController.DeactivateNightTime();
             }
         }
 

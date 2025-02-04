@@ -5,7 +5,7 @@ namespace Saves
 {
     public class GameSaver : MonoBehaviour
     {
-        public void SaveSettings(float soundVolume, float musicVolume, bool fullscreenMode, string currentLanguage, bool vSyncEnabled, int targetFPS, float cameraZoom, bool targetingMarkerEnabled)
+        public static void SaveSettings(float soundVolume, float musicVolume, bool fullscreenMode, string currentLanguage, bool vSyncEnabled, int targetFPS, float cameraZoom, bool targetingMarkerEnabled)
         {
             PlayerPrefs.SetFloat("SoundVolume", soundVolume);
             PlayerPrefs.SetFloat("MusicVolume", musicVolume);
@@ -30,13 +30,13 @@ namespace Saves
             targetingMarkerEnabled = PlayerPrefs.GetInt("TargetingMarkerEnabled", 1) == 1;
         }
 
-        public void SaveGameProgress()
+        public static void SaveGameProgress()
         {
             PlayerPrefs.SetInt("GameProgress", 1);
             PlayerPrefs.Save();
         }
 
-        public void DeleteAllSaves()
+        public static void DeleteAllSaves()
         {
             PlayerPrefs.DeleteAll();
             PlayerPrefs.Save();

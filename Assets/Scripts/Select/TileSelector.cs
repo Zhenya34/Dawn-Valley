@@ -18,31 +18,27 @@ namespace Select
 
         private void Update()
         {
-            if (_canPlaceFrame && _camera)
+            if (!_canPlaceFrame || !_camera) return;
+            if (!Application.isFocused) return;
+                
+            var mouseScreenPos = Input.mousePosition;
+                
+            if (mouseScreenPos.x < 0 || mouseScreenPos.x > Screen.width ||
+                mouseScreenPos.y < 0 || mouseScreenPos.y > Screen.height)
             {
-                if (!Application.isFocused) return;
-                
-                Vector3 mouseScreenPos = Input.mousePosition;
-                
-                if (mouseScreenPos.x < 0 || mouseScreenPos.x > Screen.width ||
-                    mouseScreenPos.y < 0 || mouseScreenPos.y > Screen.height)
-                {
-                    return;
-                }
-                
-                Vector3 mouseWorldPos = _camera.ScreenToWorldPoint(Input.mousePosition);
-                mouseWorldPos.z = 0;
-                Vector3Int cellPosition = tilemap.WorldToCell(mouseWorldPos);
-
-                if (tilemap.HasTile(cellPosition))
-                {
-                    Vector3 tileCenter = tilemap.GetCellCenterWorld(cellPosition);
-
-                    Vector3 cellSize = tilemap.cellSize;
-                    float offsetY = cellSize.y / 2f;
-                    framePrefab.transform.position = new Vector3(tileCenter.x, tileCenter.y - offsetY, tileCenter.z);
-                }
+                return;
             }
+                
+            var mouseWorldPos = _camera.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPos.z = 0;
+            var cellPosition = tilemap.WorldToCell(mouseWorldPos);
+
+            if (!tilemap.HasTile(cellPosition)) return;
+            var tileCenter = tilemap.GetCellCenterWorld(cellPosition);
+
+            var cellSize = tilemap.cellSize;
+            var offsetY = cellSize.y / 2f;
+            framePrefab.transform.position = new Vector3(tileCenter.x, tileCenter.y - offsetY, tileCenter.z);
         }
 
         public void AllowFramePlacement() => _canPlaceFrame = true;

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Player.Placement
@@ -10,13 +11,11 @@ namespace Player.Placement
 
         public int GetStructureIDByName(string objectName)
         {
-            foreach (ObjectData objectData in objectsData)
+            foreach (var objectData in objectsData.Where(objectData => objectData.Name == objectName))
             {
-                if (objectData.Name == objectName)
-                {
-                    return objectData.ID;
-                }
+                return objectData.ID;
             }
+
             return -1;
         }
     }

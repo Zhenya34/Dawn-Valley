@@ -26,34 +26,26 @@ namespace Enviroment.Plants
 
         private void Update()
         {
-            if (_canPlant)
-            {
-                if (Input.GetMouseButtonDown(1) && playerAnim.GetToolsUsingValue() == true && _currentPlant)
-                {
-                    Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-                    mouseWorldPos.z = 0;
-                    Vector3Int cellPosition = tilemap.WorldToCell(mouseWorldPos);
+            if (!_canPlant) return;
+            if (!Input.GetMouseButtonDown(1) || !playerAnim.GetToolsUsingValue() || !_currentPlant) return;
+            var mouseWorldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPos.z = 0;
+            var cellPosition = tilemap.WorldToCell(mouseWorldPos);
 
-                    if (tilemap.GetTile(cellPosition) == gardenBedTile || (tilemap.GetTile(cellPosition) == wetGardenBedTile &&
-                                                                             (!_occupiedTiles.ContainsKey(cellPosition) || !_occupiedTiles[cellPosition])))
-                    {
-                        Vector3 tileCenter = tilemap.GetCellCenterWorld(cellPosition);
+            if (tilemap.GetTile(cellPosition) != gardenBedTile && (tilemap.GetTile(cellPosition) != wetGardenBedTile ||
+                                                                   (_occupiedTiles.ContainsKey(cellPosition) &&
+                                                                    _occupiedTiles[cellPosition]))) return;
+            var tileCenter = tilemap.GetCellCenterWorld(cellPosition);
 
-                        Instantiate(_currentPlant.plantPrefab, tileCenter, Quaternion.identity);
+            Instantiate(_currentPlant.plantPrefab, tileCenter, Quaternion.identity);
 
-                        _occupiedTiles[cellPosition] = true;
-                        itemUsageManager.UpdateCountOfItem(_currentSlot);
-                    }
-                }
-            }
+            _occupiedTiles[cellPosition] = true;
+            itemUsageManager.UpdateCountOfItem(_currentSlot);
         }
 
         public void RegisterPlant(Vector3Int cellPosition, PlantsGrowth plant)
         {
-            if (!_plantsByTile.ContainsKey(cellPosition))
-            {
-                _plantsByTile[cellPosition] = plant;
-            }
+            _plantsByTile.TryAdd(cellPosition, plant);
         }
 
         public void UnregisterPlant(Vector3Int cellPosition)

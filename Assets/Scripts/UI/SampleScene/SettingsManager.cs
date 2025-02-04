@@ -34,13 +34,13 @@ namespace UI.SampleScene
 
         public void SaveGame()
         {
-            gameSaver.SaveSettings(_soundVolume, _musicVolume, _fullscreenMode, _currentLanguage, _vSyncEnabled, _targetFPS, _cameraZoom, targetIndicator.activeSelf);
-            gameSaver.SaveGameProgress();
+            GameSaver.SaveSettings(_soundVolume, _musicVolume, _fullscreenMode, _currentLanguage, _vSyncEnabled, _targetFPS, _cameraZoom, targetIndicator.activeSelf);
+            GameSaver.SaveGameProgress();
         }
 
         public void DeleteAllSaves()
         {
-            gameSaver.DeleteAllSaves();
+            GameSaver.DeleteAllSaves();
         }
 
         public void SetCameraZoom(float zoomLevel)
@@ -82,14 +82,22 @@ namespace UI.SampleScene
         {
             if (isRightArrow)
             {
-                if (_targetFPS == 60) _targetFPS = 75;
-                else if (_targetFPS == 75) _targetFPS = 100;
-                else if (_targetFPS == 100) _targetFPS = 120;
+                _targetFPS = _targetFPS switch
+                {
+                    60 => 75,
+                    75 => 100,
+                    100 => 120,
+                    _ => _targetFPS
+                };
             }
             else
             {
-                if (_targetFPS == 60) _targetFPS = 45;
-                else if (_targetFPS == 45) _targetFPS = 30;
+                _targetFPS = _targetFPS switch
+                {
+                    60 => 45,
+                    45 => 30,
+                    _ => _targetFPS
+                };
             }
 
             Application.targetFrameRate = _targetFPS;

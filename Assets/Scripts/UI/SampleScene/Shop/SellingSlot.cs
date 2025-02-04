@@ -75,7 +75,7 @@ namespace UI.SampleScene.Shop
 
         public int GetTotalPrice()
         {
-            Item selectedItem = itemDatabase.GetItemBySprite(_itemSprite);
+            var selectedItem = itemDatabase.GetItemBySprite(_itemSprite);
             if (selectedItem != null)
             {
                 return selectedItem.sellingPrice * _quantity;

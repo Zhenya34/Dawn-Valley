@@ -10,21 +10,13 @@ namespace Player.Placement
         public void PlaySound(SoundType soundType)
         {
             if (soundType == SoundType.Click)
-            {
                 audioSource.PlayOneShot(clickSound);
-            }
             else if (soundType == SoundType.Place)
-            {
                 audioSource.PlayOneShot(placeSound);
-            }
             else if (soundType == SoundType.Remove)
-            {
                 audioSource.PlayOneShot(removeSound);
-            }
-            else if (soundType == SoundType.WrongPlacement)
-            {
+            else if (soundType == SoundType.WrongPlacement) 
                 audioSource.PlayOneShot(wrongPlacementSound);
-            }
         }
     }
 

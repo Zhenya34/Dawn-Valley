@@ -13,13 +13,10 @@ namespace UI.SampleScene
 
         public bool SpendCoins(int amount)
         {
-            if (_playerCoins >= amount)
-            {
-                _playerCoins -= amount;
-                UpdatePlayerCoinsUI();
-                return true;
-            }
-            return false;
+            if (_playerCoins < amount) return false;
+            _playerCoins -= amount;
+            UpdatePlayerCoinsUI();
+            return true;
         }
 
         public void AddCoins(int amount)

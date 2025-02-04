@@ -20,53 +20,44 @@ namespace Enviroment.Home
 
         private void Start()
         {
-            string currentSceneName = SceneManager.GetActiveScene().name;
+            var currentSceneName = SceneManager.GetActiveScene().name;
 
-            if (currentSceneName == HouseLevelManager.SceneNames.SampleScene.ToString() && _isPreviousSceneHome)
-            {
-                player.transform.position = targetPositionExternal;
-                _isPreviousSceneHome = false;
-            }
+            if (currentSceneName != HouseLevelManager.SceneNames.SampleScene.ToString() ||
+                !_isPreviousSceneHome) return;
+            player.transform.position = targetPositionExternal;
+            _isPreviousSceneHome = false;
         }
 
         private void OnCollisionEnter2D()
         {
-            if (!_isTeleporting)
-            {
-                _isTeleporting = true;
-                _isInternalDoor = true;
-                _teleportCoroutine = StartCoroutine(DelayBeforeTeleporting());
-            }
+            if (_isTeleporting) return;
+            _isTeleporting = true;
+            _isInternalDoor = true;
+            _teleportCoroutine = StartCoroutine(DelayBeforeTeleporting());
         }
 
         private void OnCollisionExit2D()
         {
-            if (_teleportCoroutine != null)
-            {
-                StopCoroutine(_teleportCoroutine);
-                _isTeleporting = false;
-                _teleportCoroutine = null;
-            }
+            if (_teleportCoroutine == null) return;
+            StopCoroutine(_teleportCoroutine);
+            _isTeleporting = false;
+            _teleportCoroutine = null;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (!_isTeleporting)
-            {
-                _isTeleporting = true;
-                _isInternalDoor = false;
-                _teleportCoroutine = StartCoroutine(DelayBeforeTeleporting());
-            }
+            if (_isTeleporting) return;
+            _isTeleporting = true;
+            _isInternalDoor = false;
+            _teleportCoroutine = StartCoroutine(DelayBeforeTeleporting());
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (_teleportCoroutine != null)
-            {
-                StopCoroutine(_teleportCoroutine);
-                _isTeleporting = false;
-                _teleportCoroutine = null;
-            }
+            if (_teleportCoroutine == null) return;
+            StopCoroutine(_teleportCoroutine);
+            _isTeleporting = false;
+            _teleportCoroutine = null;
         }
 
         private IEnumerator DelayBeforeTeleporting()

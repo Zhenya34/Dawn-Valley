@@ -47,9 +47,9 @@ namespace Enviroment.GlobalShadows
         {
             _visibleShadows.Clear();
             
-            ShadowController[] allShadows = FindObjectsOfType<ShadowController>();
+            var allShadows = FindObjectsOfType<ShadowController>();
 
-            foreach (ShadowController shadow in allShadows)
+            foreach (var shadow in allShadows)
             {
                 if (IsVisibleFromCamera(shadow.GetComponent<Renderer>()))
                 {
@@ -62,15 +62,15 @@ namespace Enviroment.GlobalShadows
         {
             if (!render) return false;
 
-            Plane[] planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
+            var planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
             return GeometryUtility.TestPlanesAABB(planes, render.bounds);
         }
 
         private void UpdateShadows()
         {
-            float shadowAlpha = Mathf.Lerp(MinShadowAlpha, MaxShadowAlpha, dayNightCycle.GetCurrentShadowIntensity());
+            var shadowAlpha = Mathf.Lerp(MinShadowAlpha, MaxShadowAlpha, dayNightCycle.GetCurrentShadowIntensity());
 
-            foreach (ShadowController shadow in _visibleShadows)
+            foreach (var shadow in _visibleShadows)
             {
                 shadow.SetShadowAlpha(Convert.ToInt32(shadowAlpha));
             }

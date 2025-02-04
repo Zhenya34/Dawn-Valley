@@ -31,25 +31,17 @@ namespace Animals.Pets.globalAnimControllers
             return (T)values.GetValue(Random.Range(0, values.Length));
         }
         
-        public void SetRunningAnimation()
+        private void SetAnimatorBools(bool isSleeping, bool isRunning)
         {
-            animator.SetBool(Variables.Sleeping.ToString(), false);
+            animator.SetBool(Variables.Sleeping.ToString(), isSleeping);
             if (hasRunningAnimation)
-                animator.SetBool(Variables.Running.ToString(), true);
+                animator.SetBool(Variables.Running.ToString(), isRunning);
         }
 
-        public void ActivateNightTime()
-        {
-            animator.SetBool(Variables.Sleeping.ToString(), true);
-            if (hasRunningAnimation)
-                animator.SetBool(Variables.Running.ToString(), false);
-        }
+        public void SetRunningAnimation() => SetAnimatorBools(false, true);
 
-        public void DeactivateNightTime()
-        {
-            animator.SetBool(Variables.Sleeping.ToString(), false);
-            if (hasRunningAnimation)
-                animator.SetBool(Variables.Running.ToString(), false);
-        }
+        public void ActivateNightTime() => SetAnimatorBools(true, false);
+
+        public void DeactivateNightTime() => SetAnimatorBools(false, false);
     }
 }

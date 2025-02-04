@@ -30,15 +30,11 @@ namespace UI.SampleScene.Shop
 
         private void OnMouseDown()
         {
-            if (!uiManager.IsUIActive())
-            {
-                float distance = Vector3.Distance(player.transform.position, transform.position);
-                if (distance <= shopRadius)
-                {
-                    uiManager.ActivateUI();
-                    OpenShop();
-                }
-            }
+            if (uiManager.IsUIActive()) return;
+            var distance = Vector3.Distance(player.transform.position, transform.position);
+            if (!(distance <= shopRadius)) return;
+            uiManager.ActivateUI();
+            OpenShop();
         }
 
         public bool PanelIsActive() => sellingPanel.activeSelf;
@@ -46,7 +42,7 @@ namespace UI.SampleScene.Shop
         private void OpenShop()
         {
             sampleSceneCanvasLogic.SwitchOffPauseButton();
-            Vector3 newPosition = inventoryRectTransform.transform.localPosition;
+            var newPosition = inventoryRectTransform.transform.localPosition;
             newPosition.y = -150;
             inventoryRectTransform.localPosition = newPosition;
 
@@ -57,7 +53,7 @@ namespace UI.SampleScene.Shop
 
         public void CloseShop()
         {
-            Vector3 newPosition = inventoryRectTransform.transform.localPosition;
+            var newPosition = inventoryRectTransform.transform.localPosition;
             newPosition.y = -30;
             inventoryRectTransform.localPosition = newPosition;
 
@@ -70,20 +66,15 @@ namespace UI.SampleScene.Shop
 
         private void ConfirmSale()
         {
-            if (shopSlot.GetItemSprite())
-            {
-                int totalPrice = shopSlot.GetTotalPrice();
-                playerWallet.AddCoins(totalPrice);
-                shopSlot.ClearSlot();
-            }
+            if (!shopSlot.GetItemSprite()) return;
+            var totalPrice = shopSlot.GetTotalPrice();
+            playerWallet.AddCoins(totalPrice);
+            shopSlot.ClearSlot();
         }
 
         private void CancelSale()
         {
-            if (shopSlot.GetItemSprite())
-            {
-                inventoryManager.MoveItemToInventory(shopSlot);
-            }
+            if (shopSlot.GetItemSprite()) inventoryManager.MoveItemToInventory(shopSlot);
         }
 
         private void OnConfirmButtonClicked() => ConfirmSale();

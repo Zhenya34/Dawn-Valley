@@ -56,7 +56,7 @@ namespace UI.SampleScene.Inventory
 
         public void Select()
         {
-            if (_itemSprite != null)
+            if (_itemSprite)
             {
                 itemImage.color = _selectedColor;
             }

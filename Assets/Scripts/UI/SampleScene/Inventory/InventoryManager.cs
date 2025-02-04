@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Animals.Pets.PetsActivator;
 using UI.SampleScene.Shop;
 using UnityEngine;
@@ -22,86 +23,73 @@ namespace UI.SampleScene.Inventory
 
         public void InitializeInventory()
         {
-            if (inventoryUI)
+            if (!inventoryUI) return;
+            foreach (Transform slotTransform in inventoryUI.transform)
             {
-                foreach (Transform slotTransform in inventoryUI.transform)
+                if (slotTransform.TryGetComponent<InventorySlot>(out var slot))
                 {
-                    if (slotTransform.TryGetComponent<InventorySlot>(out var slot))
-                    {
-                        _slots.Add(slot);
-                    }
+                    _slots.Add(slot);
                 }
             }
         }
 
         public void AddItem(string itemName, int quantity)
         {
-            Item item = itemDatabase.GetItemByName(itemName);
-            if (item != null)
+            var item = itemDatabase.GetItemByName(itemName);
+            if (item == null) return;
+            foreach (var slot in _slots)
             {
-                foreach (InventorySlot slot in _slots)
+                if (slot.GetItemSprite() != item.itemSprite) continue;
+                var newQuantity = slot.GetQuantity() + quantity;
+                if (newQuantity <= MaxStackSize)
                 {
-                    if (slot.GetItemSprite() == item.itemSprite)
-                    {
-                        int newQuantity = slot.GetQuantity() + quantity;
-                        if (newQuantity <= MaxStackSize)
-                        {
-                            slot.UpdateQuantity(newQuantity);
-                            return;
-                        }
-                        else
-                        {
-                            int remaining = newQuantity - MaxStackSize;
-                            slot.UpdateQuantity(MaxStackSize);
-                            quantity = remaining;
-                        }
-                    }
+                    slot.UpdateQuantity(newQuantity);
+                    return;
                 }
-
-                foreach (InventorySlot slot in _slots)
+                else
                 {
-                    if (slot.IsEmpty())
-                    {
-                        if (quantity > MaxStackSize)
-                        {
-                            slot.SetItem(item.itemSprite, MaxStackSize);
-                            quantity -= MaxStackSize;
-                        }
-                        else
-                        {
-                            slot.SetItem(item.itemSprite, quantity);
-                            return;
-                        }
-                    }
+                    var remaining = newQuantity - MaxStackSize;
+                    slot.UpdateQuantity(MaxStackSize);
+                    quantity = remaining;
+                }
+            }
+
+            foreach (var slot in _slots.Where(slot => slot.IsEmpty()))
+            {
+                if (quantity > MaxStackSize)
+                {
+                    slot.SetItem(item.itemSprite, MaxStackSize);
+                    quantity -= MaxStackSize;
+                }
+                else
+                {
+                    slot.SetItem(item.itemSprite, quantity);
+                    return;
                 }
             }
         }
 
         public void RemoveItem(string itemName, int quantity)
         {
-            Item item = itemDatabase.GetItemByName(itemName);
-            if (item != null)
+            var item = itemDatabase.GetItemByName(itemName);
+            if (item == null) return;
+            foreach (var slot in _slots)
             {
-                foreach (InventorySlot slot in _slots)
+                if (slot.GetItemSprite() != item.itemSprite) continue;
+                var currentQuantity = slot.GetQuantity();
+                if (currentQuantity >= quantity)
                 {
-                    if (slot.GetItemSprite() == item.itemSprite)
+                    slot.UpdateQuantity(currentQuantity - quantity);
+                    if (slot.GetQuantity() == 0)
                     {
-                        int currentQuantity = slot.GetQuantity();
-                        if (currentQuantity >= quantity)
-                        {
-                            slot.UpdateQuantity(currentQuantity - quantity);
-                            if (slot.GetQuantity() == 0)
-                            {
-                                slot.ClearSlot();
-                            }
-                            return;
-                        }
-                        else
-                        {
-                            slot.ClearSlot();
-                            quantity -= currentQuantity;
-                        }
+                        slot.ClearSlot();
                     }
+                    return;
+                }
+                else
+                {
+                    slot.ClearSlot();
+                    quantity -= currentQuantity;
                 }
             }
         }
@@ -199,31 +187,27 @@ namespace UI.SampleScene.Inventory
 
         private void MoveItemToSellingSlot()
         {
-            Sprite itemSprite = _selectedSlot.GetItemSprite();
-            int itemQuantity = _selectedSlot.GetQuantity();
-            Item selectedItem = itemDatabase.GetItemBySprite(itemSprite);
+            var itemSprite = _selectedSlot.GetItemSprite();
+            var itemQuantity = _selectedSlot.GetQuantity();
+            var selectedItem = itemDatabase.GetItemBySprite(itemSprite);
 
-            if (selectedItem != null)
-            {
-                sellingSlot.SetItem(itemSprite, itemQuantity);
-                _selectedSlot.ClearSlot();
-                DeselectSlot();
-            }
+            if (selectedItem == null) return;
+            sellingSlot.SetItem(itemSprite, itemQuantity);
+            _selectedSlot.ClearSlot();
+            DeselectSlot();
         }
 
         public void MoveItemToInventory(SellingSlot slot)
         {
             if (!_selectedSlot && _isItemSelected && slot.GetItemSprite())
             {
-                Sprite itemSprite = slot.GetItemSprite();
-                int itemQuantity = slot.GetQuantity();
-                Item selectedItem = itemDatabase.GetItemBySprite(itemSprite);
-                if (selectedItem != null)
-                {
-                    AddItem(selectedItem.itemName, itemQuantity);
-                    slot.ClearSlot();
-                    DeselectSlot();
-                }
+                var itemSprite = slot.GetItemSprite();
+                var itemQuantity = slot.GetQuantity();
+                var selectedItem = itemDatabase.GetItemBySprite(itemSprite);
+                if (selectedItem == null) return;
+                AddItem(selectedItem.itemName, itemQuantity);
+                slot.ClearSlot();
+                DeselectSlot();
             }
             else if (!slot.IsEmpty())
             {
@@ -233,33 +217,27 @@ namespace UI.SampleScene.Inventory
 
         private void MoveItemToPetSlot()
         {
-            Sprite itemSprite = _selectedSlot.GetItemSprite();
-            Item selectedItem = itemDatabase.GetItemBySprite(itemSprite);
+            var itemSprite = _selectedSlot.GetItemSprite();
+            var selectedItem = itemDatabase.GetItemBySprite(itemSprite);
 
-            if (selectedItem != null && selectedItem.itemType == Item.ItemType.Pet)
-            {
-                petInventorySlot.SetItem(itemSprite);
-                _selectedSlot.ClearSlot();
-                DeselectSlot();
-                allPetsActivator.ActivatePet(selectedItem.itemName);
-            }
+            if (selectedItem is not { itemType: Item.ItemType.Pet }) return;
+            petInventorySlot.SetItem(itemSprite);
+            _selectedSlot.ClearSlot();
+            DeselectSlot();
+            allPetsActivator.ActivatePet(selectedItem.itemName);
         }
 
         public void MovePetItemToInventory(PetInventorySlot petSlot)
         {
-            if (!petSlot.IsEmpty())
-            {
-                Sprite itemSprite = petSlot.GetItemSprite();
-                Item selectedItem = itemDatabase.GetItemBySprite(itemSprite);
+            if (petSlot.IsEmpty()) return;
+            var itemSprite = petSlot.GetItemSprite();
+            var selectedItem = itemDatabase.GetItemBySprite(itemSprite);
 
-                if (selectedItem != null && selectedItem.itemType == Item.ItemType.Pet)
-                {
-                    AddItem(selectedItem.itemName, 1);
-                    petSlot.ClearSlot();
-                    DeselectSlot();
-                    allPetsActivator.DeactivatePet(selectedItem.itemName);
-                }
-            }
+            if (selectedItem is not { itemType: Item.ItemType.Pet }) return;
+            AddItem(selectedItem.itemName, 1);
+            petSlot.ClearSlot();
+            DeselectSlot();
+            allPetsActivator.DeactivatePet(selectedItem.itemName);
         }
 
         public List<InventorySlot> GetAllSlots()
@@ -269,20 +247,16 @@ namespace UI.SampleScene.Inventory
 
         private void SelectSellingSlot(SellingSlot slot)
         {
-            if (slot.GetItemSprite())
-            {
-                slot.Select();
-                _isItemSelected = true;
-            }
+            if (!slot.GetItemSprite()) return;
+            slot.Select();
+            _isItemSelected = true;
         }
 
         private void SelectPetSlot(PetInventorySlot slot)
         {
-            if (slot.GetItemSprite())
-            {
-                slot.Select();
-                _isItemSelected = true;
-            }
+            if (!slot.GetItemSprite()) return;
+            slot.Select();
+            _isItemSelected = true;
         }
 
         private void DeselectSlot()

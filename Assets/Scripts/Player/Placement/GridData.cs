@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Player.Placement
@@ -10,22 +11,20 @@ namespace Player.Placement
 
         public void AddObjectAt(Vector2Int gridPosition, Vector2Int objectSize, int id, int placedObjectIndex)
         {
-            List<Vector2Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
-            PlacementData data = new PlacementData(positionToOccupy, id, placedObjectIndex);
-            foreach (var pos in positionToOccupy)
+            var positionToOccupy = CalculatePositions(gridPosition, objectSize);
+            var data = new PlacementData(positionToOccupy, id, placedObjectIndex);
+            foreach (var pos in positionToOccupy.Where(pos => !_placedObjects.TryAdd(pos, data)))
             {
-                if (_placedObjects.ContainsKey(pos))
-                    throw new Exception($"List already contain this tile: {pos}");
-                _placedObjects[pos] = data;
+                throw new Exception($"List already contain this tile: {pos}");
             }
         }
 
-        private List<Vector2Int> CalculatePositions(Vector2Int gridPosition, Vector2Int objectSize)
+        private static List<Vector2Int> CalculatePositions(Vector2Int gridPosition, Vector2Int objectSize)
         {
             List<Vector2Int> returnVal = new();
-            for (int x = 0; x < objectSize.x; x++)
+            for (var x = 0; x < objectSize.x; x++)
             {
-                for (int y = 0; y < objectSize.y; y++)
+                for (var y = 0; y < objectSize.y; y++)
                 {
                     returnVal.Add(new Vector2Int(gridPosition.x + x, gridPosition.y + y));
                 }
@@ -35,20 +34,15 @@ namespace Player.Placement
 
         public bool CanPlaceObjectAt(Vector2Int gridPosition, Vector2Int objectSize)
         {
-            List<Vector2Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
-            foreach (var pos in positionToOccupy)
-            {
-                if (_placedObjects.ContainsKey(pos))
-                    return false;
-            }
-            return true;
+            var positionToOccupy = CalculatePositions(gridPosition, objectSize);
+            return positionToOccupy.All(pos => !_placedObjects.ContainsKey(pos));
         }
 
         internal int GetRepresentationIndex(Vector2Int gridPosition)
         {
-            if (_placedObjects.ContainsKey(gridPosition) == false)
+            if (_placedObjects.TryGetValue(gridPosition, out var o) == false)
                 return -1;
-            return _placedObjects[gridPosition].PlacedObjectIndex;
+            return o.PlacedObjectIndex;
         }
 
         internal void RemoveObjectAt(Vector2Int gridPosition)
@@ -64,7 +58,7 @@ namespace Player.Placement
     {
         public readonly List<Vector2Int> OccupiedPositions;
         public int ID { get; private set; }
-        public int PlacedObjectIndex { get; private set; }
+        public int PlacedObjectIndex { get; }
 
         public PlacementData(List<Vector2Int> occupiedPositions, int iD, int placedObjectIndex)
         {

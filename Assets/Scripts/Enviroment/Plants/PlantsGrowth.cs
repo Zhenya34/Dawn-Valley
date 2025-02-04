@@ -3,6 +3,7 @@ using Enviroment.Time;
 using Player.ToolsLogic;
 using UI.SampleScene;
 using UnityEngine;
+using Zenject;
 
 namespace Enviroment.Plants
 {
@@ -22,9 +23,19 @@ namespace Enviroment.Plants
         private ToolSwitcher _toolSwitcher;
         private Planting _plantingSystem;
         private WateringCanLogic _wateringCanLogic;
+        private DayNightCycle _dayNightCycle;
 
-        static public bool IsWithinHarvestingReach = false;
+        public static bool IsWithinHarvestingReach = false;
 
+        [Inject]
+        private void Construct(ToolSwitcher toolSwitcher, Planting plantingSystem, WateringCanLogic wateringCanLogic, DayNightCycle dayNightCycle)
+        {
+            _toolSwitcher = toolSwitcher;
+            _plantingSystem = plantingSystem;
+            _wateringCanLogic = wateringCanLogic;
+            _dayNightCycle = dayNightCycle;
+        }
+        
         private void Awake()
         {
             if (plantsStages.Length > 0)
@@ -74,10 +85,9 @@ namespace Enviroment.Plants
 
         private void Start()
         {
-            DayNightCycle dayNightCycle = FindObjectOfType<DayNightCycle>();
-            if (dayNightCycle)
+            if (_dayNightCycle)
             {
-                dayNightCycle.AddPlant(this);
+                _dayNightCycle.AddPlant(this);
             }
         }
 

@@ -27,10 +27,10 @@ namespace Player.Placement
             if (size.x > 0 || size.y > 0) cellIndicator.transform.localScale = new Vector3(size.x, size.y, 1);
         }
 
-        private void PreparePreview(GameObject previewObject)
+        private static void PreparePreview(GameObject previewObject)
         {
-            SpriteRenderer[] spriteRenderers = previewObject.GetComponentsInChildren<SpriteRenderer>();
-            foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+            var spriteRenderers = previewObject.GetComponentsInChildren<SpriteRenderer>();
+            foreach (var spriteRenderer in spriteRenderers)
             {
                 spriteRenderer.color = new Color(1, 1, 1, 0.5f);
             }
@@ -38,11 +38,9 @@ namespace Player.Placement
 
         public void StopShowingPreview()
         {
-            if (_previewObject)
-            {
-                Destroy(_previewObject);
-                _previewObject = null;
-            }
+            if (!_previewObject) return;
+            Destroy(_previewObject);
+            _previewObject = null;
         }
 
         public void UpdatePosition(Vector3 position, bool validity)
@@ -58,18 +56,15 @@ namespace Player.Placement
 
         private void ApplyFeedbackToPreview(bool validity)
         {
-            Color c = validity ? new Color(1, 1, 1, 0.5f) : new Color(1, 0, 0, 0.5f);
-            SpriteRenderer[] spriteRenderers = _previewObject.GetComponentsInChildren<SpriteRenderer>();
-            foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+            var c = validity ? new Color(1, 1, 1, 0.5f) : new Color(1, 0, 0, 0.5f);
+            var spriteRenderers = _previewObject.GetComponentsInChildren<SpriteRenderer>();
+            foreach (var spriteRenderer in spriteRenderers)
             {
                 spriteRenderer.color = c;
             }
         }
         
-        private void ResetCursorSize()
-        {
-            cellIndicator.transform.localScale = Vector3.one;
-        }
+        private void ResetCursorSize() => cellIndicator.transform.localScale = Vector3.one;
 
         private void ApplyFeedbackToCursor(bool validity)
         {
@@ -89,8 +84,8 @@ namespace Player.Placement
 
         private void MoveCursor(Vector3 position)
         {
-            Vector3Int gridPosition = grid.WorldToCell(position);
-            Vector3 snappedPosition = grid.GetCellCenterWorld(gridPosition);
+            var gridPosition = grid.WorldToCell(position);
+            var snappedPosition = grid.GetCellCenterWorld(gridPosition);
             cellIndicator.transform.position = new Vector3(
                 snappedPosition.x,
                 snappedPosition.y - 0.5f,
@@ -99,8 +94,8 @@ namespace Player.Placement
 
         private void MovePreview(Vector3 position)
         {
-            Vector3Int gridPosition = grid.WorldToCell(position);
-            Vector3 snappedPosition = grid.GetCellCenterWorld(gridPosition);
+            var gridPosition = grid.WorldToCell(position);
+            var snappedPosition = grid.GetCellCenterWorld(gridPosition);
             _previewObject.transform.position = new Vector3(
                 snappedPosition.x,
                 snappedPosition.y - 0.5f,

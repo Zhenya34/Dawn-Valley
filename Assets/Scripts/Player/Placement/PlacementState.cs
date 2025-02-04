@@ -55,7 +55,7 @@ namespace Player.Placement
 
         public void OnAction(Vector2Int gridPosition)
         {
-            bool placementValidity = CheckPlacementValidity(gridPosition, _selectedObjectIndex);
+            var placementValidity = CheckPlacementValidity(gridPosition, _selectedObjectIndex);
 
             if (!placementValidity)
             {
@@ -65,15 +65,15 @@ namespace Player.Placement
 
             _soundFeedback.PlaySound(SoundType.Place);
             
-            Vector3 worldPosition = _grid.CellToWorld((Vector3Int)gridPosition) + 
-                                    new Vector3(_grid.cellSize.x / 2, 0, 0);
+            var worldPosition = _grid.CellToWorld((Vector3Int)gridPosition) + 
+                                new Vector3(_grid.cellSize.x / 2, 0, 0);
 
-            int index = _objectPlacer.PlaceObject(
+            var index = _objectPlacer.PlaceObject(
                 _database.objectsData[_selectedObjectIndex].Prefab,
                 worldPosition
             );
 
-            GridData selectedData = (_database.objectsData[_selectedObjectIndex].ID == 0)
+            var selectedData = (_database.objectsData[_selectedObjectIndex].ID == 0)
                 ? _floorData
                 : _furnitureData;
 
@@ -89,7 +89,7 @@ namespace Player.Placement
 
         private bool CheckPlacementValidity(Vector2Int gridPosition, int selectedObjectIndex)
         {
-            GridData selectedData = _database.objectsData[selectedObjectIndex].ID == 0
+            var selectedData = _database.objectsData[selectedObjectIndex].ID == 0
                 ? _floorData
                 : _furnitureData;
 
@@ -101,9 +101,9 @@ namespace Player.Placement
 
         public void UpdateState(Vector2Int gridPosition)
         {
-            bool placementValidity = CheckPlacementValidity(gridPosition, _selectedObjectIndex);
+            var placementValidity = CheckPlacementValidity(gridPosition, _selectedObjectIndex);
 
-            Vector3 worldPosition = _grid.CellToWorld((Vector3Int)gridPosition);
+            var worldPosition = _grid.CellToWorld((Vector3Int)gridPosition);
 
             _previewSystem.UpdatePosition(worldPosition, placementValidity);
         }

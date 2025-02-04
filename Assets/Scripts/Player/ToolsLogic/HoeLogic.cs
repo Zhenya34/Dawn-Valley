@@ -27,16 +27,14 @@ namespace Player.ToolsLogic
 
         private void RegisterMouseClick()
         {
-            if (toolSwitcher.GetCurrentTool() == ToolSwitcher.ToolType.Hoe)
+            if (toolSwitcher.GetCurrentTool() != ToolSwitcher.ToolType.Hoe) return;
+            if (Input.GetMouseButton(0))
             {
-                if (Input.GetMouseButton(0))
-                {
-                    _lastClick = ClickType.LeftClick;
-                }
-                else if (Input.GetMouseButton(1))
-                {
-                    _lastClick = ClickType.RightClick;
-                }
+                _lastClick = ClickType.LeftClick;
+            }
+            else if (Input.GetMouseButton(1))
+            {
+                _lastClick = ClickType.RightClick;
             }
         }
 
@@ -48,64 +46,60 @@ namespace Player.ToolsLogic
 
         public void HandleHoeLogic()
         {
-            if (toolSwitcher.GetCurrentTool() == ToolSwitcher.ToolType.Hoe)
+            if (toolSwitcher.GetCurrentTool() != ToolSwitcher.ToolType.Hoe) return;
+            HandleTileClick(out var gridPosition, out var clickedTile);
+
+            var playerPosition = transform.position;
+            var tileWorldPosition = tilemap.CellToWorld(gridPosition);
+
+            var distanceToTile = Vector3.Distance(playerPosition, tileWorldPosition);
+
+            if (distanceToTile > playerImpactRadius.GetToolDistanceValue())
             {
-                HandleTileClick(out Vector3Int gridPosition, out TileBase clickedTile);
-
-                Vector3 playerPosition = transform.position;
-                Vector3 tileWorldPosition = tilemap.CellToWorld(gridPosition);
-
-                float distanceToTile = Vector3.Distance(playerPosition, tileWorldPosition);
-
-                if (distanceToTile > playerImpactRadius.GetToolDistanceValue())
-                {
-                    return;
-                }
-
-                if (_lastClick == ClickType.RightClick)
-                {
-                    if (clickedTile == grassTile || clickedTile == dirtTile)
-                    {
-                        tilemap.SetTile(gridPosition, gardenBed);
-                        _tilledSoilTiles.Remove(gridPosition);
-                    }
-                    else if (clickedTile == wetDirtTile)
-                    {
-                        tilemap.SetTile(gridPosition, wetGardenBed);
-                        _tilledSoilTiles.Remove(gridPosition);
-                    }
-                }
-                if (_lastClick == ClickType.LeftClick)
-                {
-                    if (clickedTile == gardenBed)
-                    {
-                        tilemap.SetTile(gridPosition, dirtTile);
-                        _tilledSoilTiles[gridPosition] = dayNightCycle.GetCurrentDay();
-                        RemovePlantIfExists(gridPosition);
-                    }
-                    else if (clickedTile == wetGardenBed)
-                    {
-                        tilemap.SetTile(gridPosition, wetDirtTile);
-                        _tilledSoilTiles[gridPosition] = dayNightCycle.GetCurrentDay();
-                        RemovePlantIfExists(gridPosition);
-                    }
-                }
-
-                _lastClick = ClickType.None;
-                CheckForGrassRegrowth();
+                return;
             }
+
+            if (_lastClick == ClickType.RightClick)
+            {
+                if (clickedTile == grassTile || clickedTile == dirtTile)
+                {
+                    tilemap.SetTile(gridPosition, gardenBed);
+                    _tilledSoilTiles.Remove(gridPosition);
+                }
+                else if (clickedTile == wetDirtTile)
+                {
+                    tilemap.SetTile(gridPosition, wetGardenBed);
+                    _tilledSoilTiles.Remove(gridPosition);
+                }
+            }
+            if (_lastClick == ClickType.LeftClick)
+            {
+                if (clickedTile == gardenBed)
+                {
+                    tilemap.SetTile(gridPosition, dirtTile);
+                    _tilledSoilTiles[gridPosition] = dayNightCycle.GetCurrentDay();
+                    RemovePlantIfExists(gridPosition);
+                }
+                else if (clickedTile == wetGardenBed)
+                {
+                    tilemap.SetTile(gridPosition, wetDirtTile);
+                    _tilledSoilTiles[gridPosition] = dayNightCycle.GetCurrentDay();
+                    RemovePlantIfExists(gridPosition);
+                }
+            }
+
+            _lastClick = ClickType.None;
+            CheckForGrassRegrowth();
         }
 
-        private void RemovePlantIfExists(Vector3Int gridPosition)
+        private static void RemovePlantIfExists(Vector3Int gridPosition)
         {
             var plantingSystem = FindObjectOfType<Planting>();
-            if (plantingSystem && plantingSystem.IsPlantAtTile(gridPosition))
+            if (!plantingSystem || !plantingSystem.IsPlantAtTile(gridPosition)) return;
+            var plant = plantingSystem.GetPlantAtTile(gridPosition);
+            if (plant)
             {
-                var plant = plantingSystem.GetPlantAtTile(gridPosition);
-                if (plant)
-                {
-                    Destroy(plant.gameObject);
-                }
+                Destroy(plant.gameObject);
             }
         }
 
@@ -116,11 +110,11 @@ namespace Player.ToolsLogic
 
             foreach (var tilledTile in _tilledSoilTiles)
             {
-                Vector3Int gridPosition = tilledTile.Key;
-                int dayTilled = tilledTile.Value;
-                int daysPassed = dayNightCycle.GetCurrentDay() - dayTilled;
+                var gridPosition = tilledTile.Key;
+                var dayTilled = tilledTile.Value;
+                var daysPassed = dayNightCycle.GetCurrentDay() - dayTilled;
 
-                TileBase currentTile = tilemap.GetTile(gridPosition);
+                var currentTile = tilemap.GetTile(gridPosition);
 
                 if (currentTile == wetGardenBed && daysPassed >= 1)
                 {
@@ -150,7 +144,7 @@ namespace Player.ToolsLogic
 
         private void HandleTileClick(out Vector3Int gridPosition, out TileBase clickedTile)
         {
-            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPos.z = 0;
             gridPosition = tilemap.WorldToCell(mouseWorldPos);
             clickedTile = tilemap.GetTile(gridPosition);

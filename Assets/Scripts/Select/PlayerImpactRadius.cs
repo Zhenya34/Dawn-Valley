@@ -19,50 +19,41 @@ namespace Select
 
         private void Update()
         {
-            if (_camera)
+            if (!_camera) return;
+            if (!Application.isFocused) return;
+                
+            var mouseScreenPos = Input.mousePosition;
+                
+            if (mouseScreenPos.x < 0 || mouseScreenPos.x > Screen.width ||
+                mouseScreenPos.y < 0 || mouseScreenPos.y > Screen.height)
             {
-                if (!Application.isFocused) return;
+                return;
+            }
                 
-                Vector3 mouseScreenPos = Input.mousePosition;
-                
-                if (mouseScreenPos.x < 0 || mouseScreenPos.x > Screen.width ||
-                    mouseScreenPos.y < 0 || mouseScreenPos.y > Screen.height)
-                {
-                    return;
-                }
-                
-                Vector3 mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
-                mousePosition.z = 0f;
+            var mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0f;
 
-                Vector3 triggerPosition = transform.position;
-                float distance = Vector3.Distance(mousePosition, triggerPosition);
-                float distanceToTools = Vector3.Distance(mousePosition, triggerPosition);
+            var triggerPosition = transform.position;
+            var distance = Vector3.Distance(mousePosition, triggerPosition);
+            var distanceToTools = Vector3.Distance(mousePosition, triggerPosition);
 
-                if (distance <= triggerFrameRadius)
-                {
-                    tileSelector.AllowFramePlacement();
-                }
-                else
-                {
-                    tileSelector.ProhibitFramePlacement();
-                }
+            if (distance <= triggerFrameRadius)
+                tileSelector.AllowFramePlacement();
+            else
+                tileSelector.ProhibitFramePlacement();
 
-                if (distanceToTools <= toolsRadius)
-                {
-                    playerAnim.AllowToolsUsing();
-                    PlantsGrowth.IsWithinHarvestingReach = true;
-                }
-                else
-                {
-                    playerAnim.ProhibitToolsUsing();
-                    PlantsGrowth.IsWithinHarvestingReach = false;
-                }
+            if (distanceToTools <= toolsRadius)
+            {
+                playerAnim.AllowToolsUsing();
+                PlantsGrowth.IsWithinHarvestingReach = true;
+            }
+            else
+            {
+                playerAnim.ProhibitToolsUsing();
+                PlantsGrowth.IsWithinHarvestingReach = false;
             }
         }
 
-        public float GetToolDistanceValue()
-        {
-            return toolsRadius;
-        }
+        public float GetToolDistanceValue() => toolsRadius;
     }
 }

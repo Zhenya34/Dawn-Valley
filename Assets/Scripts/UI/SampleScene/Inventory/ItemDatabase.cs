@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Enviroment.Plants;
 using UnityEngine;
 
@@ -11,15 +12,7 @@ namespace UI.SampleScene.Inventory
 
         public Seed GetSeedByItem(Item item)
         {
-            foreach (Seed seed in seeds)
-            {
-                if (seed.seedName == item.itemName)
-                {
-                    return seed;
-                }
-            }
-
-            return null;
+            return seeds.FirstOrDefault(seed => seed.seedName == item.itemName);
         }
 
         public Item GetItemByName(string name)

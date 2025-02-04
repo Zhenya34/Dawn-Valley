@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Enviroment.Time;
 using UI.SampleScene;
 using UnityEngine;
@@ -22,32 +23,28 @@ namespace Player.ToolsLogic
 
         public void HandleWatering()
         {
-            if (toolSwitcher.GetCurrentTool() == ToolSwitcher.ToolType.WateringCan)
-            {
-                Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mouseWorldPos.z = 0;
-                Vector3Int gridPosition = tilemap.WorldToCell(mouseWorldPos);
-                TileBase clickedTile = tilemap.GetTile(gridPosition);
+            if (toolSwitcher.GetCurrentTool() != ToolSwitcher.ToolType.WateringCan) return;
+            var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPos.z = 0;
+            var gridPosition = tilemap.WorldToCell(mouseWorldPos);
+            var clickedTile = tilemap.GetTile(gridPosition);
 
-                if (wateringCanUses > 0)
-                {
-                    if (clickedTile == dryDirtTile)
-                    {
-                        tilemap.SetTile(gridPosition, wetDirtTile);
-                        UpdateWateringCan(gridPosition);
-                    }
-                    else if (clickedTile == dryGardenBedTile)
-                    {
-                        tilemap.SetTile(gridPosition, wetGardenBedTile);
-                        UpdateWateringCan(gridPosition);
-                    }
-                }
+            if (wateringCanUses <= 0) return;
+            if (clickedTile == dryDirtTile)
+            {
+                tilemap.SetTile(gridPosition, wetDirtTile);
+                UpdateWateringCan(gridPosition);
+            }
+            else if (clickedTile == dryGardenBedTile)
+            {
+                tilemap.SetTile(gridPosition, wetGardenBedTile);
+                UpdateWateringCan(gridPosition);
             }
         }
 
         public bool IsGrowingOnWetTile(Vector3Int cellPosition)
         {
-            TileBase currentTile = tilemap.GetTile(cellPosition);
+            var currentTile = tilemap.GetTile(cellPosition);
             return currentTile == wetDirtTile || currentTile == wetGardenBedTile;
         }
 
@@ -59,36 +56,20 @@ namespace Player.ToolsLogic
 
         public void CheckForDryingPlots()
         {
-            List<Vector3Int> plotsToDry = new();
-
-            foreach (var plot in _wateredPlots)
-            {
-                if (dayNightCycle.GetCurrentDay() >= plot.Value + wetDuration)
-                {
-                    plotsToDry.Add(plot.Key);
-                }
-            }
+            var plotsToDry = (from plot in _wateredPlots where dayNightCycle.GetCurrentDay() >= plot.Value + wetDuration select plot.Key).ToList();
 
             foreach (var plot in plotsToDry)
             {
-                TileBase currentTile = tilemap.GetTile(plot);
+                var currentTile = tilemap.GetTile(plot);
 
                 if (currentTile == wetGardenBedTile)
-                {
                     tilemap.SetTile(plot, dryGardenBedTile);
-                }
-                else if (currentTile == wetDirtTile)
-                {
-                    tilemap.SetTile(plot, dryDirtTile);
-                }
+                else if (currentTile == wetDirtTile) tilemap.SetTile(plot, dryDirtTile);
 
                 _wateredPlots.Remove(plot);
             }
         }
 
-        public void RefillWateringCan()
-        {
-            wateringCanUses = 5;
-        }
+        public void RefillWateringCan() => wateringCanUses = 5;
     }
 }

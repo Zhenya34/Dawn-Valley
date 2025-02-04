@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UI.SampleScene.Inventory;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -24,15 +25,9 @@ namespace Enviroment.Fences
 
         private void Update()
         {
-            if (_canPlace)
-            {
-                HandleFencePlacement();
-            }
+            if (_canPlace) HandleFencePlacement();
 
-            if (_isRemovingMode)
-            {
-                HandleFenceRemoving();
-            }
+            if (_isRemovingMode) HandleFenceRemoving();
         }
 
         private void HandleFencePlacement()
@@ -97,49 +92,29 @@ namespace Enviroment.Fences
         
         private void RemoveFenceAtPosition(Vector3Int tilePos)
         {
-            GameObject fenceToRemove = null;
-    
-            foreach (var fence in _allFences)
-            {
-                Vector3Int fencePos = tilemap.WorldToCell(fence.transform.position);
-                if (fencePos == tilePos)
-                {
-                    fenceToRemove = fence;
-                    break;
-                }
-            }
+            GameObject fenceToRemove = (from fence in _allFences let fencePos = tilemap.WorldToCell(fence.transform.position) where fencePos == tilePos select fence).FirstOrDefault();
 
-            if (fenceToRemove)
-            {
-                inventoryManager.AddItem("ShopItem Fence", 1);
-                _allFences.Remove(fenceToRemove);
-                RemoveConnections(fenceToRemove);
-                Destroy(fenceToRemove);
-            }
+            if (!fenceToRemove) return;
+            inventoryManager.AddItem("ShopItem Fence", 1);
+            _allFences.Remove(fenceToRemove);
+            RemoveConnections(fenceToRemove);
+            Destroy(fenceToRemove);
         }
 
-        private bool IsNeighbor(Vector3Int diff)
+        private static bool IsNeighbor(Vector3Int diff)
         {
             return (Mathf.Abs(diff.x) == 1 && diff.y == 0) || (Mathf.Abs(diff.y) == 1 && diff.x == 0);
         }
 
         private bool IsFenceAtPosition(Vector3Int position)
         {
-            foreach (var fence in _allFences)
-            {
-                Vector3Int fencePos = tilemap.WorldToCell(fence.transform.position);
-                if (fencePos == position)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return _allFences.Select(fence => tilemap.WorldToCell(fence.transform.position)).Any(fencePos => fencePos == position);
         }
 
         private void CreateConnections(GameObject fenceA, GameObject fenceB)
         {
-            Vector3 midPoint = (fenceA.transform.position + fenceB.transform.position) / 2f;
-            Vector3 direction = fenceB.transform.position - fenceA.transform.position;
+            var midPoint = (fenceA.transform.position + fenceB.transform.position) / 2f;
+            var direction = fenceB.transform.position - fenceA.transform.position;
 
             GameObject connection = null;
 
@@ -166,17 +141,7 @@ namespace Enviroment.Fences
 
             foreach (var connection in _allConnections)
             {
-                foreach (var otherFence in _allFences)
-                {
-                    if (otherFence == fence) continue;
-
-                    Vector3 expectedMidPoint = (fence.transform.position + otherFence.transform.position) / 2f;
-
-                    if (Vector3.Distance(connection.transform.position, expectedMidPoint) < 0.1f)
-                    {
-                        connectionsToRemove.Add(connection);
-                    }
-                }
+                connectionsToRemove.AddRange(from otherFence in _allFences where otherFence != fence select (fence.transform.position + otherFence.transform.position) / 2f into expectedMidPoint where Vector3.Distance(connection.transform.position, expectedMidPoint) < 0.1f select connection);
             }
 
             foreach (var connection in connectionsToRemove)

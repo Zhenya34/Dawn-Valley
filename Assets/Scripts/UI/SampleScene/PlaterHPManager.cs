@@ -27,31 +27,22 @@ namespace UI.SampleScene
 
         private void Update()
         {
-            if(_camera)
+            if (!_camera) return;
+            if (!Application.isFocused) return;
+                
+            var mouseScreenPos = Input.mousePosition;
+                
+            if (mouseScreenPos.x < 0 || mouseScreenPos.x > Screen.width ||
+                mouseScreenPos.y < 0 || mouseScreenPos.y > Screen.height)
             {
-                if (!Application.isFocused) return;
-                
-                Vector3 mouseScreenPos = Input.mousePosition;
-                
-                if (mouseScreenPos.x < 0 || mouseScreenPos.x > Screen.width ||
-                    mouseScreenPos.y < 0 || mouseScreenPos.y > Screen.height)
-                {
-                    return;
-                }
-                
-                Vector3 mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
-                mousePosition.z = 0f;
-
-                float distance = Vector3.Distance(mousePosition, transform.position);
-                if (distance <= triggerRadius)
-                {
-                    textObject.SetActive(true);
-                }
-                else
-                {
-                    textObject.SetActive(false);
-                }
+                return;
             }
+                
+            var mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0f;
+
+            var distance = Vector3.Distance(mousePosition, transform.position);
+            textObject.SetActive(distance <= triggerRadius);
         }
 
         public void UpdatePlayerHealth(int damage)
@@ -59,14 +50,14 @@ namespace UI.SampleScene
             _currentPlayerHealth -= damage;
             _currentPlayerHealth = Mathf.Clamp(_currentPlayerHealth, MinPlayerHealth, MaxPlayerHealth);
             textObject.TryGetComponent(out _textComponent);
-            _textComponent.text = _currentPlayerHealth.ToString() + "%";
+            _textComponent.text = _currentPlayerHealth + "%";
 
             UpdateHealthSprite();
         }
 
         private void UpdateHealthSprite()
         {
-            int spriteIndex = Mathf.FloorToInt((_currentPlayerHealth / (float)MaxPlayerHealth) * (sprites.Length - 1));
+            var spriteIndex = Mathf.FloorToInt((_currentPlayerHealth / (float)MaxPlayerHealth) * (sprites.Length - 1));
             spriteIndex = Mathf.Clamp(spriteIndex, 0, sprites.Length - 1);
             image.sprite = sprites[spriteIndex];
         }

@@ -33,17 +33,12 @@ namespace Player.Placement
     
         private void Update()
         {
-            if (_buildingState == null)
-            {
-                return;
-            }
+            if (_buildingState == null) return;
             Vector3 mousePosition = inputManager.GetSelectedTileMapPosition();
             Vector2Int gridPosition = (Vector2Int)grid.WorldToCell(mousePosition);
-            if (_lastDetectedPosition != gridPosition)
-            {
-                _buildingState.UpdateState(gridPosition);
-                _lastDetectedPosition = gridPosition;
-            }
+            if (_lastDetectedPosition == gridPosition) return;
+            _buildingState.UpdateState(gridPosition);
+            _lastDetectedPosition = gridPosition;
         }
         
         public void StartPlacement(int id)
@@ -80,7 +75,7 @@ namespace Player.Placement
             }
             
             Vector3 mousePosition = inputManager.GetSelectedTileMapPosition();
-            Vector2Int gridPosition = (Vector2Int)grid.WorldToCell(mousePosition);
+            var gridPosition = (Vector2Int)grid.WorldToCell(mousePosition);
             _buildingState.OnAction(gridPosition);
         }
         

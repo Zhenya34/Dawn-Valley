@@ -85,26 +85,17 @@ namespace Enviroment.Time
 
         private void ActivateLamps(bool activate)
         {
-            foreach (var lamp in _lamps)
-            {
-                lamp.enabled = activate;
-            }
+            foreach (var lamp in _lamps) lamp.enabled = activate;
         }
 
         public void AddLamp(Light2D lamp)
         {
-            if (lamp && !_lamps.Contains(lamp))
-            {
-                _lamps.Add(lamp);
-            }
+            if (lamp && !_lamps.Contains(lamp)) _lamps.Add(lamp);
         }
 
         public void RemoveLamp(Light2D lamp)
         {
-            if (lamp && _lamps.Contains(lamp))
-            {
-                _lamps.Remove(lamp);
-            }
+            if (lamp && _lamps.Contains(lamp)) _lamps.Remove(lamp);
         }
 
         private void UpdatePlantGrowth()

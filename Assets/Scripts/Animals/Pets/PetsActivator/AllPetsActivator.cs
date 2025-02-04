@@ -8,18 +8,16 @@ namespace Animals.Pets.PetsActivator
 
         public void ActivatePet(string petName)
         {
-            GameObject petObject = FindPetByName(petName);
+            var petObject = FindPetByName(petName);
 
-            if (petObject)
-            {
-                petObject.SetActive(true);
-                TeleportPetToPlayer(petObject);
-            }
+            if (!petObject) return;
+            petObject.SetActive(true);
+            TeleportPetToPlayer(petObject);
         }
 
         public void DeactivatePet(string petName)
         {
-            GameObject petObject = FindPetByName(petName);
+            var petObject = FindPetByName(petName);
 
             if (petObject)
             {
